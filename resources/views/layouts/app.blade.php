@@ -10,12 +10,6 @@
 
     <title>{{ config('app.name', 'KofoundME') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <!-- <script src="{{ asset('js/app.js') }}" defer></script>-->
-	<script src="{{ asset('js/jquery3.3.1.min.js') }}" defer></script>
-	<script src="{{ asset('js/bootstrap.js') }}" defer></script>
-
     <!-- Fonts -->
 
 	<!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css')}}"> -->
@@ -25,13 +19,17 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @section('styles')
+	@parent
+
+	@endsection
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background: #f3f3f3; color: teal;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'KofoundME') }}
+                    <img height="45px" width="60px" style="border-radius: 10%" src="{{ asset('img/logo.png') }}">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -50,6 +48,12 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
+                        <li class="nav-link">
+                        	<a active style="color: teal;" href="">Connect</a>
+                        </li>
+                        	<li class="nav-link">
+                        		<a style="color: teal;" href="">Profile</a>
+                        	</li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -67,6 +71,8 @@
                                     </form>
                                 </div>
                             </li>
+
+
                         @endguest
                     </ul>
                 </div>
@@ -77,5 +83,16 @@
             @yield('content')
         </main>
     </div>
+
+
+@section('scripts')
+@parent
+
+@endsection
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- <script src="{{ asset('js/app.js') }}" defer></script>-->
+	<script src="{{ asset('js/jquery3.3.1.min.js') }}" defer></script>
+	<script src="{{ asset('js/bootstrap.js') }}" defer></script>
 </body>
 </html>
