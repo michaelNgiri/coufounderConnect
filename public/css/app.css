@@ -2142,3 +2142,11 @@ p {
 footer.page-footer {
   margin: 0;
 }
+
+
+/*connect page styles*/
+.bio{
+  border-radius: 8px; 
+  padding: 8px; 
+  color: teal;
+}

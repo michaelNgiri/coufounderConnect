@@ -21,13 +21,16 @@ class CreateUsersTable extends Migration
             // $table->string('slug', 190);
             $table->boolean('is_admin')->default(false);
             $table->string('phone')->nullable();
+            $table->integer('city')->nullable();
+            $table->integer('country')->nullable();
             $table->string('role')->nullable();
             $table->integer('age')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->float('availability')->nullable();
             $table->string('email')->unique();
+            $table->string('image_path');
             $table->string('password');
-            $table->boolean('is_verified')->default(false);
+            $table->boolean('verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

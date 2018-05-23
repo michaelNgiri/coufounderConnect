@@ -26,4 +26,21 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //eloquent relationship with user verification
+    public function userVerification()
+    {
+        return $this->hasOne(userVerification::class);
+    }
+ 
+
+    public function name(){
+        return $this->first_name .'  '.$this->last_name;
+    }
+    public function isVerified(){
+        return !is_null( $this->verified_at);
+    }
+    public function username(){
+        return $this->username;
+    }
 }

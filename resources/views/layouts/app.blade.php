@@ -14,6 +14,12 @@
 
 	<!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css')}}"> -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/mdi/css/materialdesignicons.css')}}">
+    <link href="{{ asset('assets/mdi/fonts/materialdesignicons-webfont.eot') }}" rel="stylesheet">
+    <link href="{{ asset('assets/mdi/fonts/materialdesignicons-webfont.svg') }}" rel="stylesheet">  
+    <link href="{{ asset('assets/mdi/fonts/materialdesignicons-webfont.ttf') }}" rel="stylesheet">  
+    <link href="{{ asset('assets/mdi/fonts/materialdesignicons-webfont.woff') }}" rel="stylesheet">
+    <link href="{{ asset('assets/mdi/fonts/materialdesignicons-webfont.woff2') }}" rel="stylesheet">  
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
@@ -45,15 +51,24 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
+                            <li class="nav-link">
+                            <a active style="color: teal;" href="{{route('connections.connect')}}">Connect</a>
+                            </li>
+                            <li class="nav-link">
+                                <a style="color: teal;" href="{{ route('ideas.idea')}}">Ideas</a>
+                            </li>
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
                         <li class="nav-link">
-                        	<a active style="color: teal;" href="">Connect</a>
+                        	<a active style="color: teal;" href="{{route('connections.connect')}}">Connect</a>
                         </li>
-                        	<li class="nav-link">
-                        		<a style="color: teal;" href="{{ route('profile')}}">Profile</a>
-                        	</li>
+                        <li class="nav-link">
+                            <a style="color: teal;" href="{{ route('ideas.idea')}}">Ideas</a>
+                        </li>
+                        <li class="nav-link">
+                            <a style="color: teal;" href="{{ route('profile.view')}}">Profile</a>
+                        </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->first_name }} <span class="caret"></span>

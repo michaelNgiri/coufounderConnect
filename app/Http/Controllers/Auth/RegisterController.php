@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use  App\Mail\VerifyEmail;
 
 class RegisterController extends Controller
 {
@@ -32,7 +33,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/profile';
 
     /**
      * Create a new controller instance.
@@ -52,7 +53,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-       
+
         return Validator::make($data, [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -77,15 +78,19 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        sendVerificationEmail();
     }
 
 
-    // protected function registered(Request $request, $user)
-    // {
-    //     try {
-    //         $user->notify(new EmailVerification($user, redirect()->intended('/')->getTargetUrl()));
-    //     } catch (Exception $e) {
-    //         logger($e);
-    //     }
-    // }
+
+
+    protected function sendVerificationEmail($user)
+    {
+        try {
+           Mail::to($request->user())
+                 ->send(new VerifyEmail);
+        } catch (Exception $e) {
+            logger($e);
+        }
+    }
 }

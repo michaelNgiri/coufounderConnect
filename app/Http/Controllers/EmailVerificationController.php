@@ -7,7 +7,13 @@ use Illuminate\Http\Request;
 class EmailVerificationController extends Controller
 {
     
-    public function verify(){
-    	
+     public function verify(UserVerification $token)
+    {
+    	//
+    }
+ 
+    public function resend(Request $request)
+    {
+    	//
     }
 }
