@@ -27,12 +27,13 @@ class ProfileController extends Controller
                 $name= $file->getClientOriginalName(); 
                 $size=$file->getClientSize(); 
                 $fileName  = time().$name;
-                $path=public_path().'/'.'img'.'/'.'profile-pictures'.'/'.$fileName;
+               // $path=public_path().'/'.'img'.'/'.'profile-pictures'.'/'.$fileName;
+                $image_path = 'img'.'/'.'profile-pictures'.'/'.$fileName;
                 $file->move('img'.'/'.'profile-pictures',$fileName);
            
           $userId=Auth::User()->id;
           User::where('id', $userId)->update([
-            'image_path'=>$path;
+            'image_path'=>$image_path
           ]);
           return 'hi';
 
@@ -40,4 +41,13 @@ class ProfileController extends Controller
     	dd('no file');
     }
 }
+
+public function showImage($filename)
+    {
+        try {
+            return response()->download(storage_path('app/public/uploads/avatars' . DS . $filename), null,[],null);
+        } catch (\Exception $e) {
+            return 'File Not Found!';
+        }
+    }
 }

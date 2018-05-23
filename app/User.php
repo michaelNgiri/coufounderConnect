@@ -43,4 +43,7 @@ class User extends Authenticatable
     public function username(){
         return $this->username;
     }
+    public function imagePath(){
+    	return $this->image_path;
+    }
 }

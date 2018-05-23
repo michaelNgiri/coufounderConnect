@@ -10,11 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/home', 'ProfileController@index')->name('profile');
+
 Route::get('/', 'HomeController@index')->name('index');
 
 // Auth::routes();
-Route::group(['as' => 'profile.'], function () {
+Route::group(['as' => 'profile.', 'middleware'=>'auth'], function () {
+Route::get('/home', 'ProfileController@index')->name('profile');
 Route::get('profile', 'ProfileController@index')->name('view');
 Route::get('update-profile', 'ProfileController@update')->name('update');
 Route::post('profile/update', 'ProfileController@saveUpdate')->name('save-update');

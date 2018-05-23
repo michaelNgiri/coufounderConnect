@@ -18,10 +18,9 @@
                         </div>
                     @endif
 
-                     
 
                     <div class="profileHeader alert alert-success">
-                        <img height="80px" width="100px" src="{{asset('img/profile-pictures/default.jpg')}}">
+                        <img height="120px" width="100px" src="{{asset(auth()->user()->imagePath())}}">
                        <!--  @if(!Auth::user()->isVerified())
                         <hr>
                         <p class="alert-text alert-danger">
