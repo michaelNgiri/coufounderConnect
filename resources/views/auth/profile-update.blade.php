@@ -15,7 +15,7 @@
                 <div class="card-body" style="text-align: center;">                   
 
                     <div class="profileHeader alert alert-success">
-                        <img height="80px" width="100px" src="{{asset('img/profile-pictures/default.jpg')}}">
+                        <img height="80px" width="100px" src="{{asset(auth()->user()->imagePath())}}">
                        <!--  @if(!Auth::user()->isVerified())
                         <hr>
                         <p class="alert-text alert-danger">
@@ -28,7 +28,7 @@
                         <p>
                         	<label for="avatar">Choose a new picture</label>
                         	<input type="file" name="avatar" value="Change profile photo"><br>
-                            <a style="color: #fff;" href="" class="btn btn-primary">{{ __('upload') }}</a>
+                            <button type="submit" class="btn btn-primary">{{ __('Upload') }}</button>
                         </p>
                         
                     </div>

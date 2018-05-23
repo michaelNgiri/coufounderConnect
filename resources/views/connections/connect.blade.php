@@ -22,8 +22,8 @@
 
 			<hr>
 			@empty
-			<p class="grey">
-				nothing here
+			<i style="font-size: 24px; text-align: center; color: red;" class="mdi mdi-emoticon-sad"></i>
+			<p class="" style="text-align: center;">Sorry, No one's home
 			</p>
 			@endforelse
 		</div><p>{{$users->appends($_GET)->links()}}</p>

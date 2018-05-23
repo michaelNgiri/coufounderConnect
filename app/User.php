@@ -44,6 +44,8 @@ class User extends Authenticatable
         return $this->username;
     }
     public function imagePath(){
-    	return $this->image_path;
+    	$filename = is_null($this->image_path) ? asset('img/profile-pictures/default.jpg') : $this->image_path;
+
+        return $filename;
     }
 }
