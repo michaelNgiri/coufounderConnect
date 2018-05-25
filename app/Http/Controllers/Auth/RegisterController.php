@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use  App\Mail\VerifyEmail;
+use  App\Notifications\VerifyEmailNotification;
+use Illuminate\Http\Request;
+use Exception;
 
 class RegisterController extends Controller
 {
@@ -78,19 +80,17 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        sendVerificationEmail();
     }
 
 
 
 
-    protected function sendVerificationEmail($user)
-    {
-        try {
-           Mail::to($request->user())
-                 ->send(new VerifyEmail);
-        } catch (Exception $e) {
-            logger($e);
-        }
-    }
+    // protected function registered(Request $request, $user)
+    // {
+    //     try {
+    //         $user->notify(new VerifyEmailNotification($user, redirect()->intended('/')->getTargetUrl()));
+    //     } catch (Exception $e) {
+    //         logger($e);
+    //     }
+    // }
 }

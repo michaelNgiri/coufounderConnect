@@ -36,6 +36,6 @@ class VerifyEmail extends Mailable
                      ->view('auth.verify_account')
                      ->with(['email_token' => $this->user->token]);
     }
-    }
+    
 }
 

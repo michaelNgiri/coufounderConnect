@@ -19,7 +19,6 @@ class CreateEmailVerificationsTable extends Migration
             $table->string('code')->nullable();
             $table->dateTime('expire_at');
             $table->dateTime('verified_at')->nullable();
-            $table->string('token');
 
             $table->foreign('user_id', 'email_verifications_user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

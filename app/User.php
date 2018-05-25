@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Model\Auth\EmailVerification;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -47,5 +49,25 @@ class User extends Authenticatable
     	$filename = is_null($this->image_path) ? asset('img/profile-pictures/default.jpg') : $this->image_path;
 
         return $filename;
+    }
+    public function emailVerificationCode(){
+        return $this->email_verification_code;
+    }
+
+     public function emailVerified()
+    {
+        if($this->verified_at == NULL) {
+             return true;
+     }else{
+        return false;
+     }
+    }
+
+    public function verificationSent(){
+        if (!is_null($this->verification_sent_at)) {
+            return true;
+        }else{
+            return false;
+        }
     }
 }
