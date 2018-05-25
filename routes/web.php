@@ -30,7 +30,7 @@ Route::post('profile/update', 'ProfileController@saveUpdate')->name('save-update
 
 //connections route
 Route::group(['as' => 'connections.'], function () {
-Route::get('/','ConnectionsController@index')->name('index');
+Route::get('/view-all','ConnectionsController@index')->name('index');
 Route::get('connect','ConnectionsController@connect')->name('connect');
 Route::get('{username}/view-profile','ConnectionsController@viewProfile')->name('view-profile');
 // //////////test route
@@ -54,7 +54,7 @@ Route::get('verify/{code}', function(){
 
 //messaging routes
 Route::group(['as' => 'messaging.'], function (){
-Route::post('/', 'messagingController@index')->name('messages');
+Route::get('messaging/show-messages', 'messagingController@index')->name('messages');
 Route::post('/', 'messagingController@sendMessage')->name('sendMessage');
 });
 

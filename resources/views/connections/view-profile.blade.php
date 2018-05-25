@@ -35,11 +35,11 @@
                                 <i class="mdi mdi-link"></i>
                             {{ __('connect') }}
                         </a>
-                            <a style="color: #fff;" href="{{route('messaging.sendMessage')}}" class="btn btn-primary">
+                            <a style="color: #fff;" href="{{route('messaging.messages')}}" class="btn btn-primary">
                                 <i class="mdi mdi-message"></i>
                             {{ __('Message') }}
                         </a>
-                             <a style="color: #fff;" href="{{route('messaging.sendMessage')}}" class="btn btn-primary">
+                             <a style="color: #fff;" href="}" class="btn btn-primary">
                                 <i class="mdi mdi-check-all"></i>
                             <!--  {{ __('Follow  ') }} -->
                          </a>

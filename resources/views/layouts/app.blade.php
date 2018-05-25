@@ -52,7 +52,7 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-link">
-                            <a active style="color: teal;" href="{{route('connections.connect')}}">Connect</a>
+                            <a active style="color: teal;" href="{{route('connections.index')}}">Connect</a>
                             </li>
                             <li class="nav-link">
                                 <a style="color: teal;" href="{{ route('ideas.idea')}}">Ideas</a>
@@ -61,7 +61,7 @@
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
                         <li class="nav-link">
-                        	<a active style="color: teal;" href="{{route('connections.connect')}}">Connect</a>
+                        	<a active style="color: teal;" href="{{route('connections.index')}}">Connect</a>
                         </li>
                         <li class="nav-link">
                             <a style="color: teal;" href="{{ route('ideas.idea')}}">Ideas</a>
