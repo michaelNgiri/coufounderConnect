@@ -32,7 +32,7 @@
                         
                         <div class="connectionLinks" style="display: inline;">
                             <a style="color: #fff;" href="{{route('connections.connect')}}" class="btn btn-primary">
-                                <i class="mdi mdi-link"></i>
+                                <i style="color: red;" class="mdi mdi-link"></i>
                             {{ __('connect') }}
                         </a>
                             <a style="color: #fff;" href="{{route('messaging.messages')}}" class="btn btn-primary">
@@ -58,7 +58,13 @@
 
                 @else
                 <div class="card-body" style="text-align: center;">
-                    please login to view your profile
+                     <div class="profileHeader alert alert-success">
+                        <img height="120px" width="100px" src="{{asset($user->imagePath())}}">
+                    </div>
+                    <div class="profileDetails" style="text-align: center;"><hr>
+                    <b style="color: teal;">{{$user->name()}}</b>
+                    </div><hr>
+                   <span style="color: blue;"> Register or Login to view this User's full profile</span>
                 </div>
                 @endauth
             </div>
