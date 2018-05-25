@@ -30,7 +30,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('image_path')->nullable();
             $table->string('password');
-            $table->boolean('verified_at')->nullable();
+            $table->string('email_verification_code')->nullable();
+            $table->date('verification_sent_at')->nullable();
+            $table->date('verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

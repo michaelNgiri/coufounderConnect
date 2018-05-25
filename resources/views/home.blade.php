@@ -21,13 +21,13 @@
 
                     <div class="profileHeader alert alert-success">
                         <img height="120px" width="100px" src="{{asset(auth()->user()->imagePath())}}">
-                       <!--  @if(!Auth::user()->isVerified())
+                        @if(!Auth::user()->isVerified())
                         <hr>
                         <p class="alert-text alert-danger">
                             Your account is not yet verified, please check your email for the verification link
                         </p>
-                        <button class="btn alert-danger">Resend Verification Link</button>
-                        @endif -->
+                        <a href="{{route('connections.verify-email')}}}" class="btn alert-danger">Resend Verification Link</a>
+                        @endif
                         <hr>
                         
                         <a style="color: #fff;" href="{{route('profile.update')}}">

@@ -11,8 +11,15 @@
 |
 */
 
+
+
+
 Route::get('/', 'HomeController@index')->name('index');
 
+Route::group(['as' => 'verification.'], function () {
+Route::get('email/{code}/{username}', 'ProfileController@verifyEmail')->name('email');
+Route::get('verify-email', 'Auth\ProfileController@verifyEmail')->name('verify-email');
+});
 // Auth::routes();
 Route::group(['as' => 'profile.', 'middleware'=>'auth'], function () {
 Route::get('/home', 'ProfileController@index')->name('profile');
@@ -23,7 +30,11 @@ Route::post('profile/update', 'ProfileController@saveUpdate')->name('save-update
 
 //connections route
 Route::group(['as' => 'connections.'], function () {
+Route::get('/','ConnectionsController@index')->name('index');
 Route::get('connect','ConnectionsController@connect')->name('connect');
+Route::get('{username}/view-profile','ConnectionsController@viewProfile')->name('view-profile');
+// //////////test route
+Route::get('verify-email', 'ConnectionsController@hi')->name('verify-email');
 });
 
 //ideas route
@@ -37,7 +48,15 @@ Route::get('submit','IdeasController@save')->name('submit-idea');
 Route::get('/verify/token/{token}', 'Auth\EmailVerificationController@verify')->name('auth.verify'); 
  
 Route::get('/verify/resend', 'Auth\EmailVerificationController@resend')->name('auth.verify.resend');
+Route::get('verify/{code}', function(){
+	return view('auth.verify-email');
+});
 
+//messaging routes
+Route::group(['as' => 'messaging.'], function (){
+Route::post('/', 'messagingController@index')->name('messages');
+Route::post('/', 'messagingController@sendMessage')->name('sendMessage');
+});
 
 // Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/Register', 'RegisterController@index')->name('register');

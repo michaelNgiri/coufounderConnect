@@ -8,6 +8,7 @@
 		@elseif (session('success'))
 		<div class="alert alert-success">{{ session('success') }}</div>
 		@endif
+		@auth
 		<form class="postIdeaForm" action="{{route('ideas.submit-idea')}}">
 		<div class="row" style="color: teal;">
 			<div class="col-md-10 card">
@@ -36,6 +37,16 @@
 			</div>
 		</div>
 	</form>
+	@else
+	<div class="card">
+		<div class="card-header">
+	<p>You are not logged in</p>
+	</div>
+	<div class="card-body">
+		<p class="alert alert-warning">please login to post your idea</p>
+	</div>
+	</div>
+	@endauth
 	</div>
 
 @endsection
