@@ -22,7 +22,17 @@
     <link href="{{ asset('assets/mdi/fonts/materialdesignicons-webfont.woff2') }}" rel="stylesheet">  
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-
+    <style>
+        .warning{
+            float: right;
+        }
+        .success{
+            float: right;
+        }
+        .message{
+            float: left;
+        }
+    </style>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @section('styles')
@@ -95,9 +105,35 @@
         </nav>
 
         <main class="py-4">
-            @if (Session::has('message'))
-                <div class="alert alert-info">{{ Session::get('message') }}</div>
-            @endif
+
+                <div class="alert container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            @if(isset($message))
+                                <strong class="message alert alert-warning">{{ $message }}</strong>
+                            @endif
+                            @if(isset($success))
+                                <strong class="success alert alert-success">{{$success}}</strong>
+                            @elseif(isset($warning))
+                                <strong class="warning alert alert-danger">{{$warning}}</strong>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+            {{--<div class="container">--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="col-md-12">--}}
+                            {{--<div >--}}
+
+
+
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+
             @yield('content')
         </main>
     </div>

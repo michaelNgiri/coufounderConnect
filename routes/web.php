@@ -55,7 +55,7 @@ Route::get('verify/{code}', function(){
 //messaging routes
 Route::group(['as' => 'messaging.'], function (){
 Route::get('messaging/show-messages', 'messagingController@index')->name('messages');
-Route::post('messaging/send-message', 'messagingController@sendMessage')->name('sendMessage');
+Route::get('messaging/send-message', 'messagingController@sendMessage')->name('send-message');
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');

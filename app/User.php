@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Message;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Model\Auth\EmailVerification;
@@ -64,10 +65,19 @@ class User extends Authenticatable
     }
 
     public function verificationSent(){
-        if (!is_null($this->verification_sent_at)) {
+        if(!is_null($this->verification_sent_at)) {
             return true;
         }else{
             return false;
         }
     }
+    public function message(){
+        return $this->hasMany(Message::class);
+    }
+//    public  function  messageSender(){
+//        return $this->hasOne(Message::class);
+//    }
+//    public function messageRecipient(){
+//        return $this->hasOne(Message::class);
+//    }
 }

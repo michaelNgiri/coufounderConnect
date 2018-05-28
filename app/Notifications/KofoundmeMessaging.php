@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class PrivateMessaging extends Notification
+class KofoundmeMessaging extends Notification
 {
     use Queueable;
 
@@ -45,9 +45,9 @@ class PrivateMessaging extends Notification
     {
 
         return (new MailMessage)
-                    ->line('you have a new message from'.' '.$this->senderName )
-                    ->action('Go To your Profile',route('messaging.messages'))
-                    ->line($this->messageTitle);
+            ->line('you have a new message from'.' '.$this->senderName )
+            ->action('Go To your Profile',route('messaging.messages'))
+            ->line($this->messageTitle);
     }
 
     /**
