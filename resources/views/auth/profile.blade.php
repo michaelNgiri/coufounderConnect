@@ -19,7 +19,10 @@
 
 
                     <div class="profileHeader alert alert-success">
-                        <img height="120px" width="100px" src="{{asset(auth()->user()->imagePath())}}">
+                        <a style="color: #fff;" href="{{route('profile.update')}}">
+                            <img height="120px" width="100px" src="{{asset(auth()->user()->imagePath())}}">
+                        </a>
+                        <a style="float: right;" href="{{route('profile.update')}}" class="teal-text mdi mdi-pencil"></a>
                         @if(!Auth::user()->isVerified())
                         <hr>
                         <p class="alert-text alert-danger">
@@ -28,10 +31,27 @@
                         <a href="{{route('connections.verify-email')}}}" class="btn alert-danger">Resend Verification Link</a>
                         @endif
                         <hr>
-                        
-                        <a style="color: #fff;" href="{{route('profile.update')}}">
-                            <button type="submit" class="btn btn-primary">{{ __('Change Profile Picture') }}</button>
+                        <span class="badge badge-success">
+                            <i style="color: #fff;" class="mdi mdi-eye">{{' '.'+'.'1'}}</i>
+                        </span>
+                        <span class="badge badge-secondary">
+                            <i style="color: #fff;" class="mdi mdi-link">{{' '.'+'.'6'}}</i>
+                        </span>
+                        <a href="{{route('messaging.messages')}}">
+                            @if($noOfMessages > 0)
+                            <span class="badge badge-danger">
+                                <i style="color: #fff;" class="mdi mdi-message">
+                                    {{' '.'+'.$noOfMessages}}
+                                </i>
+                             </span>
+                                @else
+                                <span class="badge badge-light">
+                                <i  class="mdi mdi-message"></i>
+                                 </span>
+                                @endif
                         </a>
+                        <br>
+
                         
                     </div>
                     <div class="profileDetails" style="text-align: left;"><hr>

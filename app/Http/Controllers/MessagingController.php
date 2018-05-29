@@ -15,6 +15,7 @@ class MessagingController extends Controller
     {
         $sentMessages = Message::where('sender_id', Auth::user()->id)->get();
         $receivedMessages = Message::where('recipient_id', Auth::user()->id)->get();
+
         $message = 'recipient is currently offline';
         $warning = 'you are not connected to a network';
         $success = 'your message was successfully sent';
@@ -24,27 +25,27 @@ class MessagingController extends Controller
 
     public function compose(Request $request)
     {
-        return view('messaging.compose');
+        $user = User::find($request->id);
+        return view('messaging.compose', compact('user'));
     }
 
     public function sendMessage(Request $request)
     {
-        //$user = User::where('id', $request->userId);
-        $user = User::find(2);
-        $senderName = Auth::user()->name();
-        $messageTitle = "test message";
-        $messageBody = 'Lorem ipsum dolo sit ama';
-        $recipientId = 2;
 
+        $user = User::find($request->id);
+        $senderName = Auth::user()->name();
+        $messageTitle = $request->title;
+        $messageBody = $request->message;
+        $recipientId = $request->id;
+
+        $message = new Message;
+        $message->sender_id = Auth::user()->id;
+        $message->recipient_id = $recipientId;
+        $message->title = $messageTitle;
+        $message->message_body = $messageBody;
+        $message->save();
 
         try{($user->notify(new KofoundmeMessaging($senderName, $messageTitle, $messageBody)));
-
-            $message = new Message;
-            $message->sender_id = Auth::user()->id;
-            $message->recipient_id = $recipientId;
-            $message->title = $messageTitle;
-            $message->message_body = $messageBody;
-            $message->save();
 
             $success = 'message sent';
             return view('messaging.send-message', compact('success'));
@@ -53,11 +54,19 @@ class MessagingController extends Controller
 
             logger($e);
 
-            $warning = 'sending failed, try again later';
+            $warning = 'could not send an email notification to the user';
             return view('messaging.send-message', compact('warning'));
         }
 
+    }
+    public function readMessage(Request $request){
 
-
+        $message = Message::find($request->id);
+        if( !is_null(($message->created_at))) {
+            $timestamp = $message->created_at->diffForHumans();
+        }else{
+            $timestamp = 'unknown time';
+        }
+        return view('messaging.read-message', compact('message', 'timestamp'));
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
@@ -14,9 +15,13 @@ class ProfileController extends Controller
     public function index(){
         $user = Auth::user();
         $userId = Auth::user()->id;
-        
+
+        $messages = Message::where('recipient_id', $userId)->where('read', false)->get();
+        $noOfMessages = count($messages);
+
         if($user->verificationSent()){
-            return view('auth.profile');
+
+            return view('auth.profile', compact('noOfMessages'));
         }else{
          try{
                if( $user->notify(new VerifyEmailNotification($this, redirect()->intended('/')->getTargetUrl())))
@@ -27,7 +32,7 @@ class ProfileController extends Controller
                                 'email_verification_code'=> str_random(33)
                             ])) {
                                 session()->flash('success', 'verification Sent.');
-                                return view('auth.profile');
+                                return view('auth.profile', compact('noOfMessages'));
                             }
                          }
                 } catch (\Exception $e) {
@@ -35,7 +40,7 @@ class ProfileController extends Controller
             logger($e);
          }
      }
-     return view('auth.profile');   
+     return view('auth.profile', compact('noOfMessages'));
    }
 
     public function update(){

@@ -29,11 +29,11 @@
                         <a href="{{route('connections.verify-email')}}}" class="btn alert-danger">Resend Verification Link</a>
                         @endif
                         <hr>
-                        
+
                         <a style="color: #fff;" href="{{route('profile.update')}}">
                             <button type="submit" class="btn btn-primary">{{ __('Change Profile Picture') }}</button>
                         </a>
-                        
+
                     </div>
                     <div class="profileDetails" style="text-align: left;"><hr>
                     <p><b>Name:</b> {{Auth::user()->name()}} </p>

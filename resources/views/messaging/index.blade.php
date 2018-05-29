@@ -14,38 +14,28 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header teal">
-                            <span class="white-text" style="float:right;">My Messages</span>
+                            <div>
+                                <span  style="background: #f3f3f3; float: right;" class="btn btn-group-toggle title teal-text"><b>{{__('sent')}}</b></span>
+                                <span  style="background: #f3f3f3; float: right;" class="btn btn-group-toggle title teal-text"><b>{{__('inbox')}}</b></span>
+                            </div>
+                            <span class="white-text" style="text-align: left;">Messages</span>
                         </div>
                         <div class="card-body">
 
                             <div class="row">
-                                <div class="col-md-5">
-                                    @forelse($sentMessages as $sentMessage)
-                                    <p class="title teal-text">Sent Messages</p>
-                                    <span class="message">
-                                        {{$sentMessage->title}}
-                                    </span>
-                                    <hr>
-                                    @empty
-                                        <p class="grey-text">No Messages</p>
-                                    @endforelse
-                                </div>
-                                <div class="col-md-2" role="separator"></div>
-                                <div class="col-md-5">
+                                 <div class="col-md-12">
+
                                     @forelse($receivedMessages as $receivedMessage)
-                                        <p class="title teal-text">Received Messages</p>
-                                        <span class="message">
-                                        {{$receivedMessage->title}}
-                                    </span>
-                                        <span class="message">
-                                            <div class="row">
-                                                <div class="col-md-8 messageBody">
-                                                    <p style="float: right; font-family:monospace;"></p>
-                                                    {{--{{$sentMessage->message_body}}--}}
-                                                </div>
-                                            </div>
-                                    </span>
-                                        <hr>
+                                        <div>
+                                            @if($receivedMessage->read == false)
+                                                <i style="color: teal;" class="mdi mdi-email"></i>
+                                            @else
+                                                <i style="color: darkred;" class="mdi mdi-email-open"></i>
+                                            @endif
+                                          <p><a href="{{route('messaging.read-message',['id'=>$receivedMessage->id,'title'=>$receivedMessage->title])}}">{{$receivedMessage->title}}</a></p>
+
+                                            <hr>
+                                        </div>
                                     @empty
                                         <p class="grey-text">No Messages</p>
                                     @endforelse

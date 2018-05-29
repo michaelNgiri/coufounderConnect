@@ -31,7 +31,7 @@ Route::post('profile/update', 'ProfileController@saveUpdate')->name('save-update
 //connections route
 Route::group(['as' => 'connections.'], function () {
 Route::get('/view-all','ConnectionsController@index')->name('index');
-Route::get('connect','ConnectionsController@connect')->name('connect');
+Route::get('connect/{name}/{id}','ConnectionsController@connect')->name('connect');
 Route::get('{username}/view-profile','ConnectionsController@viewProfile')->name('view-profile');
 // //////////test route
 Route::get('verify-email', 'ConnectionsController@hi')->name('verify-email');
@@ -55,14 +55,14 @@ Route::get('verify/{code}', function(){
 //messaging routes
 Route::group(['as' => 'messaging.'], function (){
 Route::get('messaging/show-messages', 'messagingController@index')->name('messages');
+Route::get('messaging/compose/{id}/{name}', 'MessagingController@compose')->name('compose');
 Route::get('messaging/send-message', 'messagingController@sendMessage')->name('send-message');
+Route::get('messaging/{id}/{title}/read', 'MessagingController@readMessage')->name('read-message');
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/Register', 'RegisterController@index')->name('register');
 // Route::get('/login', 'LoginController@index')->name('login');
-
-Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 

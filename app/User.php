@@ -5,7 +5,7 @@ namespace App;
 use App\Models\Message;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Model\Auth\EmailVerification;
+use App\Models\Auth\EmailVerification;
 use Carbon\Carbon;
 
 class User extends Authenticatable
