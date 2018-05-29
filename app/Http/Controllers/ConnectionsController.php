@@ -24,13 +24,21 @@ class ConnectionsController extends Controller
     	return view('connections.view-profile', compact('user'));
     }
     public function connect(Request $request){
+        $forwardConnection = Connection::where('sender_id', Auth::user()->id)->where('receiver_id', $request->id)->get();
+        $incomingConnection = Connection::where('receiver_id', Auth::user()->id)->where('sender_id', $request->id)->get();
 
-        $connection = new Connection;
-        $connection->sender_id = Auth::user()->id;
-        $connection->receiver_id = $request->id;
+        if (count($forwardConnection)==0 && count($incomingConnection)==0){
+            $connection = new Connection;
+	        $connection->sender_id = Auth::user()->id;
+	        $connection->receiver_id = $request->id;
 
-        $connection->save();
-         return back();
+	        $connection->save();
+	         return back();
+        }else{
+        	$info = 'you have a pending connection request to this user';
+        	return back()->with('info');
+        }
+        
     }
 
 }
