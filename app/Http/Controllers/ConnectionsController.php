@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Connection;
 use Illuminate\Http\Request;
 use App\User;
 use AUth;
@@ -22,8 +23,14 @@ class ConnectionsController extends Controller
 
     	return view('connections.view-profile', compact('user'));
     }
-    public function connect(){
-    	
+    public function connect(Request $request){
+
+        $connection = new Connection;
+        $connection->sender_id = Auth::user()->id;
+        $connection->receiver_id = $request->id;
+
+        $connection->save();
+         return back();
     }
 
 }

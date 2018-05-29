@@ -29,7 +29,7 @@
         .success{
             float: right;
         }
-        .message{
+        .info{
             float: left;
         }
     </style>
@@ -77,7 +77,9 @@
                             <a style="color: teal;" href="{{ route('ideas.idea')}}">Ideas</a>
                         </li>
                         <li class="nav-link">
-                            <a style="color: teal;" href="{{ route('profile.view')}}">Profile</a>
+                            <a style="color: teal;" href="{{ route('profile.view')}}">
+                                <span></span>
+                                Profile</a>
                         </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -104,35 +106,27 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-2">
 
                 <div class="alert container">
                     <div class="row">
                         <div class="col-md-12">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            @if(isset($message))
-                                <strong class="message alert alert-warning">{{ $message }}</strong>
-                            @endif
                             @if(isset($success))
-                                <strong class="success alert alert-success">{{$success}}</strong>
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong style="float:right;" class="success alert alert-success">{{$success}}</strong>
                             @elseif(isset($warning))
-                                <strong class="warning alert alert-danger">{{$warning}}</strong>
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong style="float:right;" class="warning alert alert-danger">{{$warning}}</strong>
                             @endif
                         </div>
+                        @if(isset($info))
+                        <div class="col-md-12">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong style="float:right;" class="info alert alert-warning">{{ $info }}</strong>
+                        </div>
+                        @endif
                     </div>
                 </div>
-
-            {{--<div class="container">--}}
-                    {{--<div class="row">--}}
-                        {{--<div class="col-md-12">--}}
-                            {{--<div >--}}
-
-
-
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
 
             @yield('content')
         </main>

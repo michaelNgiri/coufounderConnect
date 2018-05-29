@@ -7,7 +7,7 @@
 			@if($user != auth()->user())
 			<div class="cofounders" style="display: flex; padding-top: 8px;">
 				<div class="profileHeader alert alert-success">
-                <img style="float: left;" height="80px" width="100px" src="{{asset('img/profile-pictures/default.jpg')}}"></div>
+                <img style="float: left;" height="80px" width="100px" src="{{asset($user->imagePath())}}"></div>
 			<div style="text-transform: capitalize; margin: 1em; border:2px grey;" class="">
 				<span style="color: teal;"><b>{{$user->name() }}</b></span><br>
 				<span style="color: #c6c6c6"><i class="mdi mdi-phone" style="color: blue;"></i>{{$user->phone }}</span> <br>

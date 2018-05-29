@@ -20,7 +20,7 @@
 
 
                     <div class="profileHeader alert alert-success">
-                        <img height="120px" width="100px" src="{{asset(auth()->user()->imagePath())}}">
+                        <img height="120px" width="100px" src="{{asset($user->imagePath())}}">
                        <!--  @if(!Auth::user()->isVerified())
                         <hr>
                         <p class="alert-text alert-danger">
@@ -31,11 +31,11 @@
                         <hr>
                         
                         <div class="connectionLinks" style="display: inline;">
-                            <a style="color: #fff;" href="{{route('connections.connect')}}" class="btn btn-primary">
+                            <a style="color: #fff;" href="{{route('connections.connect',['id'=>$user->id, 'name'=>$user->name()])}}" class="btn btn-primary">
                                 <i style="color: red;" class="mdi mdi-link"></i>
                             {{ __('connect') }}
                         </a>
-                            <a style="color: #fff;" href="{{route('messaging.messages')}}" class="btn btn-primary">
+                            <a style="color: #fff;" href="{{route('messaging.compose',['name'=>$user->name(), 'id'=>$user->id])}}" class="btn btn-primary">
                                 <i class="mdi mdi-message"></i>
                             {{ __('Message') }}
                         </a>
