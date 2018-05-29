@@ -11,7 +11,9 @@
 |
 */
 
-
+Route::get('test', function (){
+    return view('test');
+});
 
 
 Route::get('/', 'HomeController@index')->name('index');
@@ -31,7 +33,9 @@ Route::post('profile/update', 'ProfileController@saveUpdate')->name('save-update
 //connections route
 Route::group(['as' => 'connections.'], function () {
 Route::get('/view-all','ConnectionsController@index')->name('index');
+Route::get('connections/my-connections', 'ConnectionsController@myConnections')->name('my-connections');
 Route::get('connect/{name}/{id}','ConnectionsController@connect')->name('connect');
+Route::get('connection/requests', 'ConnectionsController@showRequests')->name('requests');
 Route::get('{username}/view-profile','ConnectionsController@viewProfile')->name('view-profile');
 // //////////test route
 Route::get('verify-email', 'ConnectionsController@hi')->name('verify-email');
@@ -39,9 +43,14 @@ Route::get('verify-email', 'ConnectionsController@hi')->name('verify-email');
 
 //ideas route
 Route::group(['as' => 'ideas.'], function (){
-Route::get('ideas','IdeasController@view')->name('idea');
-Route::get('post-idea', 'IdeasController@post')->name('post-idea');
-Route::get('submit','IdeasController@save')->name('submit-idea');
+    Route::get('ideas','IdeasController@view')->name('idea');
+    Route::get('post-idea', 'IdeasController@post')->name('post-idea');
+    Route::get('submit','IdeasController@save')->name('submit-idea');
+    Route::get('idea/view-details', 'IdeasController@showDetails')->name('details');
+});
+
+Route::group(['as' => 'discussions.'], function (){
+    Route::get('discussion', 'DiscussionController@index')->name('index');
 });
 
 

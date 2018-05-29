@@ -37,4 +37,8 @@ class IdeasController extends Controller
     	$ideas = Idea::paginate();
     	return view('ideas.view', compact('ideas'));
     }
+    public function viewDetails(){
+
+        return view('ideas.details');
+    }
 }

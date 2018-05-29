@@ -2,6 +2,13 @@
 @section('content')
 <div class="container">
 	<div class="row">
+		<div class="col-md-8">
+			<a href="{{route('connections.my-connections')}}" class="btn btn-secondary">My Connections
+			<i class="mdi mdi-link"></i>
+			</a>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-10 col-xs-10 card" style="background: #f3f3f3;">
 			@forelse($users as $user)
 			@if($user != auth()->user())

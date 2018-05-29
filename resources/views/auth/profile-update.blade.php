@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<form class="profileUpdateForm" action="{{route('profile.save-update')}}" method="post" enctype="multipart/form-data">
+<form class="form-group" action="{{route('profile.save-update')}}" method="post" enctype="multipart/form-data">
 	@csrf
 <div class="container">
     <div class="row justify-content-center">
@@ -12,7 +12,7 @@
                 </div>
 
                 @auth
-                <div class="card-body" style="text-align: center;">                   
+                <div class="card-body" style="text-align: center;">
 
                     <div class="profileHeader alert alert-success">
                         <img height="80px" width="100px" src="{{asset(auth()->user()->imagePath())}}">
@@ -24,13 +24,13 @@
                         <button class="btn alert-danger">Resend Verification Link</button>
                         @endif -->
                         <hr>
-                        
+
                         <p>
                         	<label for="avatar">Choose a new picture</label>
                         	<input type="file" name="avatar" value="Change profile photo"><br>
                             <button type="submit" class="btn btn-primary">{{ __('Upload') }}</button>
                         </p>
-                        
+
                     </div>
                     <div class="profileDetails col-form-label-lg" style="text-align: left;"><hr>
                    <span><b>Name:</b><input type="text" name="" placeholder="{{Auth::user()->name()}}"></span>

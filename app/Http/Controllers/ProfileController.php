@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Connection;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Auth;
@@ -18,10 +19,13 @@ class ProfileController extends Controller
 
         $messages = Message::where('recipient_id', $userId)->where('read', false)->get();
         $noOfMessages = count($messages);
+        $connectionRequests = Connection::where('receiver_id', Auth::user()->id)->where('accepted', false)->get();
+        $noOfConnectionRequests = count($connectionRequests);
+
 
         if($user->verificationSent()){
 
-            return view('auth.profile', compact('noOfMessages'));
+            return view('auth.profile', compact('noOfMessages', 'noOfConnectionRequests'));
         }else{
          try{
                if( $user->notify(new VerifyEmailNotification($this, redirect()->intended('/')->getTargetUrl())))
@@ -32,7 +36,7 @@ class ProfileController extends Controller
                                 'email_verification_code'=> str_random(33)
                             ])) {
                                 session()->flash('success', 'verification Sent.');
-                                return view('auth.profile', compact('noOfMessages'));
+                                return view('auth.profile', compact('noOfMessages','noOfConnectionRequests'));
                             }
                          }
                 } catch (\Exception $e) {
@@ -40,7 +44,7 @@ class ProfileController extends Controller
             logger($e);
          }
      }
-     return view('auth.profile', compact('noOfMessages'));
+     return view('auth.profile', compact('noOfMessages', 'noOfConnectionRequests'));
    }
 
     public function update(){

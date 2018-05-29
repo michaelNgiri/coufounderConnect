@@ -39,7 +39,7 @@
                                 <i class="mdi mdi-message"></i>
                             {{ __('Message') }}
                         </a>
-                             <a style="color: #fff;" href="}" class="btn btn-primary">
+                             <a style="color: #fff;" href="}" class="btn btn-primary" disabled>
                                 <i class="mdi mdi-check-all"></i>
                             <!--  {{ __('Follow  ') }} -->
                          </a>

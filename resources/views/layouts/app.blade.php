@@ -27,22 +27,22 @@
             float: right;
         }
         .success{
-            float: right;
-        }
-        .info{
-            float: left;
-        }
-    </style>
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @section('styles')
-	@parent
+float: right;
+}
+.info{
+float: left;
+}
+</style>
+<!-- Styles -->
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@section('styles')
+@parent
 
-	@endsection
+@endsection
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background: #f3f3f3; color: teal;">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background: #f3f3f3; color: teal; font-family: "Helvetica Neue", Arial, sans-serif;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img height="45px" width="60px" style="border-radius: 10%" src="{{ asset('img/logo.png') }}">
@@ -62,7 +62,9 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-link">
-                            <a active style="color: teal;" href="{{route('connections.index')}}">Connect</a>
+                            <a active style="color: teal;" href="{{route('connections.index')}}">
+                                {{--<i class="mdi mdi-link"></i>--}}
+                                Connect</a>
                             </li>
                             <li class="nav-link">
                                 <a style="color: teal;" href="{{ route('ideas.idea')}}">Ideas</a>
@@ -70,19 +72,21 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
+                            <li class="nav-link">
+                                <a active style="color: teal;" href="{{route('messaging.messages')}}">Messaging</a>
+                            </li>
+                            <li class="nav-link">
+                                <a active style="color: teal;" href="{{route('discussions.index')}}">Discuss</a>
+                            </li>
                         <li class="nav-link">
                         	<a active style="color: teal;" href="{{route('connections.index')}}">Connect</a>
                         </li>
                         <li class="nav-link">
                             <a style="color: teal;" href="{{ route('ideas.idea')}}">Ideas</a>
                         </li>
-                        <li class="nav-link">
-                            <a style="color: teal;" href="{{ route('profile.view')}}">
-                                <span></span>
-                                Profile</a>
-                        </li>
+
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a style="text-transform: capitalize;" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->first_name }} <span class="caret"></span>
                                 </a>
 
@@ -97,6 +101,11 @@
                                         @csrf
                                     </form>
                                 </div>
+                            </li>
+                            <li class="nav-link">
+                                <a style="color: teal;" href="{{ route('profile.view')}}">
+                                    <img height="40px" width="60px" style="border-radius: 50%;" src="{{asset(auth()->user()->imagePath())}}">
+                                </a>
                             </li>
 
 

@@ -22,7 +22,7 @@
                         <a style="color: #fff;" href="{{route('profile.update')}}">
                             <img height="120px" width="100px" src="{{asset(auth()->user()->imagePath())}}">
                         </a>
-                        <a style="float: right;" href="{{route('profile.update')}}" class="teal-text mdi mdi-pencil"></a>
+                        <a style="float: right;" href="{{route('profile.update')}}" class="teal-text mdi mdi-pencil" title="edit profile"></a>
                         @if(!Auth::user()->isVerified())
                         <hr>
                         <p class="alert-text alert-danger">
@@ -31,13 +31,21 @@
                         <a href="{{route('connections.verify-email')}}}" class="btn alert-danger">Resend Verification Link</a>
                         @endif
                         <hr>
-                        <span class="badge badge-success">
-                            <i style="color: #fff;" class="mdi mdi-eye">{{' '.'+'.'1'}}</i>
+                        <span title="profile views" class="badge badge-success" disabled onclick="alert('this feature is available in premium mode only')">
+                            <i style="color: #fff;" class="mdi mdi-eye">{{' '.'+'.'x'}}</i>
                         </span>
-                        <span class="badge badge-secondary">
-                            <i style="color: #fff;" class="mdi mdi-link">{{' '.'+'.'6'}}</i>
+                        <a href="{{route('connections.requests')}}" title="connection requests">
+                            @if($noOfConnectionRequests > 0)
+                                <span class="badge badge-secondary">
+                            <i style="color: #fff;" class="mdi mdi-link">{{' '.'+'.$noOfConnectionRequests}}</i>
                         </span>
-                        <a href="{{route('messaging.messages')}}">
+                            @else
+                                <span class="badge badge-secondary" title="connection requests">
+                            <i style="color: #fff;" class="mdi mdi-link"></i>
+                            </span>
+                            @endif
+                        </a>
+                        <a href="{{route('messaging.messages')}}" title="messages">
                             @if($noOfMessages > 0)
                             <span class="badge badge-danger">
                                 <i style="color: #fff;" class="mdi mdi-message">

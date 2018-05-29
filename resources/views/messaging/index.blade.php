@@ -5,9 +5,10 @@
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-8">
-					<a href="{{route('messaging.send-message')}}" class="btn btn-secondary">
-						<i class="mdi mdi-message"></i>
-						Send a Private Message</a>
+                    {{--{{route('messaging.send-message')}}--}}
+					<a href="" class="btn btn-secondary" disabled title="Customized Messaging: available on premium mode">
+						<i class="mdi mdi-message" onclick="alert('Private Messaging is available on premium mode only')"></i>
+						Send a Customized Message <b class="red-text">(premium)</b></a>
 				</div>
 			</div>
             <div class="row">
@@ -29,10 +30,13 @@
                                         <div>
                                             @if($receivedMessage->read == false)
                                                 <i style="color: teal;" class="mdi mdi-email"></i>
+                                                <p><b><a href="{{route('messaging.read-message',['id'=>$receivedMessage->id,'title'=>$receivedMessage->title])}}">{{$receivedMessage->title}}</a></b></p>
+
                                             @else
-                                                <i style="color: darkred;" class="mdi mdi-email-open"></i>
+                                                <i style="color: grey;" class="mdi mdi-email-open"></i>
+                                                <p><a href="{{route('messaging.read-message',['id'=>$receivedMessage->id,'title'=>$receivedMessage->title])}}">{{$receivedMessage->title}}</a></p>
+
                                             @endif
-                                          <p><a href="{{route('messaging.read-message',['id'=>$receivedMessage->id,'title'=>$receivedMessage->title])}}">{{$receivedMessage->title}}</a></p>
 
                                             <hr>
                                         </div>

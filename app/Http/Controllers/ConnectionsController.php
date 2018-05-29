@@ -24,10 +24,10 @@ class ConnectionsController extends Controller
     	return view('connections.view-profile', compact('user'));
     }
     public function connect(Request $request){
-        $forwardConnection = Connection::where('sender_id', Auth::user()->id)->where('receiver_id', $request->id)->get();
-        $incomingConnection = Connection::where('receiver_id', Auth::user()->id)->where('sender_id', $request->id)->get();
+        $inboundConnection = Connection::where('sender_id', Auth::user()->id)->where('receiver_id', $request->id)->get();
+        $outboundConnection = Connection::where('receiver_id', Auth::user()->id)->where('sender_id', $request->id)->get();
 
-        if (count($forwardConnection)==0 && count($incomingConnection)==0){
+        if (count($inboundConnection)== 0 && count($outboundConnection)== 0){
             $connection = new Connection;
 	        $connection->sender_id = Auth::user()->id;
 	        $connection->receiver_id = $request->id;
@@ -39,6 +39,21 @@ class ConnectionsController extends Controller
         	return back()->with('info');
         }
         
+    }
+
+    public function showRequests(){
+        $pendingRequests = Connection::where('receiver_id', Auth::user()->id)->where('accepted', false)->get();
+        $noOfPendingRequests = count($pendingRequests);
+
+        return view('connections.requests', compact('pendingRequests', 'noOfPendingRequests'));
+    }
+    public function myConnections(){
+        $myConnections = Connection::where('sender_id', Auth::user()->id)->where('accepted', true)->get();
+        $myAcceptedConnections = Connection::where('receiver_id', Auth::user()->id)->get();
+        $totalConnections = count($myAcceptedConnections) + count($myConnections);
+
+
+        return view('connections.my-connections', compact('totalConnections', 'myConnections', 'myAcceptedConnections'));
     }
 
 }

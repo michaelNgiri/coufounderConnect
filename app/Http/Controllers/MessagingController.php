@@ -20,7 +20,7 @@ class MessagingController extends Controller
         $warning = 'you are not connected to a network';
         $success = 'your message was successfully sent';
 
-        return view('messaging.index', compact('sentMessages', 'receivedMessages', 'message', 'warning', 'success'));
+        return view('messaging.index', compact('sentMessages', 'receivedMessages'));
     }
 
     public function compose(Request $request)
