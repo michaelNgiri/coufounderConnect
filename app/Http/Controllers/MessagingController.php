@@ -47,17 +47,11 @@ class MessagingController extends Controller
 
         try{($user->notify(new KofoundmeMessaging($senderName, $messageTitle, $messageBody)));
 
-            $success = 'message sent';
-            return view('messaging.send-message', compact('success'));
-
         } catch (\Exception $e){
-
             logger($e);
-
-            $warning = 'could not send an email notification to the user';
-            return view('messaging.send-message', compact('warning'));
         }
-
+        $success = 'message sent';
+        return view('messaging.send-message', compact('success'));
     }
     public function readMessage(Request $request){
 

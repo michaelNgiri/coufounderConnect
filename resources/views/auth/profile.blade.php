@@ -28,7 +28,7 @@
                         <p class="alert-text alert-danger">
                             Your account is not yet verified, please check your email for the verification link
                         </p>
-                        <a href="{{route('connections.verify-email')}}}" class="btn alert-danger">Resend Verification Link</a>
+                        <a href="{{route('profile.resend-verification')}}" class="btn alert-danger">Resend Verification Link</a>
                         @endif
                         <hr>
                         <span title="profile views" class="badge badge-success" disabled onclick="alert('this feature is available in premium mode only')">
@@ -86,4 +86,9 @@
         </div>
     </div>
 </div>
+    <script>
+        document.ready(function () {
+            location.reload();
+        })
+    </script>
 @endsection
