@@ -42,7 +42,7 @@ float: left;
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background: #f3f3f3; color: teal; font-family: "Helvetica Neue", Arial, sans-serif;">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background: #f3f3f3; color: teal; ">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img height="45px" width="60px" style="border-radius: 10%" src="{{ asset('img/logo.png') }}">
@@ -150,6 +150,7 @@ float: left;
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- <script src="{{ asset('js/app.js') }}" defer></script>-->
 	<script src="{{ asset('js/jquery3.3.1.min.js') }}" defer></script>
+    <script src="{{ asset('js/jquery.dropdown.min.js') }}" defer></script>
 	<script src="{{ asset('js/bootstrap.js') }}" defer></script>
 </body>
 </html>

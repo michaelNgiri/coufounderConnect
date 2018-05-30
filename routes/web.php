@@ -31,6 +31,8 @@ Route::get('/home', 'ProfileController@index')->name('profile');
 Route::get('profile', 'ProfileController@index')->name('view');
 Route::get('update-profile', 'ProfileController@update')->name('update');
 Route::post('profile/update', 'ProfileController@saveUpdate')->name('save-update');
+Route::post('profile/update-photo', 'ProfileController@saveImage')->name('save-image');
+Route::get('profile/resend-verification-link', 'ProfileController@resendVerificationLink')->name('resend-verification');
 });
 
 //connections route
@@ -40,8 +42,6 @@ Route::get('connections/my-connections', 'ConnectionsController@myConnections')-
 Route::get('connect/{name}/{id}','ConnectionsController@connect')->name('connect');
 Route::get('connection/requests', 'ConnectionsController@showRequests')->name('requests');
 Route::get('{username}/view-profile','ConnectionsController@viewProfile')->name('view-profile');
-// //////////test route
-Route::get('verify-email', 'ConnectionsController@hi')->name('verify-email');
 });
 
 //ideas route

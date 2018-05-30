@@ -24,12 +24,15 @@
 				<textarea placeholder="A small Elavator pitch for your idea" name="details"></textarea>
 				<label for="tags">Tags:</label>
 				<input type="text" name="tags" placeholder="tags/keywords">
-				
-					@forelse($skills as $skill)
-					<input type="checkbox" name="skill" id="{{$skill->id}}" value="{{$skill->name}}">
-					@empty
-					<p>No skill to choose from</p>
-					@endforelse
+
+					<select name="skills" class="form-control" id="">
+						<option value="">whatSkills you need</option>
+						@forelse($skills as $skill)
+							<option value="{{$skill->id}}">{{$skill->name}}</option>
+						@empty
+							<p>No skill to choose from</p>
+						@endforelse
+					</select>
 				</div>
 				<div class="card-footer">
 					<button style="float: right;" class="btn" type="Submit">Submit</button>

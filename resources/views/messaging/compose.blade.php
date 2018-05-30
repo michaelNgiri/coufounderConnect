@@ -15,6 +15,7 @@
                             <input type="hidden" value="{{$user->id}}" name="id">
                         <button type="submit" style="float: right;" class="btn btn-primary">
                             {{__('send')}}
+                            <i class="mdi mdi-send"></i>
                         </button>
                         </form>
                     </div>

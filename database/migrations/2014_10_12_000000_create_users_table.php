@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
             $table->dateTime('date_of_birth')->nullable();
             $table->unsignedTinyInteger('availability')->nullable();
             $table->string('email')->unique();
-            $table->string('image_path')->nullable();
+            $table->longText('image_path')->nullable();
             $table->string('password');
             $table->string('email_verification_code')->default(str_random(33).Carbon::now()->format('Y-m-d-m-i-s'));
             $table->timestamp('verification_sent_at')->nullable();
