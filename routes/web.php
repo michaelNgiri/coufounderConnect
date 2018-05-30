@@ -14,6 +14,9 @@
 Route::get('test', function (){
     return view('test');
 });
+Route::get('verify', function (){
+    return view('auth.verify-email');
+});
 
 
 Route::get('/', 'HomeController@index')->name('index');
