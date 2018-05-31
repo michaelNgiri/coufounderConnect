@@ -41,4 +41,7 @@ class IdeasController extends Controller
 
         return view('ideas.details');
     }
+    public  function myIdeas(){
+        return view('ideas.my-ideas');
+    }
 }
