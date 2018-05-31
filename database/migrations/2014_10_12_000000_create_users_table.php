@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username')->unique();
+            $table->string('username');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('slug', 190)->nullable();
@@ -24,11 +24,11 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->text('city')->nullable();
-            $table->unsignedTinyInteger('country')->nullable();
-            $table->unsignedTinyInteger('primary_role')->nullable();
+            $table->unsignedInteger('country')->nullable();
+            $table->unsignedInteger('primary_role')->nullable();
             $table->unsignedInteger('secondary_role')->nullable();
             $table->dateTime('date_of_birth')->nullable();
-            $table->unsignedTinyInteger('availability')->nullable();
+            $table->unsignedInteger('availability')->nullable();
             $table->string('email')->unique();
             $table->longText('image_path')->nullable();
             $table->string('password');
@@ -43,30 +43,34 @@ class CreateUsersTable extends Migration
             $table->text('twitter')->nullable();
             $table->text('website')->nullable();
             $table->text('instagram')->nullable();
-            $table->rememberToken();
-            $table->timestamps();
             $table->string('_token')->nullable();
 
-            $table->foreign('country', 'country_id')
+            $table->foreign('country', 'user_country_id')
                 ->references('id')
-                ->on('country')
+                ->on('countries')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+
             $table->foreign('primary_role', 'primary_role_skill_id')
                 ->references('id')
-                ->on('skill')
+                ->on('skills')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+
             $table->foreign('secondary_role', 'secondary_role_skill_id')
                 ->references('id')
-                ->on('skill')
+                ->on('skills')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+
             $table->foreign('availability', 'availability_id')
                 ->references('id')
-                ->on('availability')
+                ->on('availabilities')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 

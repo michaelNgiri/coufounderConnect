@@ -15,13 +15,27 @@ class CreateConnectionsTable extends Migration
     {
         Schema::create('connections', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedTinyInteger('sender_id');
-            $table->unsignedTinyInteger('receiver_id');
+            $table->unsignedInteger('sender_id');
+            $table->unsignedInteger('receiver_id');
             $table->boolean('seen')->default(false);
             $table->boolean('accepted')->default(false);
             $table->boolean('blocked')->default(false);
             $table->boolean('spam')->default(false);
+
+            $table->foreign('sender_id', 'request_sender_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('receiver_id', 'request_recipient_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
+
+
         });
     }
 
