@@ -1,0 +1,5 @@
+.idea-container{
+    border: 1px solid teal;
+    text-transform: capitalize;
+    border-radius: 8px;
+}

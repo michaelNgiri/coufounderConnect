@@ -1,0 +1,38 @@
+.connections{
+    display: flex;
+    padding-top: 8px;
+}
+.user-image{
+
+}
+.phone-icon{
+    color: #c6c6c6;
+}
+.email-icon{
+    color: darkblue;
+}
+.user-icons{
+    text-transform: capitalize;
+    margin: 1em;
+    border:2px grey;
+}
+.email{
+    color:blue;
+}
+.location{
+    color: green;
+}
+.map-icon{
+    color: orange;
+}
+.role{
+    color: red;
+}
+.role-icon{
+    color: grey;
+}
+.no-connection{
+    font-size: 24px;
+    text-align: center;
+    color: red;
+}

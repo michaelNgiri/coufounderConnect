@@ -22,6 +22,9 @@ let mix = require('laravel-mix');
         'public/js/app.js')
    .styles([
             'resources/assets/css/app.css',
+            'resources/assets/css/connections.css',
+            'resources/assets/css/messaging.css',
+            'resources/assets/css/ideas.css',
             'resources/assets/css/font-awesome.min.css',
             'resources/assets/css/materialize-colors.css',
             'resources/assets/css/materialize.min.css',
