@@ -5,8 +5,8 @@
             <div class="card" style="min-width: 300px;">
             <div class="col-md-12">
                     <div class="card-header teal white-text">
-                        <a href="{{route('messaging.messages')}}" style="text-transform: capitalize;" class="mdi white-text mdi-backburger"></a>
-                        {{' '.$message->title}} <span class="pink-text" style="float: right;">{{' '.$timestamp}}</span>
+                        <a href="{{route('messaging.messages')}}" class="mdi text-capitalize white-text mdi-backburger"></a>
+                        {{' '.$message->title}} <span class="pink-text pull-right">{{' '.$timestamp}}</span>
                     </div>
                     <div class="card-body">{{$message->message_body}}</div>
                     <div class="card-footer">

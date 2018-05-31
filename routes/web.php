@@ -37,16 +37,17 @@ Route::get('profile/resend-verification-link', 'ProfileController@resendVerifica
 
 //connections route
 Route::group(['as' => 'connections.'], function () {
-Route::get('/view-all','ConnectionsController@index')->name('index');
+Route::get('connections/view-all','ConnectionsController@index')->name('index');
 Route::get('connections/my-connections', 'ConnectionsController@myConnections')->name('my-connections');
 Route::get('connect/{name}/{id}','ConnectionsController@connect')->name('connect');
 Route::get('connection/requests', 'ConnectionsController@showRequests')->name('requests');
-Route::get('{username}/view-profile','ConnectionsController@viewProfile')->name('view-profile');
+Route::get('connection/{username}/view-profile','ConnectionsController@viewProfile')->name('view-profile');
 });
 
 //ideas route
 Route::group(['as' => 'ideas.'], function (){
     Route::get('ideas','IdeasController@view')->name('idea');
+    Route::get('ideas/my-ideas', 'IdeasController@myIdeas')->name('my-idea');
     Route::get('post-idea', 'IdeasController@post')->name('post-idea');
     Route::get('submit','IdeasController@save')->name('submit-idea');
     Route::get('idea/view-details', 'IdeasController@showDetails')->name('details');

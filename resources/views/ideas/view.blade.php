@@ -2,20 +2,21 @@
 @section('content')
 <div class="container">
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-6 pull-left" >
 			<a href="{{route('ideas.post-idea')}}" class="btn btn-secondary">Post your idea +</a>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-10 card">
 			<div class="card-header">
-				View potential Cofounders
+				View potential Co-founders
+				<a  href="{{route('ideas.my-idea')}}" class="btn btn-secondary pull-right">My Ideas</a>
 			</div>
 			<div class="card-body">
 				@forelse($ideas as $idea)
 				<span>
-				<fieldset style="border: 1px solid teal; text-transform: capitalize; border-radius: 8px;">
-				<legend style="color: teal;">{{$idea->title}}</legend>
+				<fieldset class="idea-container" >
+				<legend class="teal-text">{{$idea->title}}</legend>
 				<img src="{{asset('img/profile-pictures/default.jpg')}}">	
 				<p></p>
 				{{$idea->short_description}}

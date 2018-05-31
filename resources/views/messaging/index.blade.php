@@ -16,10 +16,10 @@
                     <div class="card">
                         <div class="card-header teal">
                             <div>
-                                <span  style="background: #f3f3f3; float: right;" class="btn btn-group-toggle title teal-text"><b>{{__('sent')}}</b></span>
-                                <span  style="background: #f3f3f3; float: right;" class="btn btn-group-toggle title teal-text"><b>{{__('inbox')}}</b></span>
+                                <span class="btn btn-group-toggle title teal-text pull-right grey lighten-5"><b>{{__('sent')}}</b></span>
+                                <span class="btn btn-group-toggle title teal-text grey lighten-5 pull-right"><b>{{__('inbox')}}</b></span>
                             </div>
-                            <span class="white-text" style="text-align: left;">Messages</span>
+                            <span class="white-text pull-left">Messages</span>
                         </div>
                         <div class="card-body">
 
@@ -29,11 +29,11 @@
                                     @forelse($receivedMessages as $receivedMessage)
                                         <div>
                                             @if($receivedMessage->read == false)
-                                                <i style="color: teal;" class="mdi mdi-email"></i>
+                                                <i class="mdi mdi-email teal-text"></i>
                                                 <p><b><a href="{{route('messaging.read-message',['id'=>$receivedMessage->id,'title'=>$receivedMessage->title])}}">{{$receivedMessage->title}}</a></b></p>
 
                                             @else
-                                                <i style="color: grey;" class="mdi mdi-email-open"></i>
+                                                <i class="mdi mdi-email-open blue-grey-text"></i>
                                                 <p><a href="{{route('messaging.read-message',['id'=>$receivedMessage->id,'title'=>$receivedMessage->title])}}">{{$receivedMessage->title}}</a></p>
 
                                             @endif

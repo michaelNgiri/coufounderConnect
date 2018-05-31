@@ -2,40 +2,55 @@
 @section('content')
 <div class="container">
 	<div class="row">
-		<div class="col-md-8">
-			<a href="{{route('connections.my-connections')}}" class="btn btn-secondary">My Connections
-			<i class="mdi mdi-link"></i>
+		<div class="col-md-12">
+			<a href="{{route('connections.my-connections')}}" class="btn btn-secondary pull-right">My Connections
+				<i class="mdi mdi-link"></i>
 			</a>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-10 col-xs-10 card" style="background: #f3f3f3;">
-			@forelse($users as $user)
-			@if($user != auth()->user())
-			<div class="cofounders" style="display: flex; padding-top: 8px;">
-				<div class="profileHeader alert alert-success">
-                <img style="float: left;" height="80px" width="100px" src="{{asset($user->imagePath())}}"></div>
-			<div style="text-transform: capitalize; margin: 1em; border:2px grey;" class="">
-				<span style="color: teal;"><b>{{$user->name() }}</b></span><br>
-				<span style="color: #c6c6c6"><i class="mdi mdi-phone" style="color: blue;"></i>{{$user->phone }}</span> <br>
-				<span style="color: darkblue;"><i class="mdi mdi-email" style="color:red;"></i>{{$user->email }}</span> <br>
-				<span style="color: green;"><i class="mdi mdi-map-marker" style="color: orange;"></i></span><br>
-				<span style="color: red;"><i class="mdi mdi-briefcase" style="color: grey;"></i>{{$user->role }}</span>
-				<input type="hidden" name="user_id" value="{{$user->username}}">
-			</div> <a href="{{ route('connections.view-profile',['username'=>$user->username])}}" style="float: right;"  class="btn btn-default">{{ __('view') }}</a>
+		<div class="col-md-12 card grey lighten-5">
+			<div class="card-header teal white-text">
+				Connect with Potential Co-founders
 			</div>
-			<div class="bio alert alert-success">
-				<p>this is a short description for this user this is a short description for this user this is a short description for this user this is a short description for
-				</p>
-			</div>
+			<div class="card-body">
+				@forelse($users as $user)
+					@if($user != auth()->user())
+						<div class="connections">
+							<div class="profileHeader alert alert-success">
+								<img class="user-image pull-left" height="100px" width="100px" src="{{asset($user->imagePath())}}"></div>
+							<div class="user-icons">
+								<span class="teal-text"><b>{{$user->name() }}</b></span><hr>
+								@if(!is_null($user->phone))
+									<span><i class="mdi mdi-phone phone-icon"></i>{{$user->phone }}</span> <br>
+								@endif
+								<span class="email"><i class="mdi mdi-email email-icon"></i>{{$user->email }}</span> <br>
+								@if(!is_null($user->location()))
+									<span class="location"><i class="mdi mdi-map-marker map-icon">{{$user->location()}}</i></span><br>
+								@endif
+								@if(!is_null($user->primaryRole()))
+									<span class="role"><i class="mdi mdi-briefcase role-icon"></i>{{$user->primaryRole() }}</span>
+								@endif
+								@if(!is_null($user->secondaryRole()))
+									<span class="role"><i class="mdi mdi-briefcase role-icon"></i>{{$user->secondaryRole() }}</span>
+								@endif
+								<input type="hidden" name="user_id" value="{{$user->username}}">
+							</div> <a href="{{ route('connections.view-profile',['username'=>$user->username])}}"  class="btn btn-default pull-right">{{ __('view') }}</a>
+						</div>
+						<div class="bio alert alert-success">
+							<p>this is a short description for this user this is a short description for this user this is a short description for this user this is a short description for
+							</p>
+						</div>
 
-			<hr>
-			@endif
-			@empty
-			<i style="font-size: 24px; text-align: center; color: red;" class="mdi mdi-emoticon-sad"></i>
-			<p class="" style="text-align: center;">Sorry, No one's home
-			</p>
-			@endforelse
+						<hr>
+					@endif
+				@empty
+					<i class="mdi mdi-emoticon-sad no-connection"></i>
+					<p class="center-align">Sorry, No one's home
+					</p>
+				@endforelse
+			</div>
+			<div class="card-footer"></div>
 		</div><p>{{$users->appends($_GET)->links()}}</p>
 	</div>
 </div>

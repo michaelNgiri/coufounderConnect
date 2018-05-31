@@ -10,10 +10,10 @@
                     <div class="card-body">
                         <form action="{{route('messaging.send-message')}}" method="get" class="messageForm">
                             <input type="text" placeholder="Message Title" name="title" autofocus onautocomplete="next()"><br>
-                            <textarea style="float: right;" cols="120" rows="600" name="message">Type your Message here</textarea>
+                            <textarea cols="120" rows="600" name="message">Type your Message here</textarea>
                             <br>
                             <input type="hidden" value="{{$user->id}}" name="id">
-                        <button type="submit" style="float: right;" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary pull-right">
                             {{__('send')}}
                             <i class="mdi mdi-send"></i>
                         </button>

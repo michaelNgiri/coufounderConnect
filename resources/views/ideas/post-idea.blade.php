@@ -10,7 +10,7 @@
 		@endif
 		@auth
 		<form class="postIdeaForm" action="{{route('ideas.submit-idea')}}">
-		<div class="row" style="color: teal;">
+		<div class="row teal-text">
 			<div class="col-md-10 card">
 				<div class="card-header">
 					<span>Post Your Idea, Let Cofounders look for you</span>
@@ -26,7 +26,7 @@
 				<input type="text" name="tags" placeholder="tags/keywords">
 
 					<select name="skills" class="form-control" id="">
-						<option value="">whatSkills you need</option>
+						<option value="">what Skills do you need</option>
 						@forelse($skills as $skill)
 							<option value="{{$skill->id}}">{{$skill->name}}</option>
 						@empty
@@ -35,7 +35,7 @@
 					</select>
 				</div>
 				<div class="card-footer">
-					<button style="float: right;" class="btn" type="Submit">Submit</button>
+					<button  class="btn pull-right" type="Submit">Submit</button>
 				</div>
 			</div>
 		</div>

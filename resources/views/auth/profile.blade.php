@@ -17,7 +17,6 @@
                         </div>
                     @endif
 
-
                     <div class="profileHeader alert alert-success">
                         <a style="color: #fff;" href="{{route('profile.update')}}">
                             <img height="120px" width="100px" src="{{asset(auth()->user()->imagePath())}}">
