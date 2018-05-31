@@ -5,13 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header teal-text pull-right">
-                    <b>Profile View</b>
+                <div class="card-header">
+                    <b class="pull-left grey-text">Profile View</b>
+                    <b class="teal-text pull-right text-capitalize">{{$user->name()}}</b>
                 </div>
 
                 @auth
-                <div class="card-body center-align">
-                    <div class="profileHeader alert alert-success">
+                <div class="card-body">
+                    <div class="profileHeader alert alert-success center-align">
                         <img height="120px" width="100px" src="{{asset($user->imagePath())}}">
                        <!--  @if(!Auth::user()->isVerified())
                         <hr>
@@ -38,14 +39,41 @@
                         </div>
                         
                     </div>
-                    <div class="profileDetails center-align"><hr>
-                    <p><b>Name:</b> {{$user->name()}}</p>
-                    <p><b>Address: {{$user->address}} </b></p>
-                    <p><b>Age:</b></p>
-                    <p><b>City:</b></p>
-                    <p><b>Country of Residence:</b></p>
-                    <p><b>Availability:</b></p>
+                    <div class="profileDetails pull-left blue-grey-text"><br>
+                    @if(!is_null($user->location()))
+                         <span><i style="font-size: 2em;" class="mdi mdi-home teal-text"></i> {{'Lives in'.' '.$user->location()}}</span><br>
+                    @endif
+                    @if(!is_null($user->availability))
+                        <span><i style="font-size: 2em;" class="mdi teal-text mdi-timer"></i>{{'Available'.' '.$user->availability()->name.'/week'}}</span><br>
+                    @endif
+                    @if(!is_null($user->phone))
+                        <span><i style="font-size: 2em;" class="mdi mdi-phone teal-text"></i>{{$user->phone}}</span>
+                    @endif
                     </div>
+
+                    </div>
+                <div class="card-footer">
+                    @if($user->hasNoSocial())
+                        <p class="teal-text pull-right">your social media links will show here after you update them</p>
+                    @else
+                    <div class="socials inline pull-right" style="font-size: 2em;">
+                        @if(!is_null($user->facebook))
+                            <a title="{{'Find'.' '.$user->first_name.' '.'on Facebook'}}" style="padding: 8px;" class="social" href="{{$user->facebook()}}"><i class="mdi mdi-facebook blue-text darken-5"></i></a>
+                        @endif
+                        @if(!is_null($user->twitter))
+                            <a title="{{'Follow'.' '.$user->first_name.' '.'on twitter'}}" style="padding: 8px;" class="social" href="{{$user->twitter()}}"><i class="mdi mdi-twitter light-blue-text"></i></a>
+                        @endif
+                        @if(!is_null($user->instagram))
+                           <a title="{{'Follow '.$user->first_name.' '.'on Instagram' }}" style="padding: 8px;" class="social" href="{{$user->instagram()}}"><i class="mdi mdi-instagram red-text"></i></a>
+                        @endif
+                        @if(!is_null($user->linkedin))
+                           <a title="{{'connect with'.' '.$user->first_name.' on Linkedin'}}" style="padding: 8px;" class="social" href="{{$user->linkedin()}}"><i class="mdi mdi-linkedin blue-grey-text"></i></a>
+                        @endif
+                        @if(!is_null($user->website))
+                           <a title="{{'visit'.' '.$user->first_name.' website'}}" style="padding: 8px;" class="social" target="_blank" href="{{$user->website()}}"><i class="mdi mdi-internet-explorer blue-grey-text"></i></a>
+                        @endif
+                    </div>
+                    @endif
                 </div>
 
                 @else

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Availability;
 use App\Models\Country;
 use App\Models\Message;
 use App\Models\Skill;
@@ -80,11 +81,14 @@ class User extends Authenticatable
         return Country::find($this->country)->name;
    }
     public function location(){
-       $address = !is_null($this->address)? $this->address.','.' ': '';
-       $city = !is_null($this->city)? $this->city.','.' ': '';
-       $country = !is_null($this->country())? $this->country(): '';
-
-       return $address.$city.$country;
+       $address = !is_null($this->address)? $this->address.','.' ': null;
+       $city = !is_null($this->city)? $this->city.','.' ': null;
+       $country = !is_null($this->country())? $this->country(): null;
+        if (!is_null($address) && !is_null($city) && !is_null($country)) {
+            return $address . $city . $country;
+        }else{
+            return null;
+        }
     }
     public function primaryRole(){
         if ($this->primary_role) {
@@ -100,6 +104,38 @@ class User extends Authenticatable
             return null;
         }
     }
+    public function availability(){
+        return Availability::find($this->availability);
+    }
+    public function hasNoSocial(){
+      if(is_null($this->facebook) && is_null($this->twitter) && is_null($this->linkedin) && is_null($this->website)){
+          return true;
+      }else{
+          return false;
+      }
+    }
+
+//    social media function. needs to be modified, append https
+    public function facebook(){
+        return $this->facebook;
+    }
+    public function twitter(){
+        return $this->twitter;
+    }
+    public function linkedin(){
+        return $this->linkedin;
+    }
+    public function website(){
+        return $this->website;
+    }
+    public function instagram(){
+        return $this->instagram;
+    }
+//    public function birthday(){
+//
+//        $dob = $this->date_of_birth;
+//        return $dob->diffForHumans();
+//    }
 //    public  function  messageSender(){
 //        return $this->hasOne(Message::class);
 //    }

@@ -24,15 +24,15 @@
 								@if(!is_null($user->phone))
 									<span><i class="mdi mdi-phone phone-icon"></i>{{$user->phone }}</span> <br>
 								@endif
-								<span class="email"><i class="mdi mdi-email email-icon"></i>{{$user->email }}</span> <br>
+								<span class="email green-text"><i class="mdi mdi-email email-icon"></i>{{$user->email }}</span> <br>
 								@if(!is_null($user->location()))
 									<span class="location"><i class="mdi mdi-map-marker map-icon">{{$user->location()}}</i></span><br>
 								@endif
 								@if(!is_null($user->primaryRole()))
-									<span class="role"><i class="mdi mdi-briefcase role-icon"></i>{{$user->primaryRole() }}</span>
+									<span class="role"><i class="mdi mdi-briefcase role-icon"></i>{{$user->primaryRole()->name }}</span>
 								@endif
 								@if(!is_null($user->secondaryRole()))
-									<span class="role"><i class="mdi mdi-briefcase role-icon"></i>{{$user->secondaryRole() }}</span>
+									<span class="role"><i class="mdi mdi-briefcase role-icon"></i>{{$user->secondaryRole()->name }}</span>
 								@endif
 								<input type="hidden" name="user_id" value="{{$user->username}}">
 							</div> <a href="{{ route('connections.view-profile',['username'=>$user->username])}}"  class="btn btn-default pull-right">{{ __('view') }}</a>
