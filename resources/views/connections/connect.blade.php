@@ -24,7 +24,7 @@
 								@if(!is_null($user->phone))
 									<span><i class="mdi mdi-phone phone-icon"></i>{{$user->phone }}</span> <br>
 								@endif
-								<span class="email green-text"><i class="mdi mdi-email email-icon"></i>{{$user->email }}</span> <br>
+								<span class="email green-text text-lowercase"><i class="mdi mdi-email email-icon"></i>{{$user->email }}</span> <br>
 								@if(!is_null($user->location()))
 									<span class="location"><i class="mdi mdi-map-marker map-icon">{{$user->location()}}</i></span><br>
 								@endif

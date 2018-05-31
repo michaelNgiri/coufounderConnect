@@ -22,26 +22,26 @@ Route::get('verify', function (){
 Route::get('/', 'HomeController@index')->name('index');
 
 Route::group(['as' => 'verification.'], function () {
-Route::get('email/{code}/{username}', 'ProfileController@verifyEmail')->name('email');
-Route::get('verify-email', 'Auth\ProfileController@verifyEmail')->name('verify-email');
+    Route::get('email/{code}/{username}', 'ProfileController@verifyEmail')->name('email');
+    Route::get('verify-email', 'Auth\ProfileController@verifyEmail')->name('verify-email');
 });
 // Auth::routes();
 Route::group(['as' => 'profile.', 'middleware'=>'auth'], function () {
-Route::get('/home', 'ProfileController@index')->name('profile');
-Route::get('profile', 'ProfileController@index')->name('view');
-Route::get('update-profile', 'ProfileController@update')->name('update');
-Route::post('profile/update', 'ProfileController@saveUpdate')->name('save-update');
-Route::post('profile/update-photo', 'ProfileController@saveImage')->name('save-image');
-Route::get('profile/resend-verification-link', 'ProfileController@resendVerificationLink')->name('resend-verification');
+    Route::get('/home', 'ProfileController@index')->name('profile');
+    Route::get('profile', 'ProfileController@index')->name('view');
+    Route::get('update-profile', 'ProfileController@update')->name('update');
+    Route::post('profile/update', 'ProfileController@saveUpdate')->name('save-update');
+    Route::get('profile/update-photo', 'ProfileController@saveImage')->name('save-image');
+    Route::get('profile/resend-verification-link', 'ProfileController@resendVerificationLink')->name('resend-verification');
 });
 
 //connections route
 Route::group(['as' => 'connections.'], function () {
-Route::get('connections/view-all','ConnectionsController@index')->name('index');
-Route::get('connections/my-connections', 'ConnectionsController@myConnections')->name('my-connections');
-Route::get('connect/{name}/{id}','ConnectionsController@connect')->name('connect');
-Route::get('connection/requests', 'ConnectionsController@showRequests')->name('requests');
-Route::get('connection/{username}/view-profile','ConnectionsController@viewProfile')->name('view-profile');
+    Route::get('connections/view-all','ConnectionsController@index')->name('index');
+    Route::get('connections/my-connections', 'ConnectionsController@myConnections')->name('my-connections');
+    Route::get('connect/{name}/{id}','ConnectionsController@connect')->name('connect');
+    Route::get('connection/requests', 'ConnectionsController@showRequests')->name('requests');
+    Route::get('connection/{username}/view-profile','ConnectionsController@viewProfile')->name('view-profile');
 });
 
 //ideas route

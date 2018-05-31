@@ -117,19 +117,19 @@ class User extends Authenticatable
 
 //    social media function. needs to be modified, append https
     public function facebook(){
-        return $this->facebook;
+        return '//'.$this->facebook;
     }
     public function twitter(){
-        return $this->twitter;
+        return '//'.$this->twitter;
     }
     public function linkedin(){
-        return $this->linkedin;
+        return '//'.$this->linkedin;
     }
     public function website(){
-        return $this->website;
+        return '//'.$this->website;
     }
     public function instagram(){
-        return $this->instagram;
+        return '//'.$this->instagram;
     }
 //    public function birthday(){
 //

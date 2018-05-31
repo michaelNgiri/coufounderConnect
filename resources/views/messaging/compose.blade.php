@@ -4,13 +4,15 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
-                        Send Message to: <b class="teal-text">{{$user->name()}}</b>
+                    <div class="card-header teal">
+                        <span class="red-text">Send Message to: </span> <b class="white-text">{{ $user->name()}}</b>
+                        <span class="pull-right"><img style="border-radius: 50%;" height="30px" width="30px" src="{{ $user->imagePath()}}" alt="{{ $user->name().'`s'.' picture'}}"></span>
                     </div>
                     <div class="card-body">
                         <form action="{{route('messaging.send-message')}}" method="get" class="messageForm">
                             <input type="text" placeholder="Message Title" name="title" autofocus onautocomplete="next()"><br>
-                            <textarea cols="120" rows="600" name="message">Type your Message here</textarea>
+                            <label class="grey-text" for="message">Message body:</label>
+                            <textarea class="" name="message"></textarea>
                             <br>
                             <input type="hidden" value="{{$user->id}}" name="id">
                         <button type="submit" class="btn btn-primary pull-right">

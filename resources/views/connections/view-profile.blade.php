@@ -40,15 +40,36 @@
                         
                     </div>
                     <div class="profileDetails pull-left blue-grey-text"><br>
-                    @if(!is_null($user->location()))
-                         <span><i style="font-size: 2em;" class="mdi mdi-home teal-text"></i> {{'Lives in'.' '.$user->location()}}</span><br>
-                    @endif
-                    @if(!is_null($user->availability))
-                        <span><i style="font-size: 2em;" class="mdi teal-text mdi-timer"></i>{{'Available'.' '.$user->availability()->name.'/week'}}</span><br>
-                    @endif
-                    @if(!is_null($user->phone))
-                        <span><i style="font-size: 2em;" class="mdi mdi-phone teal-text"></i>{{$user->phone}}</span>
-                    @endif
+                            @if(!is_null($user->location()))
+                                <span><i style="font-size: 2em;" class="mdi mdi-home teal-text"></i> {{'Lives in'.' '.$user->location()}}</span><br>
+                            @endif
+                            @if(!is_null($user->availability))
+                                <span><i style="font-size: 2em;" class="mdi teal-text mdi-timer"></i>{{'Available'.' '.$user->availability()->name.'/week'}}</span><br>
+                            @endif
+                            @if(!is_null($user->phone))
+                                <span><i style="font-size: 2em;" class="mdi mdi-phone teal-text"></i>{{$user->phone}}</span>
+                            @endif
+                    </div>
+
+                    <div class="bio pull-left">
+                            @if(!is_null($user->bio))
+                                <fieldset>
+                                    <legend><b class="grey-text">Bio</b></legend>
+                                    <p class="teal-text">
+                                        {{$user->bio}}
+                                    </p>
+                                </fieldset>
+                            @endif
+                    </div>
+                    <div class="experiences pull-left">
+                        @if(!is_null($user->bio))
+                            <fieldset>
+                                <legend><b class="grey-text">Experiences</b></legend>
+                                <p class="teal-text">
+                                    {{$user->bio}}
+                                </p>
+                            </fieldset>
+                        @endif
                     </div>
 
                     </div>
@@ -58,16 +79,16 @@
                     @else
                     <div class="socials inline pull-right" style="font-size: 2em;">
                         @if(!is_null($user->facebook))
-                            <a title="{{'Find'.' '.$user->first_name.' '.'on Facebook'}}" style="padding: 8px;" class="social" href="{{$user->facebook()}}"><i class="mdi mdi-facebook blue-text darken-5"></i></a>
+                            <a title="{{'Find'.' '.$user->first_name.' '.'on Facebook'}}" style="padding: 8px;" class="social" target="_blank" href="{{$user->facebook()}}"><i class="mdi mdi-facebook blue-text darken-5"></i></a>
                         @endif
                         @if(!is_null($user->twitter))
-                            <a title="{{'Follow'.' '.$user->first_name.' '.'on twitter'}}" style="padding: 8px;" class="social" href="{{$user->twitter()}}"><i class="mdi mdi-twitter light-blue-text"></i></a>
+                            <a title="{{'Follow'.' '.$user->first_name.' '.'on twitter'}}" style="padding: 8px;" class="social" target="_blank" href="{{$user->twitter()}}"><i class="mdi mdi-twitter light-blue-text"></i></a>
                         @endif
                         @if(!is_null($user->instagram))
-                           <a title="{{'Follow '.$user->first_name.' '.'on Instagram' }}" style="padding: 8px;" class="social" href="{{$user->instagram()}}"><i class="mdi mdi-instagram red-text"></i></a>
+                           <a title="{{'Follow '.$user->first_name.' '.'on Instagram' }}" style="padding: 8px;" class="social" target="_blank" href="{{$user->instagram()}}"><i class="mdi mdi-instagram red-text"></i></a>
                         @endif
                         @if(!is_null($user->linkedin))
-                           <a title="{{'connect with'.' '.$user->first_name.' on Linkedin'}}" style="padding: 8px;" class="social" href="{{$user->linkedin()}}"><i class="mdi mdi-linkedin blue-grey-text"></i></a>
+                           <a title="{{'connect with'.' '.$user->first_name.' on Linkedin'}}" style="padding: 8px;" class="social" target="_blank" href="{{$user->linkedin()}}"><i class="mdi mdi-linkedin blue-grey-text"></i></a>
                         @endif
                         @if(!is_null($user->website))
                            <a title="{{'visit'.' '.$user->first_name.' website'}}" style="padding: 8px;" class="social" target="_blank" href="{{$user->website()}}"><i class="mdi mdi-internet-explorer blue-grey-text"></i></a>
