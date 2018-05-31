@@ -59,14 +59,10 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'username' => 'required|string|between:4,20|unique:users,username',
+            'username' => 'required|string|between:3,60',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-        ],
-            [
-                'username.unique' => 'that Username is already taken!',
-            ]
-        );
+        ]);
 
     }
 

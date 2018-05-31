@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Models\Country;
 use App\Models\Message;
+use App\Models\Skill;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Auth\EmailVerification;
@@ -31,10 +33,10 @@ class User extends Authenticatable
     ];
 
     //eloquent relationship with user verification
-    public function userVerification()
-    {
-        return $this->hasOne(userVerification::class);
-    }
+//    public function userVerification()
+//    {
+//        return $this->hasOne(userVerification::class);
+//    }
  
 
     public function name(){
@@ -73,6 +75,30 @@ class User extends Authenticatable
     }
     public function message(){
         return $this->hasMany(Message::class);
+    }
+   public function country(){
+        return Country::find($this->country)->name;
+   }
+    public function location(){
+       $address = !is_null($this->address)? $this->address.','.' ': '';
+       $city = !is_null($this->city)? $this->city.','.' ': '';
+       $country = !is_null($this->country())? $this->country(): '';
+
+       return $address.$city.$country;
+    }
+    public function primaryRole(){
+        if ($this->primary_role) {
+            return Skill::find($this->primary_role);
+        }else{
+            return null;
+        }
+    }
+    public function secondaryRole(){
+        if ($this->secondary_role) {
+            return Skill::find($this->secondary_role);
+        }else{
+            return null;
+        }
     }
 //    public  function  messageSender(){
 //        return $this->hasOne(Message::class);
