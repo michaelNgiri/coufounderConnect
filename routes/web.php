@@ -31,7 +31,7 @@ Route::group(['as' => 'profile.', 'middleware'=>'auth'], function () {
     Route::get('profile', 'ProfileController@index')->name('view');
     Route::get('update-profile', 'ProfileController@update')->name('update');
     Route::post('profile/update', 'ProfileController@saveUpdate')->name('save-update');
-    Route::get('profile/update-photo', 'ProfileController@saveImage')->name('save-image');
+    Route::post('profile/update-photo', 'ProfileController@saveImage')->name('save-image');
     Route::get('profile/resend-verification-link', 'ProfileController@resendVerificationLink')->name('resend-verification');
 });
 
@@ -41,7 +41,7 @@ Route::group(['as' => 'connections.'], function () {
     Route::get('connections/my-connections', 'ConnectionsController@myConnections')->name('my-connections');
     Route::get('connect/{name}/{id}','ConnectionsController@connect')->name('connect');
     Route::get('connection/requests', 'ConnectionsController@showRequests')->name('requests');
-    Route::get('connection/{username}/view-profile','ConnectionsController@viewProfile')->name('view-profile');
+    Route::post('connection/{username}/view-profile','ConnectionsController@viewProfile')->name('view-profile');
 });
 
 //ideas route
@@ -67,10 +67,10 @@ Route::get('verify/{code}', function(){
 
 //messaging routes
 Route::group(['as' => 'messaging.'], function (){
-Route::get('messaging/show-messages', 'messagingController@index')->name('messages');
-Route::get('messaging/compose/{id}/{name}', 'MessagingController@compose')->name('compose');
-Route::get('messaging/send-message', 'messagingController@sendMessage')->name('send-message');
-Route::get('messaging/{id}/{title}/read', 'MessagingController@readMessage')->name('read-message');
+    Route::get('messaging/show-messages', 'messagingController@index')->name('messages');
+    Route::post('messaging/compose/{username}', 'MessagingController@compose')->name('compose');
+    Route::post('messaging/send-message', 'messagingController@sendMessage')->name('send-message');
+    Route::get('messaging/{id}/{title}/read', 'MessagingController@readMessage')->name('read-message');
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');

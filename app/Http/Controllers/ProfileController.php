@@ -79,9 +79,10 @@ class ProfileController extends Controller
             $image_path = 'img' . '/' . 'profile-pictures' . '/' . $fileName;
             $file->move('img' . '/' . 'profile-pictures', $fileName);
 
-            User::find($userId)->first()->update([
-                'image_path' => $image_path,
-            ]);
+            $user = User::find($userId);
+            $user->image_path = $image_path;
+            $user->save();
+
         }
         return back();
 
@@ -91,28 +92,28 @@ class ProfileController extends Controller
         $userId = Auth::User()->id;
 
 
-            $input = collect(request()->all())->filter()->all();
-            //$input = collect(request()->except(['_token'])->filter());
-
-            User::find($userId)->update($input);
-
-
-            return back();
-
+//            $input = collect(request()->all())->filter()->all();
+//            //$input = collect(request()->except(['_token'])->filter());
 //
-//            User::where('id', $userId)->update([
-//                'first_name'=>$request->first_name,
-//                'last_name'=>$request->last_name,
-//                'date_of_birth'=>$request->date_of_birth,
-//                'address'=>$request->address,
-//                'city'=>$request->city,
-//                'phone'=>$request->phone,
-//                'primary_role'=>$request->primary_role,
-//                'secondary_role'=>$request->secondary_role,
-//                'country'=>$request->country,
-//                'availability'=>$request->availability,
+//            User::find($userId)->update($input);
 //
-//            ]);
+//            return back();
+
+
+           $user = User::find($userId);
+            isset($request->first_name)? $user->first_name = $request->first_name: $user->first_name;
+            isset($request->last_name)? $user->last_name = $request->last_name: $user->last_name;
+            isset($request->date_of_birth)? $user->date_of_birth = $request->date_of_birth: $user->date_of_birth;
+            isset($request->address)? $user->address = $request->address: $user->address;
+            isset($request->city)? $user->city = $request->city : $user->city;
+            isset($request->phone)? $user->phone = $request->phone :$user->phone;
+            isset($request->primary_role)? $user->primary_role = $request->primary_role :$user->primary_role;
+            isset($request->secondary_role)? $user->secondary_role = $request->secondary_role :$user->secondary_role;
+            isset($request->country)? $user->country = $request->country : $user->country;
+            isset($request->availability)? $user->availability = $request->availability :$user->availability;
+          $user->save();
+        return back();
+
     }
 
     public function showImage($filename)
@@ -134,14 +135,16 @@ class ProfileController extends Controller
         $connectionRequests = Connection::where('receiver_id', Auth::user()->id)->where('accepted', false)->get();
         $noOfConnectionRequests = count($connectionRequests);
 
-        if (
-        User::where('email_verification_code', $verificationCode)->update([
-            'verified_at' => Carbon::now()
-        ])) {
+        try{
+        $user = User::where('email_verification_code', $verificationCode)->first();
+//        dd($user);
+            $user->verified_at = Carbon::now();
+            $user->save();
             $success = 'Congratulations, your email has been verified.';
             return view('auth.profile', compact('noOfMessages', 'noOfConnectionRequests', 'success'));
 
-        } else {
+        } catch (\Exception $e) {
+
             $warning = 'verification failed! your verification code does not exist or have expired. Hit the resend button';
             return view('auth.profile', compact('noOfMessages', 'noOfConnectionRequests', 'warning'));
         }
@@ -157,11 +160,14 @@ class ProfileController extends Controller
             $connectionRequests = Connection::where('receiver_id', Auth::user()->id)->where('accepted', false)->get();
             $noOfConnectionRequests = count($connectionRequests);
 
-
+            try{
             $user->notify(new VerifyEmailNotification());
+            } catch (\Exception $e) {
+                $warning = 'Network error! try again later.';
+            }
 
             $success = 'Verification link has been sent to your email';
-            return view('auth.profile', compact('noOfMessages', 'noOfConnectionRequests', 'success'));
+            return view('auth.profile', compact('noOfMessages', 'noOfConnectionRequests', 'success', 'warning'));
 
 
         }

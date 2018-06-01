@@ -25,7 +25,7 @@ class MessagingController extends Controller
 
     public function compose(Request $request)
     {
-        $user = User::find($request->id);
+        $user = User::where('id', $request->id)->where('username', $request->username)->first();
         return view('messaging.compose', compact('user'));
     }
 
@@ -47,11 +47,14 @@ class MessagingController extends Controller
 
         try{($user->notify(new KofoundmeMessaging($senderName, $messageTitle, $messageBody)));
 
-        } catch (\Exception $e){
-            logger($e);
-        }
+            } catch (\Exception $e){
+                logger($e);
+                $recipient = User::find($request->id)->name();
+                $info = $recipient.' '.'will see the message when he comes online';
+                return view('messaging.compose', compact('info', 'user'));
+            }
         $success = 'message sent';
-        return view('messaging.send-message', compact('success'));
+        return view('messaging.compose', compact('success', 'user'));
     }
     public function readMessage(Request $request){
 

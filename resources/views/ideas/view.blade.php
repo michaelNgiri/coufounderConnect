@@ -20,7 +20,8 @@
 				<img src="{{asset('img/profile-pictures/default.jpg')}}">	
 				<p></p>
 				{{$idea->short_description}}
-				<p>{{$idea->details}}</p>
+				<p>{{$idea->details}}</p><hr>
+				<p class="teal-text">Required Skill: </b><i class="mdi mdi-briefcase"></i>{{$idea->requiredSkill()}}</p>
 				</fieldset></span>
 				<hr>
 				@empty

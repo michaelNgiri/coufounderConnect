@@ -1,12 +1,13 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <div class="row">
             <div class="card" style="min-width: 300px;">
-            <div class="col-md-12">
+                <div class="col-md-12">
                     <div class="card-header teal white-text">
                         <a href="{{route('messaging.messages')}}" class="mdi text-capitalize white-text mdi-backburger"></a>
-                        {{' '.$message->title}} <span class="pink-text pull-right">{{' '.$timestamp}}</span>
+                        {{' '.$message->title.'  from '}} <a href="" class="teal white-text btn">{{$message->sender()->name()}}</a>
+                        <span><img height="30px" width="30px" style="border-radius: 50%; float: right; margin-left: 4px;" src="{{asset($message->sender()->imagePath())}}" alt="sender's photo"></span>
+                        <span class="pink-text pull-right">{{' '.$timestamp}}</span>
                     </div>
                     <div class="card-body">{{$message->message_body}}</div>
                     <div class="card-footer">
@@ -16,5 +17,4 @@
                 </div>
             </div>
         </div>
-    </div>
 @endsection

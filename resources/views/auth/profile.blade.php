@@ -19,7 +19,7 @@
 
                     <div class="profileHeader alert alert-success">
                         <a style="color: #fff;" href="{{route('profile.update')}}">
-                            <img height="120px" width="100px" src="{{asset(auth()->user()->imagePath())}}">
+                            <img height="120px" width="100px" style="border-radius: 30%;" src="{{asset(auth()->user()->imagePath())}}">
                         </a>
                         <a style="float: right;" href="{{route('profile.update')}}" class="teal-text mdi mdi-pencil" title="edit profile"></a>
                         @if(!Auth::user()->isVerified())

@@ -16,5 +16,7 @@ class Message extends Model
      * @return mixed
      * get the sender of the email
      */
-
+public  function sender(){
+    return User::find($this->sender_id);
+}
 }

@@ -14,30 +14,26 @@
                 <div class="card-body">
                     <div class="profileHeader alert alert-success center-align">
                         <img height="120px" width="100px" src="{{asset($user->imagePath())}}">
-                       <!--  @if(!Auth::user()->isVerified())
+
                         <hr>
-                        <p class="alert-text alert-danger">
-                            Your account is not yet verified, please check your email for the verification link
-                        </p>
-                        <button class="btn alert-danger">Resend Verification Link</button>
-                        @endif -->
-                        <hr>
-                        
+                        <form class="inline" action="{{route('messaging.compose',['username'=>$user->username])}}" method="post">
                         <div class="connectionLinks inline" >
                             <a href="{{route('connections.connect',['id'=>$user->id, 'name'=>$user->name()])}}" class="btn btn-primary white-text">
                                 <i class="mdi mdi-link red-text"></i>
                             {{ __('connect') }}
                         </a>
-                            <a href="{{route('messaging.compose',['name'=>$user->name(), 'id'=>$user->id])}}" class="btn btn-primary white-text">
-                                <i class="mdi mdi-message"></i>
-                            {{ __('Message') }}
-                        </a>
+
+                                @csrf
+                                <button  class="btn btn-primary white-text">{{ __('Message') }}</button>
+                                <input name="id" type="hidden" value="{{$user->id}}">
+                                <input name="username" type="hidden" value="{{$user->username}}">
+
                              <a href="" class="btn btn-primary white-text" disabled>
                                 <i class="mdi mdi-check-all"></i>
-                            <!--  {{ __('Follow  ') }} -->
-                         </a>
+                            <!--  {{ __('Follow') }} -->
+                            </a>
                         </div>
-                        
+                        </form>
                     </div>
                     <div class="profileDetails pull-left blue-grey-text"><br>
                             @if(!is_null($user->location()))
@@ -75,9 +71,11 @@
                     </div>
                 <div class="card-footer">
                     @if($user->hasNoSocial())
-                        <p class="teal-text pull-right">your social media links will show here after you update them</p>
+                        <p class="teal-text pull-right"><b class="grey-text pull-left">Socials:</b>
+                            <i class="mdi mdi-emoticon-sad"></i>
+                        </p>
                     @else
-                    <div class="socials inline pull-right" style="font-size: 2em;">
+                    <div class="socials inline pull-right" style="font-size: 2em;"><b class="grey-text pull-left">Socials:</b>
                         @if(!is_null($user->facebook))
                             <a title="{{'Find'.' '.$user->first_name.' '.'on Facebook'}}" style="padding: 8px;" class="social" target="_blank" href="{{$user->facebook()}}"><i class="mdi mdi-facebook blue-text darken-5"></i></a>
                         @endif

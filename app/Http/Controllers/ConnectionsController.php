@@ -18,8 +18,10 @@ class ConnectionsController extends Controller
     }
 
     public function viewProfile(Request $request){
+
     	$username = $request->username;
-    	$user = User::where('username', $username)->first();
+    	$id = $request->id;
+    	$user = User::where('username', $username)->where('id', $id)->first();
 
     	return view('connections.view-profile', compact('user'));
     }

@@ -81,13 +81,13 @@ class User extends Authenticatable
         return Country::find($this->country)->name;
    }
     public function location(){
-       $address = !is_null($this->address)? $this->address.','.' ': null;
-       $city = !is_null($this->city)? $this->city.','.' ': null;
-       $country = !is_null($this->country())? $this->country(): null;
-        if (!is_null($address) && !is_null($city) && !is_null($country)) {
-            return $address . $city . $country;
-        }else{
+       $address = !is_null($this->address)? $this->address.','.' ': '';
+       $city = !is_null($this->city)? $this->city.','.' ': '';
+       $country = !is_null($this->country())? $this->country(): '';
+        if (is_null($address) && is_null($city) && is_null($country)) {
             return null;
+        }else                {
+            return $address . $city . $country;
         }
     }
     public function primaryRole(){

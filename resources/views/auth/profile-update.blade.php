@@ -36,6 +36,7 @@
 
                             </div>
              <form class="form-group" action="{{route('profile.save-update')}}" method="post" enctype="multipart/form-data">
+                 @csrf
                <div class="profileDetails col-form-label-lg" style="text-align: left;">
                                 <hr>
                      <span>
@@ -109,10 +110,10 @@
                          </select>
                     </span>
               </div>
+                 <button type="submit" class="btn btn-primary">{{ __('Update Your Profile') }}</button>
              </form>
         </div>
 
-                        <button type="submit" class="btn btn-primary">{{ __('Update Your Profile') }}</button>
                         @else
                             <div class="card-body" style="text-align: center;">
                                 please login to update your profile
