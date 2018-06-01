@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <form class="form-group" action="{{route('profile.save-update')}}" method="post" enctype="multipart/form-data">
+
         @csrf
         <div class="container">
             <div class="row justify-content-center">
@@ -25,38 +25,45 @@
 @endif -->
                                 <hr>
 
-                                <p>
-                                    <label for="avatar">Choose a new picture</label>
-                                    <input type="file" name="avatar" value="Change profile photo"><br>
-                                    <a href="{{route('profile.save-image')}}" type="submit" class="btn btn-primary">{{ __('Upload') }}</a>
-                                </p>
+                                <form action="{{route('profile.save-image')}}" class="form-horizontal form-group" method="post" role="form" enctype="multipart/form-data">
+                                    @csrf
+                                    <p>
+                                        <label for="avatar">Choose a new picture</label>
+                                        <input class="form-control" type="file" name="avatar"><br>
+                                        <button type="submit" class="btn btn-primary">{{ __('Upload') }}</button>
+                                    </p>
+                                </form>
 
                             </div>
-                            <div class="profileDetails col-form-label-lg" style="text-align: left;">
+             <form class="form-group" action="{{route('profile.save-update')}}" method="post" enctype="multipart/form-data">
+               <div class="profileDetails col-form-label-lg" style="text-align: left;">
                                 <hr>
-                                <span>
+                     <span>
                        <label for="first_name"><b>Last Name:</b></label>
                        <input type="text" name="first_name" placeholder="{{Auth::user()->last_name}}">
                      </span>
-                                <span>
+                   <span>
                        <label for="last_name"><b>Last Name:</b></label>
                        <input type="text" name="last_name" placeholder="{{Auth::user()->first_name}}">
                    </span>
-                                <span>
+                   <span>
                         <label for="date_of_birth"><b>Birthday:</b></label>
                         <input type="date" name="date_of_birth" placeholder="{{Auth::user()->date_of_birth}}">
-                    </span>
-                                <span>
+                   </span>
+                   <span>
                         <label for="address"><b>Street Address:</b></label>
-                        <input type="text" name="" placeholder="{{Auth::user()->Address}}"></span>
-                                <span>
+                        <input type="text" name="" placeholder="{{Auth::user()->Address}}">
+                   </span>
+                   <span>
                         <label for="city"><b>City:</b></label>
-                        <input type="text" name="city"></span>
-                                <span>
-                                    <label for="phone"><b>Phone No:</b></label>
-                                    <input type="tel" name="phone"></span>
-                                <span>
-                            <label for="primary_role"><b>Primary Role</b></label>
+                        <input type="text" name="city">
+                   </span>
+                   <span>
+                         <label for="phone"><b>Phone No:</b></label>
+                         <input type="tel" name="phone">
+                   </span>
+                   <span>
+                        <label for="primary_role"><b>Primary Role</b></label>
                         <select name="primary_role" id="role" class="form-control">
                             <option value="">Choose your Primary role</option>
                             @forelse($skills as $skill)
@@ -65,9 +72,10 @@
                                 <option value="">No available Skill to choose from</option>
                             @endforelse
                         </select>
-                        </span>
-                                <span>
-                            <label for="secondary_role"><b>Secondary Role</b></label>
+                   </span>
+
+                   <span>
+                        <label for="secondary_role"><b>Secondary Role</b></label>
                         <select name="secondary_role" id="role" class="form-control">
                             <option value="">Choose a secondary role if applicable</option>
                             @forelse($skills as $skill)
@@ -76,9 +84,9 @@
                                 <option value="">No available Skill to choose from</option>
                             @endforelse
                         </select>
-                        </span>
-                                <span>
-                        <label for="country"><b>Country of Residence:</b></label>
+                   </span>
+                   <span>
+                    <label for="country"><b>Country of Residence:</b></label>
                     <select name="country" class="form-control" data-live-search="true">
                         <option value="">Select your Country</option>
                         @forelse($countries as $country)
@@ -89,19 +97,19 @@
                     </select>
                     </span>       <br>
                     <span>
-                            <label for="availability"><b>Availability:</b></label>
-                            <select name="availability" id="availability" class="form-control"
-                                    data-live-search="true">
-                                <option value="">Number of hours you are available per week</option>
-                                @forelse($availabilities as $availability)
-                                    <option value="{{$availability->id}}">{{$availability->name}}</option>
-                                    @empty
-                                    <p value="">null</p>
-                                @endforelse
-                            </select>
-
+                         <label for="availability"><b>Availability:</b></label>
+                         <select name="availability" id="availability" class="form-control"
+                                        data-live-search="true">
+                                    <option value="">Number of hours you are available per week</option>
+                                    @forelse($availabilities as $availability)
+                                        <option value="{{$availability->id}}">{{$availability->name}}</option>
+                                        @empty
+                                        <p value="">null</p>
+                                    @endforelse
+                         </select>
                     </span>
-          </div>
+              </div>
+             </form>
         </div>
 
                         <button type="submit" class="btn btn-primary">{{ __('Update Your Profile') }}</button>
@@ -114,5 +122,5 @@
                 </div>
             </div>
         </div>
-    </form>
+
 @endsection
