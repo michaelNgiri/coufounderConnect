@@ -62,6 +62,10 @@ class ProfileController extends Controller
 
     public function saveImage(Request $request)
     {
+        $this->validate($request, [
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         $userId = Auth::User()->id;
         if ($request->hasFile('avatar')) {
             /**upload file to database */
@@ -75,11 +79,11 @@ class ProfileController extends Controller
             $image_path = 'img' . '/' . 'profile-pictures' . '/' . $fileName;
             $file->move('img' . '/' . 'profile-pictures', $fileName);
 
-            User::where('id', $userId)->update([
+            User::find($userId)->first()->update([
                 'image_path' => $image_path,
             ]);
         }
-            return back();
+        return back();
 
     }
     public function saveUpdate(Request $request)
@@ -90,7 +94,7 @@ class ProfileController extends Controller
             $input = collect(request()->all())->filter()->all();
             //$input = collect(request()->except(['_token'])->filter());
 
-            User::where('id', $userId)->update($input);
+            User::find($userId)->update($input);
 
 
             return back();
