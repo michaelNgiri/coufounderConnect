@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Connection;
 use Illuminate\Http\Request;
 use App\User;
-use AUth;
+use Auth;
 use App\Notifications\VerifyEmailNotification;
 
 class ConnectionsController extends Controller
@@ -26,19 +26,24 @@ class ConnectionsController extends Controller
     	return view('connections.view-profile', compact('user'));
     }
     public function connect(Request $request){
+
         $inboundConnection = Connection::where('sender_id', Auth::user()->id)->where('receiver_id', $request->id)->get();
         $outboundConnection = Connection::where('receiver_id', Auth::user()->id)->where('sender_id', $request->id)->get();
+        $id = $request->id;
+        $user = User::find($id)->first();
 
         if (count($inboundConnection)== 0 && count($outboundConnection)== 0){
             $connection = new Connection;
-	        $connection->sender_id = Auth::user()->id;
-	        $connection->receiver_id = $request->id;
-
+                $connection->sender_id = Auth::user()->id;
+                $connection->receiver_id = $request->id;
 	        $connection->save();
-	         return back();
+
+
+            $success = 'connection request sent';
+            return view('connections.view-profile', compact('user', 'success'));
         }else{
-        	$info = 'you have a pending connection request to this user';
-        	return back()->with('info');
+        	$info = 'you have a pending connection request to this person';
+            return view('connections.view-profile', compact('user', 'info'));
         }
         
     }

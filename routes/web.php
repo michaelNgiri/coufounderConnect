@@ -39,7 +39,7 @@ Route::group(['as' => 'profile.', 'middleware'=>'auth'], function () {
 Route::group(['as' => 'connections.'], function () {
     Route::get('connections/view-all','ConnectionsController@index')->name('index');
     Route::get('connections/my-connections', 'ConnectionsController@myConnections')->name('my-connections');
-    Route::get('connect/{name}/{id}','ConnectionsController@connect')->name('connect');
+    Route::post('connect/{username}','ConnectionsController@connect')->name('connect');
     Route::get('connection/requests', 'ConnectionsController@showRequests')->name('requests');
     Route::post('connection/{username}/view-profile','ConnectionsController@viewProfile')->name('view-profile');
 });

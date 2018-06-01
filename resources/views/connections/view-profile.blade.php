@@ -16,13 +16,17 @@
                         <img height="120px" width="100px" src="{{asset($user->imagePath())}}">
 
                         <hr>
+                        <div class="connectionLinks inline" style="display: inline-flex;" >
+                            <form action="{{route('connections.connect',['username'=>$user->username])}}" class="inline" method="post">
+                                @csrf
+                                <input name="id" type="hidden" value="{{$user->id}}">
+                                <input name="username" type="hidden" value="{{$user->username}}">
+                                <button  class="btn btn-primary white-text">
+                                    <i class="mdi mdi-link red-text"></i>
+                                    {{ __('connect') }}
+                                </button>
+                            </form>
                         <form class="inline" action="{{route('messaging.compose',['username'=>$user->username])}}" method="post">
-                        <div class="connectionLinks inline" >
-                            <a href="{{route('connections.connect',['id'=>$user->id, 'name'=>$user->name()])}}" class="btn btn-primary white-text">
-                                <i class="mdi mdi-link red-text"></i>
-                            {{ __('connect') }}
-                        </a>
-
                                 @csrf
                                 <button  class="btn btn-primary white-text">{{ __('Message') }}</button>
                                 <input name="id" type="hidden" value="{{$user->id}}">
@@ -32,8 +36,8 @@
                                 <i class="mdi mdi-check-all"></i>
                             <!--  {{ __('Follow') }} -->
                             </a>
-                        </div>
                         </form>
+                    </div>
                     </div>
                     <div class="profileDetails pull-left blue-grey-text"><br>
                             @if(!is_null($user->location()))

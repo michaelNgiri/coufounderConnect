@@ -76,7 +76,7 @@ float: left;
                                 <a active style="color: teal;" href="{{route('messaging.messages')}}">Messaging</a>
                             </li>
                             <li class="nav-link">
-                                <a active style="color: teal;" href="{{route('discussions.index')}}">Discuss</a>
+                                <a disabled active style="color: teal;" href="{{route('discussions.index')}}">Discuss</a>
                             </li>
                         <li class="nav-link">
                         	<a active style="color: teal;" href="{{route('connections.index')}}">Connect</a>
@@ -138,8 +138,9 @@ float: left;
                 </div>
 
             @yield('content')
-        </main>
+        </main>@yield('home')
     </div>
+
 
 
 @section('scripts')
