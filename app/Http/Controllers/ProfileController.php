@@ -24,7 +24,7 @@ class ProfileController extends Controller
 
         $messages = Message::where('recipient_id', $userId)->where('read', false)->get();
         $noOfMessages = count($messages);
-        $connectionRequests = Connection::where('receiver_id', Auth::user()->id)->where('accepted', false)->get();
+        $connectionRequests = Connection::where('receiver_id', Auth::user()->id)->where('accepted_at', null)->get();
         $noOfConnectionRequests = count($connectionRequests);
 
 
@@ -132,7 +132,7 @@ class ProfileController extends Controller
 
         $messages = Message::where('recipient_id', $userId)->where('read', false)->get();
         $noOfMessages = count($messages);
-        $connectionRequests = Connection::where('receiver_id', Auth::user()->id)->where('accepted', false)->get();
+        $connectionRequests = Connection::where('receiver_id', Auth::user()->id)->where('accepted_at', null)->get();
         $noOfConnectionRequests = count($connectionRequests);
 
         try{
@@ -157,7 +157,7 @@ class ProfileController extends Controller
 
             $messages = Message::where('recipient_id', $userId)->where('read', false)->get();
             $noOfMessages = count($messages);
-            $connectionRequests = Connection::where('receiver_id', Auth::user()->id)->where('accepted', false)->get();
+            $connectionRequests = Connection::where('receiver_id', Auth::user()->id)->where('accepted_at', null)->get();
             $noOfConnectionRequests = count($connectionRequests);
 
             try{

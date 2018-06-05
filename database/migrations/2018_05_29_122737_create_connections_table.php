@@ -17,10 +17,10 @@ class CreateConnectionsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('sender_id');
             $table->unsignedInteger('receiver_id');
-            $table->boolean('seen')->default(false);
-            $table->boolean('accepted')->default(false);
-            $table->boolean('blocked')->default(false);
-            $table->boolean('spam')->default(false);
+            $table->boolean('seen_at')->nullable();
+            $table->timestamp('accepted_at')->nullable();
+            $table->timestamp('blocked_at')->nullable();
+            $table->timestamp('spammed_at')->nullable();
 
             $table->foreign('sender_id', 'request_sender_id')
                 ->references('id')

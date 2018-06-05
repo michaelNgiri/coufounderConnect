@@ -26,13 +26,14 @@
 								{{--@endif--}}
 								{{--<span class="email green-text text-lowercase"><i class="mdi mdi-email email-icon"></i>{{$user->email }}</span> <br>--}}
 								@if(!is_null($user->location()))
-									<span class="location"><i class="mdi mdi-map-marker map-icon">{{$user->location()}}</i></span><br>
+									<span class="location"><i class="mdi green-text mdi-map-marker map-icon">{{$user->location()}}</i></span><br>
 								@endif
 								@if(!is_null($user->primaryRole()))
 									<span class="role"><i class="mdi mdi-briefcase role-icon"></i>{{$user->primaryRole()->name }}</span>
+									<br>
 								@endif
 								@if(!is_null($user->secondaryRole()))
-									<span class="role"><i class="mdi mdi-briefcase role-icon"></i>{{$user->secondaryRole()->name }}</span>
+									<span class="role orange-text"><i class="mdi mdi-briefcase role-icon"></i>{{$user->secondaryRole()->name }}</span>
 								@endif
 							</div>
 							<form action="{{ route('connections.view-profile',['username'=>$user->username])}}" method="post">

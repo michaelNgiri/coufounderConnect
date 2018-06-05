@@ -21,10 +21,23 @@
                                 @csrf
                                 <input name="id" type="hidden" value="{{$user->id}}">
                                 <input name="username" type="hidden" value="{{$user->username}}">
-                                <button  class="btn btn-primary white-text">
-                                    <i class="mdi mdi-link red-text"></i>
-                                    {{ __('connect') }}
-                                </button>
+                                @if($connected)
+                                    <button  class="btn btn-primary teal-text" disabled>
+                                        <i class="mdi mdi-link teal-text"></i>
+                                        {{ __('connected') }}
+                                    </button>
+
+                                @elseif($requested)
+                                    <button  class="btn btn-primary white-text" disabled>
+                                        <i class="mdi mdi-check grey-text"></i>
+                                        {{ __('Request Sent') }}
+                                    </button>
+                                    @else
+                                    <button  class="btn btn-primary white-text">
+                                        <i class="mdi mdi-link red-text"></i>
+                                        {{ __('connect') }}
+                                    </button>
+                                @endif
                             </form>
                         <form class="inline" action="{{route('messaging.compose',['username'=>$user->username])}}" method="post">
                                 @csrf
@@ -76,7 +89,7 @@
                 <div class="card-footer">
                     @if($user->hasNoSocial())
                         <p class="teal-text pull-right"><b class="grey-text pull-left">Socials:</b>
-                            <i class="mdi mdi-emoticon-sad"></i>
+                            <i class="mdi mdi-emoticon-sad">No Social</i>
                         </p>
                     @else
                     <div class="socials inline pull-right" style="font-size: 2em;"><b class="grey-text pull-left">Socials:</b>
