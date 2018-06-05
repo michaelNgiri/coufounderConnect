@@ -58,58 +58,58 @@ float: left;
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto" style="text-transform: uppercase; font-size: 12px;">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-link">
-                            <a active style="color: teal;" href="{{route('connections.index')}}">
-                                {{--<i class="mdi mdi-link"></i>--}}
-                                Connect</a>
+                                <a active style="color: teal;" href="{{route('connections.index')}}">
+                                    {{--<i class="mdi mdi-link"></i>--}}
+                                    Connect</a>
                             </li>
                             <li class="nav-link">
                                 <a style="color: teal;" href="{{ route('ideas.idea')}}">Ideas</a>
                             </li>
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                        @else
-                            <li class="nav-link">
-                                <a active style="color: teal;" href="{{route('messaging.messages')}}">Messaging</a>
-                            </li>
-                            <li class="nav-link">
-                                <a disabled active style="color: teal;" href="{{route('discussions.index')}}">Discuss</a>
-                            </li>
-                        <li class="nav-link">
-                        	<a active style="color: teal;" href="{{route('connections.index')}}">Connect</a>
-                        </li>
-                        <li class="nav-link">
-                            <a style="color: teal;" href="{{ route('ideas.idea')}}">Ideas</a>
-                        </li>
+                            @else
+                                <li class="nav-link">
+                                    <a active style="color: teal;" href="{{route('messaging.messages')}}">Messaging</a>
+                                </li>
+                                <li class="nav-link">
+                                    <a disabled active style="color: teal;" href="{{route('discussions.index')}}">Discuss</a>
+                                </li>
+                                <li class="nav-link">
+                                    <a active style="color: teal;" href="{{route('connections.index')}}">Connect</a>
+                                </li>
+                                <li class="nav-link">
+                                    <a style="color: teal;" href="{{ route('ideas.idea')}}">Ideas</a>
+                                </li>
 
-                            <li class="nav-item dropdown">
-                                <a style="text-transform: capitalize;" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->first_name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                <li class="nav-item dropdown">
+                                    <a style="text-transform: capitalize;" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->first_name }} <span class="caret"></span>
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                            <li class="nav-link">
-                                <a style="color: teal;" href="{{ route('profile.view')}}">
-                                    <img height="40px" width="60px" style="border-radius: 50%;" src="{{asset(auth()->user()->imagePath())}}">
-                                </a>
-                            </li>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                                <li class="nav-link">
+                                    <a style="color: teal;" href="{{ route('profile.view')}}">
+                                        <img height="40px" width="60px" style="border-radius: 50%;" src="{{asset(auth()->user()->imagePath())}}">
+                                    </a>
+                                </li>
 
 
-                        @endguest
+                                @endguest
                     </ul>
                 </div>
             </div>
