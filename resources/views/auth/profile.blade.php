@@ -63,11 +63,11 @@
                     </div>
                     <div class="profileDetails" style="text-align: left;"><hr>
                     <p><b>Name:</b> {{Auth::user()->name()}} </p>
-                    <p><b>Address:</b></p>
+                    <p><b>Address:</b>{{Auth::user()->address}}</p>
                     <p><b>Age:</b></p>
-                    <p><b>City:</b></p>
-                    <p><b>Country of Residence:</b></p>
-                    <p><b>Availability:</b></p>
+                    <p><b>City:</b>{{Auth::user()->city}}</p>
+                    <p><b>Country of Residence:</b>{{Auth::user()->country()}}</p>
+                    <p><b>Availability:</b>{{Auth::user()->availability()->name.' '.'/week'}}</p>
                     </div>
                 </div>
 
