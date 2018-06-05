@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use  App\Notifications\VerifyEmailNotification;
 use Illuminate\Http\Request;
 use Exception;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -74,7 +75,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
+
         return User::create([
 
             'username' => $data['username'],

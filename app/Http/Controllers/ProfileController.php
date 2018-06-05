@@ -136,8 +136,8 @@ class ProfileController extends Controller
         $noOfConnectionRequests = count($connectionRequests);
 
         try{
-        $user = User::where('email_verification_code', $verificationCode)->first();
-//        dd($user);
+        $user = User::where('email_verification_code', $verificationCode)->where('id', $request->id)->first();
+
             $user->verified_at = Carbon::now();
             $user->save();
             $success = 'Congratulations, your email has been verified.';

@@ -22,7 +22,7 @@ Route::get('verify', function (){
 Route::get('/', 'HomeController@index')->name('index');
 
 Route::group(['as' => 'verification.'], function () {
-    Route::get('email/{code}/{username}', 'ProfileController@verifyEmail')->name('email');
+    Route::get('email/{code}/{id}', 'ProfileController@verifyEmail')->name('email');
     Route::get('verify-email', 'ProfileController@verifyEmail')->name('verify-email');
 });
 // Auth::routes();

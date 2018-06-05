@@ -16,7 +16,7 @@
 					<h3>Hello, <b class=""> {{auth()->user()->first_name}}!</b></h3>
 				<h4>Thanks for Registering on KofoundME  platform</h4>
 				<h5>there is only one step remaining</h5>
-				<a href="{{ route('verification.email',['username'=>auth()->user()->username, 'code'=>auth()->user()->email_verification_code ])}}" class="btn btn-primary" type="submit">Click Here to verify your email</a>
+				<a href="{{ route('verification.email',['id'=>auth()->user()->id, 'username'=>auth()->user()->username, 'code'=>auth()->user()->email_verification_code ])}}" class="btn btn-primary" type="submit">Click Here to verify your email</a>
 				</div>
 			</div>
 		</div>

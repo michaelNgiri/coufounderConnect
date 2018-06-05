@@ -67,7 +67,9 @@
                     <p><b>Age:</b></p>
                     <p><b>City:</b>{{Auth::user()->city}}</p>
                     <p><b>Country of Residence:</b>{{Auth::user()->country()}}</p>
+                     @if(!is_null(Auth::user()->availability()))
                     <p><b>Availability:</b>{{Auth::user()->availability()->name.' '.'/week'}}</p>
+                     @endif
                     </div>
                 </div>
 
