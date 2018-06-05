@@ -45,7 +45,7 @@ float: left;
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background: #f3f3f3; color: teal; ">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img height="45px" width="60px" style="border-radius: 10%" src="{{ asset('img/logo.png') }}">
+                    <img height="30px" width="40px" style="border-radius: 10%" src="{{ asset('img/logo.png') }}">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
