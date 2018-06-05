@@ -10,9 +10,17 @@
                         <span class="pink-text pull-right">{{' '.$timestamp}}</span>
                     </div>
                     <div class="card-body">{{$message->message_body}}</div>
-                    <div class="card-footer">
-                        <i class="mdi mdi-reply teal-text"></i>
-                        <i class="mdi mdi-delete teal-text"></i>
+                    <div class="card-footer inline" style="display: flex;">
+                        <form action="{{route('messaging.reply',['title'=>$message->title])}}" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{$message->sender_id}}">
+                            <button type="submit" title="reply" role="button" class="mdi mdi-reply white-text btn"></button>
+                        </form>
+                        <form action="{{route('messaging.delete',['title'=>$message->title])}}" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{$message->id}}">
+                        <button type="submit" title="delete" role="button" class="mdi mdi-delete red-text btn"></button>
+                        </form>
                     </div>
                 </div>
             </div>

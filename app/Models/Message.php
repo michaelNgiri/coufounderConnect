@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Message extends Model
 {
@@ -19,4 +20,7 @@ class Message extends Model
 public  function sender(){
     return User::find($this->sender_id);
 }
+    public function timeStamp(){
+    return $this->created_at->diffForHumans();
+    }
 }

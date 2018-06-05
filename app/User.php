@@ -78,7 +78,8 @@ class User extends Authenticatable
         return $this->hasMany(Message::class);
     }
    public function country(){
-        return Country::find($this->country)->name;
+        is_null($this->country)? $country ='': $country = Country::find($this->country)->name;
+        return $country;
    }
     public function location(){
        $address = !is_null($this->address)? $this->address.','.' ': '';

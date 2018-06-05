@@ -6,6 +6,7 @@ use App\Models\Message;
 use App\Notifications\KofoundmeMessaging;
 use App\Notifications\PrivateMessaging;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -13,8 +14,7 @@ class MessagingController extends Controller
 {
     public function index()
     {
-        $sentMessages = Message::where('sender_id', Auth::user()->id)->get();
-        $receivedMessages = Message::where('recipient_id', Auth::user()->id)->get();
+        $receivedMessages = Message::where('recipient_id', Auth::user()->id)->where('deleted_at', null)->get();
 
         $message = 'recipient is currently offline';
         $warning = 'you are not connected to a network';
@@ -65,5 +65,23 @@ class MessagingController extends Controller
             $timestamp = 'unknown time';
         }
         return view('messaging.read-message', compact('message', 'timestamp'));
+    }
+
+    public function reply(Request $request){
+        $user = User::find($request->id);
+
+        return view('messaging.compose', compact('user'));
+
+    }
+
+    public function delete(Request $request){
+        $message = Message::find($request->id);
+            $message->deleted_at = Carbon::now();
+    $message->save();
+        $receivedMessages = Message::where('recipient_id', Auth::user()->id)->where('deleted_at', null)->get();
+        $success = 'message deleted';
+
+        return view('messaging.index', compact( 'receivedMessages', 'success'));
+
     }
 }

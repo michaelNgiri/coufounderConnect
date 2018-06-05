@@ -29,8 +29,16 @@
                                     @forelse($receivedMessages as $receivedMessage)
                                         <div>
                                             @if($receivedMessage->read == false)
-                                                <i class="mdi mdi-email teal-text"></i>
-                                                <p><b><a href="{{route('messaging.read-message',['id'=>$receivedMessage->id,'title'=>$receivedMessage->title])}}">{{$receivedMessage->title}}</a></b></p>
+                                                <i class="mdi mdi-email teal-text">{{$receivedMessage->sender()->name()}}</i>
+                                                <form action="{{route('messaging.read-message',['title'=>$receivedMessage->title])}}">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{$receivedMessage->id}}">
+                                                    <p><b><button title="read message" class="teal white-text btn btn-success" type="submit">{{$receivedMessage->title}}</button></b>
+                                                    <span>{{Str::words($receivedMessage->message_body, 8,'....')}}</span>
+                                                        <span class="teal-text" style="float: right;">{{$receivedMessage->timeStamp()}}</span>
+                                                    </p>
+                                                </form>
+
 
                                             @else
                                                 <i class="mdi mdi-email-open blue-grey-text"></i>
@@ -41,7 +49,7 @@
                                             <hr>
                                         </div>
                                     @empty
-                                        <p class="grey-text">No Messages</p>
+                                        <p class="grey-text">No new Message</p>
                                     @endforelse
                                 </div>
                             </div>

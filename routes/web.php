@@ -23,7 +23,7 @@ Route::get('/', 'HomeController@index')->name('index');
 
 Route::group(['as' => 'verification.'], function () {
     Route::get('email/{code}/{username}', 'ProfileController@verifyEmail')->name('email');
-    Route::get('verify-email', 'Auth\ProfileController@verifyEmail')->name('verify-email');
+    Route::get('verify-email', 'ProfileController@verifyEmail')->name('verify-email');
 });
 // Auth::routes();
 Route::group(['as' => 'profile.', 'middleware'=>'auth'], function () {
@@ -42,6 +42,7 @@ Route::group(['as' => 'connections.'], function () {
     Route::post('connect/{username}','ConnectionsController@connect')->name('connect');
     Route::get('connection/requests', 'ConnectionsController@showRequests')->name('requests');
     Route::post('connection/{username}/view-profile','ConnectionsController@viewProfile')->name('view-profile');
+    Route::post('connection/accept-request', 'ConnectionsController@acceptRequest')->name('accept-request');
 });
 
 //ideas route
@@ -58,9 +59,9 @@ Route::group(['as' => 'discussions.'], function (){
 });
 
 
-Route::get('/verify/token/{token}', 'Auth\EmailVerificationController@verify')->name('auth.verify'); 
+Route::get('/verify/token/{token}', 'EmailVerificationController@verify')->name('auth.verify');
  
-Route::get('/verify/resend', 'Auth\EmailVerificationController@resend')->name('auth.verify.resend');
+Route::get('/verify/resend', 'EmailVerificationController@resend')->name('auth.verify.resend');
 Route::get('verify/{code}', function(){
 	return view('auth.verify-email');
 });
@@ -70,7 +71,9 @@ Route::group(['as' => 'messaging.'], function (){
     Route::get('messaging/show-messages', 'messagingController@index')->name('messages');
     Route::post('messaging/compose/{username}', 'MessagingController@compose')->name('compose');
     Route::post('messaging/send-message', 'messagingController@sendMessage')->name('send-message');
-    Route::get('messaging/{id}/{title}/read', 'MessagingController@readMessage')->name('read-message');
+    Route::get('messaging/{title}/read', 'MessagingController@readMessage')->name('read-message');
+    Route::post('messaging/{title}/reply', 'MessagingController@reply')->name('reply');
+    Route::post('messaging/{title}/delete', 'MessagingController@delete')->name('delete');
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');
@@ -82,3 +85,6 @@ Route::group(['as' => 'messaging.'], function (){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//test route for creating a homepage
+Route::get('/temp', 'HomeController@tempHome')->name('home');
