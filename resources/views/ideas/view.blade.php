@@ -21,7 +21,7 @@
 				<p></p>
 				{{$idea->short_description}}
 				<p>{{$idea->details}}</p><hr>
-				<p class="teal-text">Required Skill: </b><i class="mdi mdi-briefcase"></i>{{$idea->requiredSkill()}}</p>
+				<p class="teal-text">Required Skill: <br> </b><i class="mdi mdi-briefcase materialize-red-text"></i>{{$idea->requiredSkill()}}</p>
 				</fieldset></span>
 				<hr>
 				@empty

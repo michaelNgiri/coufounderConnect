@@ -21,7 +21,7 @@
 				<label for="short_description">Descripton</label>
 				<input type="text" name="short_description" placeholder="A short Description for your idea">
 				<label for="details"></label>
-				<textarea placeholder="A small Elavator pitch for your idea" name="details"></textarea>
+				<textarea class="" placeholder="A small Elavator pitch for your idea" name="details"></textarea>
 				<label for="tags">Tags:</label>
 				<input type="text" name="tags" placeholder="tags/keywords">
 
