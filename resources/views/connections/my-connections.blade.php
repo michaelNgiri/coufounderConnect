@@ -6,12 +6,12 @@
                 <div class="card">
                     <div class="card-header teal white-text">
                     Connections
-                        <span title="pending requests" class="badge badge-success red-text"> <i class="mdi mdi-arrow-down-bold white-text"></i>{{$noOfPendingReceived}}</span>
-                        <span title="sent requests" class="badge badge-success red-text"><i class="mdi mdi-arrow-up-bold white-text"></i>{{$totalAcceptedSent}}</span>
-                        <span title="all requests" class="badge badge-success white-text"><i class="mdi mdi-link"></i><a
-                                    href="{{route('connections.all-connections')}}">{{$noOfBlockedRequests}}</a></span>
-                        <span title="blocked connections" class="badge badge-danger"><i class="mdi mdi-link-variant-off"></i><a class="white-text"
-                                    href="{{route('connections.blocked-requests')}}">{{$totalAcceptedSent + $totalAcceptedReceived}}</a></span>
+                        <a href="{{route('connections.all-connections')}}">
+                        <span title="all requests" class="badge badge-success white-text"><i class="mdi mdi-link"></i>{{$noOfBlockedRequests}}</span>
+                        </a>
+                        <a class="white-text" href="{{route('connections.blocked-requests')}}">
+                            <span title="blocked connections" class="badge badge-danger"><i class="mdi mdi-link-variant-off"></i>{{$totalAcceptedSent + $totalAcceptedReceived}}</span>
+                        </a>
 
                     </div>
                     <div class="card-body">
