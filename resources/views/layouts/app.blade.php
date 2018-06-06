@@ -44,8 +44,9 @@ float: left;
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background: #f3f3f3; color: teal; ">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img height="30px" width="40px" style="border-radius: 10%" src="{{ asset('img/logo.png') }}">
+                <a class="navbar-brand" href="{{route('/')}}">
+                    <b class="teal-text">KofoundME</b>
+                    {{--<img height="30px" width="40px" style="border-radius: 10%" src="{{ asset('img/logo.png') }}">--}}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -54,11 +55,10 @@ float: left;
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto" style="text-transform: uppercase; font-size: 12px;">
+                    <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-link">
@@ -114,7 +114,7 @@ float: left;
                 </div>
             </div>
         </nav>
-
+        @yield('home_page')
         <main class="py-2">
 
                 <div class="alert container">
@@ -138,7 +138,7 @@ float: left;
                 </div>
 
             @yield('content')
-        </main>@yield('home')
+        </main>
     </div>
 
 

@@ -21,7 +21,8 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $userId = Auth::user()->id;
-
+       // dd(Carbon::now()->diffForHumans());
+dd($user->date_of_birth.'.646800 UTC (+00:00)')->diffForHumans();
         $messages = Message::where('recipient_id', $userId)->where('read', false)->get();
         $noOfMessages = count($messages);
         $connectionRequests = Connection::where('receiver_id', Auth::user()->id)->where('accepted_at', null)->get();

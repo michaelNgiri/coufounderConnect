@@ -18,16 +18,18 @@ Route::get('verify', function (){
     return view('auth.verify-email');
 });
 
-
-Route::get('/', 'HomeController@index')->name('index');
+Route::get('/', function (){
+    return view('home');
+});
 
 Route::group(['as' => 'verification.'], function () {
     Route::get('email/{code}/{id}', 'ProfileController@verifyEmail')->name('email');
     Route::get('verify-email', 'ProfileController@verifyEmail')->name('verify-email');
 });
+
+
 // Auth::routes();
 Route::group(['as' => 'profile.', 'middleware'=>'auth'], function () {
-    Route::get('/home', 'ProfileController@index')->name('profile');
     Route::get('profile', 'ProfileController@index')->name('view');
     Route::get('update-profile', 'ProfileController@update')->name('update');
     Route::post('profile/update', 'ProfileController@saveUpdate')->name('save-update');
@@ -74,17 +76,14 @@ Route::group(['as' => 'messaging.'], function (){
     Route::get('messaging/{title}/read', 'MessagingController@readMessage')->name('read-message');
     Route::post('messaging/{title}/reply', 'MessagingController@reply')->name('reply');
     Route::post('messaging/{title}/delete', 'MessagingController@delete')->name('delete');
+    Route::post('mailing/join', 'MessagingController@joinMailList')->name('join-mail-list');
 });
 
-// Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/Register', 'RegisterController@index')->name('register');
 // Route::get('/login', 'LoginController@index')->name('login');
 
-//Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 //test route for creating a homepage
 Route::get('/temp', 'HomeController@tempHome')->name('home');

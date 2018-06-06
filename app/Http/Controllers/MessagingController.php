@@ -84,4 +84,9 @@ class MessagingController extends Controller
         return view('messaging.index', compact( 'receivedMessages', 'success'));
 
     }
+
+    public function joinMailList(Request $request){
+       is_null($request->user_id)? $id = '': $id=$request->user_id;
+       dd($id);
+    }
 }

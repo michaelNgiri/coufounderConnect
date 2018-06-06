@@ -45,7 +45,7 @@
 
         <!-- Responsivity for older IE -->
         <!--[if lt IE 9]>
-        <script src="js/respond.min.js"></script>
+        <script src="{{asset('assets/template/js/respond.min.js')}}"></script>
     <![endif]-->
 
         <meta property="og:title" content="Landing Page | Landing Page Bootstrap Theme by Bootstrapious.com!">
@@ -56,7 +56,7 @@
         <meta property="og:image" content="">  
 
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:creator" content="@bootstrapious">
+        <meta name="twitter:creator" content="">
 
     </head>
 
@@ -76,16 +76,17 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="{{ url('/') }}">
-                    <img alt="KofoundME" height="30px" width="40px" style="border-radius: 10%" src="{{ asset('img/logo.png') }}">
+                        <span class="teal-text">KofoundMe</span>
+                    {{--<img alt="KofoundME" height="30px" width="40px" style="border-radius: 10%" src="{{ asset('img/logo.png') }}">--}}
                 </a>
                 </div>
 
-                <div class="navbar-collapse collapse nav-container" id="navigation" style="background:#f3f3f3; height:  32px; ">
+                <div class="navbar-collapse collapse" id="navigation" >
 
                     <ul class="nav navbar-nav navbar-right">
                     	@guest
                             <li class="">
-                                <a active style="color: teal;" href="{{route('connections.index')}}">
+                                <a active style="color: #009688;" href="{{route('connections.index')}}">
                                     {{--<i class="mdi mdi-link"></i>--}}
                                     Connect</a>
                             </li>
@@ -108,7 +109,7 @@
                                     <a style="color: teal;" href="{{ route('ideas.idea')}}">Ideas</a>
                                 </li>
 
-                                <!-- <li class="nav-item dropdown">
+                                <li class="nav-item dropdown">
                                     <a style="text-transform: capitalize;" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->first_name }} <span class="caret"></span>
                                     </a>
@@ -124,7 +125,7 @@
                                             @csrf
                                         </form>
                                     </div>
-                                </li> -->
+                                </li>
                                 <li class="n">
                                     <a style="color: teal;" href="{{ route('profile.view')}}">
                                         <img height="40px" width="60px" style="border-radius: 50%;" src="{{asset(auth()->user()->imagePath())}}">
@@ -150,7 +151,7 @@
             <!-- *** INTRO IMAGE ***
         _________________________________________________________ -->
             <div id="intro" class="clearfix">
-                <div class="item">
+                <div class="item" style="margin-top: 80px;">
                     <div class="container">
                         <div class="row">
 
@@ -159,11 +160,14 @@
 
 
                             <div class="col-md-6 col-md-offset-3" data-animate="fadeInUp">
-                                <form action="#" method="post" id="frm-landingPage1" class="form">
+                                <form action="{{route('messaging.join-mail-list')}}" method="post" id="frm-landingPage1" class="form">
+                                    @csrf
                                     <div class="input-group">
 
                                         <input type="text" class="form-control" placeholder="your email address" name="email" id="frm-landingPage1-email" required value="">
-
+                                        @auth
+                                        <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+                                        @endauth
                                         <span class="input-group-btn">
 
                                             <input class="btn btn-default" type="submit" value="Submit" name="_submit" id="frm-landingPage1-submit">
@@ -191,35 +195,33 @@
             <div class="section" id="section1">
                 <div class="container">
                     <div class="col-md-12">
-                        <h2 class="title" data-animate="fadeInDown">Why KofoundME?</h2>
-
-                        <!-- <p class="lead">The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. </p>
+                        <h2 class="title" style="padding-top: 60px;" data-animate="fadeInDown">The KofoundME Advantage.</h2>
 
                         <div class="row services">
 
                             <div class="col-md-4" data-animate="fadeInUp">
-                                <div class="icon"><i class="fa fa-home"></i>
+                                <div class="icon"><i style="color: #009688;" class="fa fa-group"></i>
                                 </div>
-                                <h3 class="heading">Great home</h3>
-                                <p>Junk MTV quiz graced by fox whelps. </p>
+                                <h3 class="heading">Find new insights for your Ideas</h3>
+                                <p>You have a great idea, see what others might think about it. </p>
                             </div>
 
                             <div class="col-md-4" data-animate="fadeInUp">
-                                <div class="icon"><i class="fa fa-shopping-cart"></i>
+                                <div class="icon"><i style="color:red;" class="fa fa-link"></i>
                                 </div>
-                                <h3 class="heading">Stuff we would buy ourselves</h3>
-                                <p>Bawds jog, flick quartz, vex nymphs. </p>
+                                <h3 class="heading">Find a Co-founder</h3>
+                                <p>Every good idea needs people with the right skills,  We link you to the people you need to make your company succeed. </p>
                             </div>
 
                             <div class="col-md-4" data-animate="fadeInUp">
-                                <div class="icon"><i class="fa fa-euro"></i> 
+                                <div class="icon"><i style="color: #2ca02c;" class="fa fa-briefcase"></i>
                                 </div>
-                                <h3 class="heading">Free trial</h3>
-                                <p>Waltz, bad nymph, for quick jigs vex! Fox nymphs grab quick-jived waltz. </p>
+                                <h3 class="heading">Showcase your Skills</h3>
+                                <p>You have amazing skills, there are people looking for individuals just like you. Show your skills and be in demand. </p>
                             </div>
 
                         </div>
-                        <div class="row services">
+                       <!-- <div class="row services">
 
                             <div class="col-md-4" data-animate="fadeInUp">
                                 <div class="icon"><i class="fa fa-bullhorn"></i>
@@ -436,27 +438,27 @@ _________________________________________________________ -->
             <!-- *** CONTACT ***
         _________________________________________________________ -->
 
-            <div class="section" id="section4" >
-                <div class="container">
-                    <div class="col-md-8 col-md-offset-2">
+            {{--<div class="section" id="section4" >--}}
+                {{--<div class="container">--}}
+                    {{--<div class="col-md-8 col-md-offset-2">--}}
 
 
-                        <h2 class="title" data-animate="fadeInDown">Contact us</h2>
+                        {{--<h2 class="title" data-animate="fadeInDown">Contact us</h2>--}}
 
-                        <!-- <p class="lead margin-bottom" data-animate="fadeInUp">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
- -->
+                        {{--<!-- <p class="lead margin-bottom" data-animate="fadeInUp">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>--}}
+ {{---->--}}
 
-                        <ul class="list-unstyled text-large text-thin" data-animate="fadeInUp">
-                            <li><strong>E-mail:</strong> support@kofoundme.com</li>
-                            <li><strong>Phone:</strong> </li>
-                        </ul>
+                        {{--<ul class="list-unstyled text-large text-thin" data-animate="fadeInUp">--}}
+                            {{--<li><strong>E-mail:</strong> support@kofoundme.com</li>--}}
+                            {{--<li><strong>Phone:</strong> </li>--}}
+                        {{--</ul>--}}
 
-                    </div>
-                    <!-- /.12 -->
-                </div>
-                <!-- /.container -->
-            </div>
-            <!-- /.section -->
+                    {{--</div>--}}
+                  {{----}}
+                {{--</div>--}}
+               {{----}}
+            {{--</div>--}}
+
 
 
 
@@ -510,7 +512,7 @@ _________________________________________________________ -->
         <!-- main js file -->
 
         <script src="{{asset('assets/template/js/front.js')}}"></script>        
-
+        </div>
 
     </body>
 </html>
