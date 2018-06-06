@@ -41,4 +41,11 @@ class Connection extends Model
    public function blocked(){
        is_null($this->blocked_at)? $status = false: $status = true;
    }
+   public function delete(){
+       if (!is_null($this->accepted_at) && is_null($this->spammed_at) && is_null($this->blocked_at)){
+           $this->update([
+              'deleted_at'=>Carbon::now()
+           ]);
+       }
+   }
 }

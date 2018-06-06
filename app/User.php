@@ -115,6 +115,17 @@ class User extends Authenticatable
           return false;
       }
     }
+    public function age(){
+        if (is_null($this->date_of_birth)){
+            $age = null;
+        }else {
+            $date = $this->date_of_birth;
+            $carbonDate = Carbon::parse($date);
+            $age = $carbonDate->diffInYears(Carbon::now());
+        }
+        return $age;
+
+    }
 
 //    social media function. needs to be modified, append https
     public function facebook(){

@@ -11,16 +11,8 @@
 |
 */
 
-Route::get('test', function (){
-    return view('test');
-});
-Route::get('verify', function (){
-    return view('auth.verify-email');
-});
 
-Route::get('/', function (){
-    return view('home');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['as' => 'verification.'], function () {
     Route::get('email/{code}/{id}', 'ProfileController@verifyEmail')->name('email');
@@ -45,6 +37,9 @@ Route::group(['as' => 'connections.'], function () {
     Route::get('connection/requests', 'ConnectionsController@showRequests')->name('requests');
     Route::post('connection/{username}/view-profile','ConnectionsController@viewProfile')->name('view-profile');
     Route::post('connection/accept-request', 'ConnectionsController@acceptRequest')->name('accept-request');
+
+    Route::get('connections/blocked-requests', 'ConnectionsController@blockedRequests')->name('blocked-requests');
+    route::get('connections/all', 'ConnectionsController@allConnections')->name('all-connections');
 });
 
 //ideas route
@@ -86,4 +81,11 @@ Route::group(['as' => 'messaging.'], function (){
 Auth::routes();
 
 //test route for creating a homepage
-Route::get('/temp', 'HomeController@tempHome')->name('home');
+//Route::get('/temp', 'HomeController@tempHome')->name('home');
+//
+//Route::get('test', function (){
+//    return view('test');
+//});
+//Route::get('verify', function (){
+//    return view('auth.verify-email');
+//});

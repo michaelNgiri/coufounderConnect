@@ -44,7 +44,7 @@ float: left;
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background: #f3f3f3; color: teal; ">
             <div class="container">
-                <a class="navbar-brand" href="{{route('/')}}">
+                <a class="navbar-brand" href="{{route('home')}}">
                     <b class="teal-text">KofoundME</b>
                     {{--<img height="30px" width="40px" style="border-radius: 10%" src="{{ asset('img/logo.png') }}">--}}
                 </a>

@@ -75,8 +75,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        <span class="teal-text">KofoundMe</span>
+                    <a class="navbar-brand teal-text" href="{{route('home')}}">
+                        <span>KofoundMe</span>
                     {{--<img alt="KofoundME" height="30px" width="40px" style="border-radius: 10%" src="{{ asset('img/logo.png') }}">--}}
                 </a>
                 </div>
@@ -256,94 +256,17 @@
             <!-- *** SERVICES END *** -->
 
 
-            <!-- *** ABOUT US ***
-        _________________________________________________________ -->
+           
 
-            <div class="section  text-gray" id="section2">
-                <div class="container">
-                    <div class="col-md-12">
-
-
-                        <!-- <h2 class="title" data-animate="fadeInDown">About us</h2>
-
-                        <div class="row">
-
-                            <div class="col-md-8 col-md-offset-2">
-
-                                <p class="text-large text-thin"  data-animate="fadeInUp">Five quacking zephyrs jolt my wax bed. Flummoxed by job, kvetching W. zaps Iraq. Cozy sphinx waves quart jug of bad milk. </p>
-                                <p class="text-large text-thin margin-bottom"  data-animate="fadeInUp">A very bad quack might jinx zippy fowls. Few quips galvanized the mock jury box. Quick brown dogs jump over the lazy fox. The jay, pig, fox, zebra, and my wolves quack! Blowzy red vixens fight for a quick jump. Joaquin Phoenix was gazed by MTV for luck. A wizard’s job is to vex chumps quickly in fog. Watch "Jeopardy!", Alex Trebek's fun TV quiz game. Woven silk pyjamas exchanged for blue quartz.</p>
-
-                                <p   data-animate="fadeInUp"><img src="img/team.jpg" alt="" class="img-circle img-responsive ondra-michal"></p>
-
-                            </div>
-
-                        </div> -->
-
-                    </div>
-                    <!-- /.12 -->
-                </div>
-                <!-- /.container -->
-            </div>
-            <!-- /.section -->
-
-            <!-- *** ABOUT US END *** -->
-
-            <!-- *** JOIN US ***
-        _________________________________________________________ -->
-
-            <div class="section" data-animate="bounceIn">
-                <div class="container">
-                    <div class="col-md-8 col-md-offset-2">
-
-
-                        <h2 class="title">Join us for the fun!</h2>
-
-                     <!--    <p class="lead margin-bottom">Blowzy red vixens fight for a quick jump. Joaquin Phoenix was gazed by MTV for luck. A wizard’s job is to vex chumps quickly in fog. Watch "Jeopardy! ", Alex Trebek's fun TV quiz game. Woven silk pyjamas exchanged for blue quartz. Brawny gods just.</p>
-
-
-                        <div class="row">
-
-                            <div class="col-md-8 col-md-offset-2">
-
-
-                                <form action="#" method="post" id="frm-landingPage2" class="form">
-                                    <div class="input-group">
-
-                                        <input type="text" class="form-control" placeholder="your email address" name="email" id="frm-landingPage2-email" required value="">
-
-                                        <span class="input-group-btn">
-
-                                            <input class="btn btn-default" type="submit" value="Submit" name="_submit" id="frm-landingPage2-submit">
-
-                                        </span>
-
-                                    </div>
-                                    /input-group 
-                                </form>
-                            </div>
-                        </div> -->
-
-                    </div>
-                    <!-- /.12 -->
-                </div>
-                <!-- /.container -->
-            </div>
-            <!-- /.section -->
-
-            <!-- *** JOIN US END *** -->      
-
-            <!-- *** TESTIMONIALS ***
-_________________________________________________________ -->
-
-            <div class="section text-gray" id="section3" data-animate="fadeInUp">
+             <div class="section text-gray" id="section3" data-animate="fadeInUp">
 
                 <div class="container">
                     <div class="col-md-12">
 
                         <div class="mb20">
-                            <h2 class="title" data-animate="fadeInUp">Customers said about us</h2>
+                            <h2 class="title" data-animate="fadeInUp">Hear from our Users</h2>
 
-                          <!--   <p class="lead text-center" data-animate="fadeInUp">Quick, Baz, get my woven flax jodhpurs! "Now fax quiz Jack!" my brave ghost pled. </p> 
+                           <!--  <p class="lead text-center" data-animate="fadeInUp"> </p> -->
                         </div>
 
                         <ul class="owl-carousel testimonials same-height-row" data-animate="fadeInUp">
@@ -408,7 +331,7 @@ _________________________________________________________ -->
                                             <p>CEO, TransTech</p>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             </li>
                             <li class="item">
                                 <div class="testimonial same-height-always">
@@ -424,48 +347,22 @@ _________________________________________________________ -->
                                             <p>CEO, TransTech</p>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             </li>
-                        </ul> -->
-                         <!-- /.owl-carousel -->
-                    </div> <!-- /.12 -->
-                </div> <!-- /.container -->
+                        </ul>
+                    </div>
+                </div> 
 
-            </div><!-- /.section -->	
+            </div>
 
-            <!-- *** TESTIMONIALS END *** -->
-
-            <!-- *** CONTACT ***
-        _________________________________________________________ -->
-
-            {{--<div class="section" id="section4" >--}}
-                {{--<div class="container">--}}
-                    {{--<div class="col-md-8 col-md-offset-2">--}}
-
-
-                        {{--<h2 class="title" data-animate="fadeInDown">Contact us</h2>--}}
-
-                        {{--<!-- <p class="lead margin-bottom" data-animate="fadeInUp">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>--}}
- {{---->--}}
-
-                        {{--<ul class="list-unstyled text-large text-thin" data-animate="fadeInUp">--}}
-                            {{--<li><strong>E-mail:</strong> support@kofoundme.com</li>--}}
-                            {{--<li><strong>Phone:</strong> </li>--}}
-                        {{--</ul>--}}
-
-                    {{--</div>--}}
-                  {{----}}
-                {{--</div>--}}
-               {{----}}
-            {{--</div>--}}
+            
 
 
 
 
-            <!-- *** FOOTER ***
-        _________________________________________________________ -->
+            <!-- *** FOOTER ***-->
 
-            <div class="section" id="footer">
+            <div class="section teal" id="footer">
                 <div class="container">
 
                     <div class="row">
@@ -479,7 +376,6 @@ _________________________________________________________ -->
                                 <a href="mailto:#" class="email" data-animate-hover="shake" data-animate="fadeInUp"><i class="fa fa-envelope"></i></a>
                             </p>
                         </div>
-                        <!-- /.6 -->
 
                         <div class="col-sm-6">
                             <p>&copy; 2018 KofoundME. 

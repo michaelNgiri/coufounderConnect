@@ -97,7 +97,7 @@ class ConnectionsController extends Controller
         if (is_null($receivedRequests)){
             $noOfPendingReceived = 0;
         }else{
-            $pendingReceived = $receivedRequests->where('accepted_at', null);
+            $pendingReceived = $receivedRequests->where('accepted_at', null)->where('blocked_at', null)->where('spammed_at', null);
             $noOfPendingReceived = count($pendingReceived);
         }
 
@@ -120,5 +120,17 @@ class ConnectionsController extends Controller
        $connection->save();
 
         return back();
+    }
+
+    public function blockedRequests(){
+        $blockedRequests = Connection::where('receiver_id', Auth::user()->id)->where('blocked_at', '!=', null)->get();
+
+        return view('connections.blocked-requests', compact('blockedRequests'));
+    }
+
+    public function allConnections(){
+        $allSent = Connection::where('sender_id', Auth::user()->id)->get();
+        $allReceived = Connection::where('receiver_id',  Auth::user()->id)->get();
+        return view('connections.all', compact('allReceived', 'allSent'));
     }
 }

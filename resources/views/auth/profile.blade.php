@@ -19,7 +19,7 @@
 
                     <div class="profileHeader alert alert-success">
                         <a style="color: #fff;" href="{{route('profile.update')}}">
-                            <img height="120px" width="100px" style="border-radius: 30%;" src="{{asset(auth()->user()->imagePath())}}">
+                            <img height="120px" width="100px" style="border-radius: 10%;" src="{{asset(auth()->user()->imagePath())}}">
                         </a>
                         <a style="float: right;" href="{{route('profile.update')}}" class="teal-text mdi mdi-pencil" title="edit profile"></a>
                         @if(!Auth::user()->isVerified())
@@ -61,14 +61,18 @@
 
                         
                     </div>
-                    <div class="profileDetails" style="text-align: left;"><hr>
-                    <p><b>Name:</b> {{Auth::user()->name()}} </p>
-                    <p><b>Address:</b>{{Auth::user()->address}}</p>
-                    <p><b>Age:</b></p>
-                    <p><b>City:</b>{{Auth::user()->city}}</p>
-                    <p><b>Country of Residence:</b>{{Auth::user()->country()}}</p>
-                     @if(!is_null(Auth::user()->availability()))
-                    <p><b>Availability:</b>{{Auth::user()->availability()->name.' '.'/week'}}</p>
+
+                    <div class="profileDetails" style="text-align: left; color: #607d8b;"><hr>
+                        <i style="font-size: 1em;" class="mdi mdi-face teal-text"></i>
+                    <p>Name:<b> {{' '.Auth::user()->name()}} </b></p>
+                    <p>Age:<b>{{' '.Auth::user()->age()}}</b></p>
+                        <i style="font-size: 1em;" class="mdi mdi-home"></i>
+                    <p>Address:<b>{{' '.Auth::user()->address}}</b></p>
+                    <p>City:<b>{{' '.Auth::user()->city}}</b></p>
+                    <p>Country of Residence:<b>{{' '.Auth::user()->country()}}</b></p>
+                        <i style="font-size: 1em;" class="mdi mdi-timer"></i>
+                     @if(!is_null(' '.Auth::user()->availability()))
+                    <p>Availability:<b>{{' '.Auth::user()->availability()->name.' '.'/week'}}</b></p>
                      @endif
                     </div>
                 </div>
