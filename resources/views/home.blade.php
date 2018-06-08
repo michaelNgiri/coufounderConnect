@@ -160,7 +160,7 @@
 
 
                             <div class="col-md-6 col-md-offset-3" data-animate="fadeInUp">
-                                <form action="{{route('messaging.join-mail-list')}}" method="post" id="frm-landingPage1" class="form">
+                                <form action="{{route('mailing.join-mail-list')}}" method="post" id="frm-landingPage1" class="form">
                                     @csrf
                                     <div class="input-group">
 
@@ -177,7 +177,6 @@
                                     </div>
                                     <!-- /input-group -->
                                 </form>
-
                                 <p class="text-small">Join our mailing list.</p>
                             </div>
 
@@ -407,7 +406,13 @@
 
         <!-- main js file -->
 
-        <script src="{{asset('assets/template/js/front.js')}}"></script>        
+        <script src="{{asset('assets/template/js/front.js')}}"></script>    
+        {{--mailing list confirmation--}}
+        <script>
+            function confirm() {
+                alert('hi');
+            }
+        </script>
         </div>
 
     </body>
