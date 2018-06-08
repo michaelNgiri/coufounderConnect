@@ -109,7 +109,10 @@ class User extends Authenticatable
         return Availability::find($this->availability);
     }
     public function hasNoSocial(){
-      if(is_null($this->facebook) && is_null($this->twitter) && is_null($this->linkedin) && is_null($this->website)){
+      if(is_null($this->facebook) &&
+         is_null($this->twitter) &&
+         is_null($this->linkedin) &&
+         is_null($this->website)){
           return true;
       }else{
           return false;
@@ -126,6 +129,21 @@ class User extends Authenticatable
         return $age;
 
     }
+    public  function profileUpdated(){
+        if (
+        !is_null($this->image_path) &&
+        !is_null($this->primary_role) &&
+        !is_null($this->verified_at) &&
+        !is_null($this->image_path) &&
+        !is_null($this->availability) &&
+        !is_null($this->date_of_birth) &&
+        !is_null($this->country)
+        ){
+            return true;
+        }else{
+            return false;
+        }
+   }
 
 //    social media function. needs to be modified, append https
     public function facebook(){
@@ -143,15 +161,5 @@ class User extends Authenticatable
     public function instagram(){
         return '//'.$this->instagram;
     }
-//    public function birthday(){
-//
-//        $dob = $this->date_of_birth;
-//        return $dob->diffForHumans();
-//    }
-//    public  function  messageSender(){
-//        return $this->hasOne(Message::class);
-//    }
-//    public function messageRecipient(){
-//        return $this->hasOne(Message::class);
-//    }
+
 }
