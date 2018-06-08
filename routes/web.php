@@ -37,6 +37,7 @@ Route::group(['as' => 'connections.'], function () {
     Route::get('connection/requests', 'ConnectionsController@showRequests')->name('requests');
     Route::post('connection/{username}/view-profile','ConnectionsController@viewProfile')->name('view-profile');
     Route::post('connection/accept-request', 'ConnectionsController@acceptRequest')->name('accept-request');
+    Route::post('connection/cancel-request', 'ConnectionsController@CancelRequest')->name('cancel-request');
 
     Route::get('connections/blocked-requests', 'ConnectionsController@blockedRequests')->name('blocked-requests');
     route::get('connections/all', 'ConnectionsController@allConnections')->name('all-connections');
@@ -71,9 +72,16 @@ Route::group(['as' => 'messaging.'], function (){
     Route::get('messaging/{title}/read', 'MessagingController@readMessage')->name('read-message');
     Route::post('messaging/{title}/reply', 'MessagingController@reply')->name('reply');
     Route::post('messaging/{title}/delete', 'MessagingController@delete')->name('delete');
-    Route::post('mailing/join', 'MessagingController@joinMailList')->name('join-mail-list');
+});
+//mailing routes
+Route::group(['as'=>'mailing.'], function () {
+    Route::post('mailing/join', 'MailingController@joinMailList')->name('join-mail-list');
 });
 
+//routes for contingency
+Route::group(['as'=>'override'], function (){
+    Route::get('user/override/email-verification', 'OverrideController@bypassEmailVerification')->name('verification-override');
+});
 // Route::get('/Register', 'RegisterController@index')->name('register');
 // Route::get('/login', 'LoginController@index')->name('login');
 
@@ -83,9 +91,9 @@ Auth::routes();
 //test route for creating a homepage
 //Route::get('/temp', 'HomeController@tempHome')->name('home');
 //
-//Route::get('test', function (){
-//    return view('test');
-//});
+Route::get('test', function (){
+    return view('auth.verify-email');
+});
 //Route::get('verify', function (){
 //    return view('auth.verify-email');
 //});
