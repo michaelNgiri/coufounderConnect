@@ -13,7 +13,7 @@ class Connection extends Model
    public  function hasConnection(){}
 
    public function sender(){
-       return User::find($this->sender_id)->first();
+       return User::find($this->sender_id);
    }
 
    public function recipient(){

@@ -22,8 +22,7 @@
                                         @csrf
                                         <p class="teal-text"><b>{{$pending->sender()->name()}}</b>
                                             <input type="hidden" name="id" value="{{$pending->id}}">
-                                            <button onclick="confirm('are you sure you want to accept this request')" title="accept this request" type="submit" class="btn pull-right">{{__('Accept')}}</button>
-                                            <br>
+                                            <button onclick="confirm('are you sure you want to accept this request')" title="accept this request" type="submit" class="btn pull-right"><i class="mdi mdi-account-check"></i></button>
                                             @if(!is_null($pending->sender()->primaryRole()))
                                                 <em><i class="mdi mdi-briefcase red-text"></i>{{' '.$pending->sender()->primaryRole()->name}}</em>
                                                 <br>
@@ -32,9 +31,10 @@
                                                 <em><i class="mdi orange-text mdi-briefcase"></i>{{' '.$pending->sender()->secondaryRole()->name}}</em>
                                             @endif
                                             <span class="pull-right mdi mdi-clock-alert">{{$pending->timeStamp()}}</span>
+
                                         </p>
                                     </form>
-                                </div>
+                                </div><br>
                                 <hr>
                                 @else
                                 <p>No pending request</p>
