@@ -71,7 +71,7 @@
                     <p>City:<b>{{' '.Auth::user()->city}}</b></p>
                     <p>Country of Residence:<b>{{' '.Auth::user()->country()}}</b></p>
                         <i style="font-size: 1em;" class="mdi mdi-timer"></i>
-                     @if(!is_null(' '.Auth::user()->availability()))
+                     @if(!is_null(Auth::user()->availability()))
                     <p>Availability:<b>{{' '.Auth::user()->availability()->name.' '.'/week'}}</b></p>
                      @endif
                     </div>
