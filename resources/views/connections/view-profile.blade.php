@@ -74,6 +74,7 @@
                                 </fieldset>
                             @endif
                     </div>
+                    <hr>
                     <div class="experiences pull-left">
                         @if(!is_null($user->bio))
                             <fieldset>

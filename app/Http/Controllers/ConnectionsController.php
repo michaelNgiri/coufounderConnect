@@ -119,7 +119,14 @@ class ConnectionsController extends Controller
          $connection->accepted_at = Carbon::now();
        $connection->save();
 
-        return back();
+        return back()->with('success', 'request accepted');
+    }
+    public function cancelRequest(Request $request){
+        $connection = Connection::find($request->id);
+        $connection->deleted_at = Carbon::now();
+        $connection->save();
+
+        return back()->with('info', 'request Cancelled');
     }
 
     public function blockedRequests(){

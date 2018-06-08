@@ -7,7 +7,7 @@
                     <div class="card-header teal white-text">
                     Connections
                         <a href="{{route('connections.all-connections')}}">
-                        <span title="all requests" class="badge badge-success white-text"><i class="mdi mdi-link"></i>{{$noOfBlockedRequests}}</span>
+                        <span title="all" class="badge badge-success white-text"><i class="mdi mdi-link"></i>{{$noOfBlockedRequests}}</span>
                         </a>
                         <a class="white-text" href="{{route('connections.blocked-requests')}}">
                             <span title="blocked connections" class="badge badge-danger"><i class="mdi mdi-link-variant-off"></i>{{$totalAcceptedSent + $totalAcceptedReceived}}</span>

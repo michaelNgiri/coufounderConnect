@@ -17,7 +17,7 @@ class Connection extends Model
    }
 
    public function recipient(){
-       return User::find($this->recipient_id);
+       return User::find($this->receiver_id);
    }
    public function timeStamp(){
        return $this->created_at->diffForHumans();
@@ -34,6 +34,10 @@ class Connection extends Model
        is_null($this->accepted_at)? $status= false: $status= true;
        return $status;
    }
+   public function cancelled(){
+       !is_null($this->delete_at)? $status = false: $status = true;
+       return $status;
+   }
    public function spammed(){
        is_null($this->spammed_at)? $status = false: $status = true;
        return $status;
@@ -48,4 +52,5 @@ class Connection extends Model
            ]);
        }
    }
+
 }

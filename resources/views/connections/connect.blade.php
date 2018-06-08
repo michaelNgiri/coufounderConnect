@@ -44,8 +44,12 @@
 							</form>
 						</div>
 						<div class="bio alert alert-success">
-							<p>this is a short description for this user this is a short description for this user this is a short description for this user this is a short description for
-							</p>
+							@if(!is_null($user->bio))
+								<span><b class="grey-text">Bio</b></span>
+							<p>{{$user->bio}}</p>
+								@else
+								<p class="grey-text">No Bio</p>
+							@endif
 						</div>
 
 						<hr>
