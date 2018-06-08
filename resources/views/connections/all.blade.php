@@ -78,7 +78,7 @@
                                     @endif
                             <hr>
                         @empty
-                            <b class="grey-text">nothing here</b>
+                            <b class="grey-text center-align">nothing here</b>
                         @endforelse
 
                         <hr>
