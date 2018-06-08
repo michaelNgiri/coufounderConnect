@@ -7,7 +7,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
-use App\Notifications\VerifyEmailNotification;
 
 class ConnectionsController extends Controller
 {
@@ -34,7 +33,9 @@ class ConnectionsController extends Controller
         $con = Connection::where('sender_id', Auth::user()->id)->where('receiver_id', $request->id)->first();
         is_null($con)? $requested = false: $requested = true;
         is_null($con)? $connected = false: $connected = $con->accepted_at;
+        //check if the user has sent you a request
         $inboundConnection = Connection::where('sender_id', Auth::user()->id)->where('receiver_id', $request->id)->get();
+        //check if you have received a connection request from this user
         $outboundConnection = Connection::where('receiver_id', Auth::user()->id)->where('sender_id', $request->id)->get();
         $id = $request->id;
         $user = User::find($id)->first();
@@ -49,7 +50,12 @@ class ConnectionsController extends Controller
             $success = 'connection request sent';
             return view('connections.view-profile', compact('user', 'success', 'connected', 'requested'));
         }else{
-        	$info = 'you have a pending connection request to this person';
+//                if (!is_null($outboundConnection->accepted_at) || !is_null($inboundConnection->accepted_at)){
+//                    $info = 'you are already connected';
+//                }else {
+//                    $info = 'you have a pending connection request to/ this person';
+//                }
+            $info = 'you have a pending connection request to/from this person';
             return view('connections.view-profile', compact('user', 'info', 'connected', 'requested'));
         }
         
