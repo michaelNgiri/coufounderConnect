@@ -14,9 +14,10 @@
 				</div>
 				<div class="card-body alert alert-success">
 					<h3>Hello, <b class=""> {{auth()->user()->first_name}}!</b></h3>
-				<h4>Thanks for Registering on KofoundME  platform</h4>
-				<h5>there is only one step remaining</h5>
-				<a href="{{ route('verification.email',['id'=>auth()->user()->id, 'username'=>auth()->user()->username, 'code'=>auth()->user()->email_verification_code ])}}" class="btn btn-primary" type="submit">Click Here to verify your email</a>
+				<h4>I wish to personally welcome you to the KofoundME  platform</h4>
+				<h5>please follow this last step to complete your registration</h5><br>
+					<i class="mdi mdi-arrow-down"></i>
+				<a style="background: teal;" href="{{ route('verification.email',['id'=>auth()->user()->id, 'username'=>auth()->user()->username, 'code'=>auth()->user()->email_verification_code ])}}" class="btn btn-success teal">Click Here to verify your email</a>
 				</div>
 			</div>
 		</div>
