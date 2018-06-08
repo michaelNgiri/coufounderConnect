@@ -8,6 +8,7 @@ use Carbon\Carbon;
 
 class Message extends Model
 {
+    protected $fillable = ['read_at'];
     //
 //    public function user(){
 //        return $this->belongsTo(User::class);
@@ -22,5 +23,10 @@ public  function sender(){
 }
     public function timeStamp(){
     return $this->created_at->diffForHumans();
+    }
+
+    public function read(){
+        is_null($this->read_at)? $status = false: $status = true;
+        return $status;
     }
 }
