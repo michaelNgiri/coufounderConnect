@@ -19,24 +19,31 @@ class CreateIdeasTable extends Migration
             $table->text('title');
             $table->text('short_description');
             $table->longText('details');
-            $table->boolean('conception')->default(true);
-            $table->boolean('incubation')->default(false);
-            $table->boolean('in_development')->default(false);
-            $table->boolean('completed')->default(false);
+            $table->unsignedInteger('progress');
             $table->boolean('need_cofounder')->default(true);
             $table->unsignedInteger('required_skill')->nullable();
-            $table->text('tags');
+            $table->text('tags')->nullable();
 
-            $table->foreign('user_id', 'ideas_user_id')
+
+            $table->foreign('user_id', 'idea_user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+
+            $table->foreign('progress', 'progress_id')
+                ->references('id')
+                ->on('progresses')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->foreign('required_skill', 'required_skill_id')
                 ->references('id')
                 ->on('skills')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+
+            $table->softDeletes();
             $table->timestamps();
 
 

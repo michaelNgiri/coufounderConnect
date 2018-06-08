@@ -13,4 +13,8 @@ class Idea extends Model
             return 'no skill specified';
         }
     }
+
+    public function progress(){
+        return Progress::find($this->progress);
+    }
 }
