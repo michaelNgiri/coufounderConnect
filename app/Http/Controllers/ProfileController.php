@@ -22,7 +22,7 @@ class ProfileController extends Controller
         $user = Auth::user();
         $userId = Auth::user()->id;
 
-        $messages = Message::where('recipient_id', $userId)->where('read', false)->get();
+        $messages = Message::where('recipient_id', $userId)->where('read_at', null)->get();
         $noOfMessages = count($messages);
         $connectionRequests = Connection::where('receiver_id', Auth::user()->id)->where('accepted_at', null)->get();
         $noOfConnectionRequests = count($connectionRequests);
@@ -45,8 +45,8 @@ class ProfileController extends Controller
                     }
                 }
             } catch (\Exception $e) {
-
                 logger($e);
+
             }
         }
         return view('auth.profile', compact('noOfMessages', 'noOfConnectionRequests'));
@@ -84,7 +84,7 @@ class ProfileController extends Controller
             $user->save();
 
         }
-        return back();
+        return back()->with('success', 'image saved');
 
     }
     public function saveUpdate(Request $request)
@@ -112,7 +112,7 @@ class ProfileController extends Controller
             isset($request->country)? $user->country = $request->country : $user->country;
             isset($request->availability)? $user->availability = $request->availability :$user->availability;
           $user->save();
-        return back();
+        return back()->with('success', 'your profile has been updated');
 
     }
 
@@ -130,7 +130,7 @@ class ProfileController extends Controller
         $verificationCode = $request->code;
         $userId = Auth::user()->id;
 
-        $messages = Message::where('recipient_id', $userId)->where('read', false)->get();
+        $messages = Message::where('recipient_id', $userId)->where('read_at', null)->get();
         $noOfMessages = count($messages);
         $connectionRequests = Connection::where('receiver_id', Auth::user()->id)->where('accepted_at', null)->get();
         $noOfConnectionRequests = count($connectionRequests);
@@ -155,7 +155,7 @@ class ProfileController extends Controller
             $user = Auth::user();
             $userId = Auth::user()->id;
 
-            $messages = Message::where('recipient_id', $userId)->where('read', false)->get();
+            $messages = Message::where('recipient_id', $userId)->where('read_at', null)->get();
             $noOfMessages = count($messages);
             $connectionRequests = Connection::where('receiver_id', Auth::user()->id)->where('accepted_at', null)->get();
             $noOfConnectionRequests = count($connectionRequests);

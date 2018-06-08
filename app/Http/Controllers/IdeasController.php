@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Progress;
 use Illuminate\Http\Request;
 use App\Models\Idea;
 use App\Models\Skill;
@@ -17,7 +18,8 @@ class IdeasController extends Controller
     public function post(){
     	$ideas = Idea::paginate();
     	$skills = Skill::all();
-    	return view('ideas.post-idea', compact('ideas', 'skills'));
+    	$progresses = Progress::all();
+    	return view('ideas.post-idea', compact('ideas', 'skills', 'progresses'));
     }
     public function save(Request $request){
     	
@@ -31,17 +33,21 @@ class IdeasController extends Controller
     	$idea->details = $request->details;
     	$idea->tags = $request->tags;
     	$idea->user_id = Auth::user()->id;
+        $idea->required_skill = $request->required_skill;
+        $idea->progress = $request->progress;
     	$idea->save();
 
-    	//Session::flash('success', 'Your idea has been posted');
-    	$ideas = Idea::paginate();
-    	return view('ideas.view', compact('ideas'));
+        return back()->with('success', 'your idea has been saved');
+//    	$ideas = Idea::paginate();
+//    	return view('ideas.view', compact('ideas'));
     }
     public function viewDetails(){
 
         return view('ideas.details');
     }
     public  function myIdeas(){
-        return view('ideas.my-ideas');
+
+        $ideas = Idea::where('user_id', Auth::user()->id)->get();
+        return view('ideas.my-ideas', compact('ideas'));
     }
 }
