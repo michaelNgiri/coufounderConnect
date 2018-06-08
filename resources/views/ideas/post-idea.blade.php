@@ -25,12 +25,21 @@
 				<label for="tags">Tags:</label>
 				<input type="text" name="tags" placeholder="tags/keywords">
 
-					<select name="skills" class="form-control" id="">
+					<select name="skills" class="form-control" id="" required>
 						<option value="">what Skills do you need</option>
 						@forelse($skills as $skill)
 							<option value="{{$skill->id}}">{{$skill->name}}</option>
 						@empty
 							<p>No skill to choose from</p>
+						@endforelse
+					</select>
+					<br>
+					<select name="progress" class="form-control" id="" required>
+						<option value="">At what stage is your Idea</option>
+						@forelse($progresses as $progress)
+							<option value="{{$progress->id}}">{{$progress->name}}</option>
+						@empty
+							<p>Not available at the moment</p>
 						@endforelse
 					</select>
 				</div>
