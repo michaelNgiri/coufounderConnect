@@ -16,6 +16,8 @@ let mix = require('laravel-mix');
   mix.scripts([
    			'resources/assets/js/materialize.min.js',
    			'resources/assets/js/main.js',
+          'resources/assets/js/post-idea.js',
+          'resources/assets/js/jquery.dropdown.min.js'
         // 'public/assets/template/js/bootstrap.min.js',
         // 'public/assets/template/js/front.js',
         // 'public/assets/template/js/jquery.scrollTo.min.js',

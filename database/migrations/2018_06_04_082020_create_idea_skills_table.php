@@ -13,8 +13,12 @@ class CreateIdeaSkillsTable extends Migration
      */
     public function up()
     {
-        Schema::create('project_skills', function (Blueprint $table) {
+        Schema::create('idea_skills', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('idea_id');
+            $table->unsignedInteger('skill_id');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

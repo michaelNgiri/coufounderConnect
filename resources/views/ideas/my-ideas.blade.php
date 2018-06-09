@@ -8,8 +8,8 @@
         </div>
         <div class="row">
             <div class="col-md-10 card">
-                <div class="card-header">
-                    <a  href="{{route('ideas.my-idea')}}" class="btn btn-secondary pull-left">My Ideas</a>
+                <div class="card-header teal-text">
+                   <b>My Ideas</b>
                 </div>
                 <div class="card-body">
                     @forelse($ideas as $idea)

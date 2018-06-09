@@ -141,7 +141,7 @@ float: left;
         </main>
     </div>
 
-
+@yield('test')
 
 @section('scripts')
 @parent

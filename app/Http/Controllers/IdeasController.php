@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\IdeaSkill;
 use App\Models\Progress;
 use Illuminate\Http\Request;
 use App\Models\Idea;
@@ -22,20 +23,31 @@ class IdeasController extends Controller
     	return view('ideas.post-idea', compact('ideas', 'skills', 'progresses'));
     }
     public function save(Request $request){
-    	
-    	// $this->validate::make([
-    	// 	'name'=>
-    	// ]);
+//    	$idea = new Idea;
+//    	$idea->title = $request->title;
+//    	$idea->short_description = $request->short_description;
+//    	$idea->details = $request->details;
+//    	$idea->tags = $request->tags;
+//    	$idea->user_id = Auth::user()->id;
+//        $idea->required_skill = $request->skill;
+//        $idea->progress = $request->progress;
+//    	$idea->save();
 
-    	$idea = new Idea;
-    	$idea->title = $request->title;
-    	$idea->short_description = $request->short_description;
-    	$idea->details = $request->details;
-    	$idea->tags = $request->tags;
-    	$idea->user_id = Auth::user()->id;
-        $idea->required_skill = $request->required_skill;
-        $idea->progress = $request->progress;
-    	$idea->save();
+    	foreach($request->skills as $skill)
+            $ideaSkill = new IdeaSkill;
+                $ideaSkill->idea_id = 1;
+                $ideaSkill->skill_id = $skill;
+            $ideaSkill->save();
+
+//        $newIdea = Idea::create([
+//            'title' => $request->title,
+//            'short_description' => $request->short_description,
+//            'details' => $request->details,
+//            'tags' => $request->tags,
+//            'user_id' => Auth::user()->id,
+//            'required_skill' => $request->skill,
+//            'progress' => $request->progress
+//        ]);
 
         return back()->with('success', 'your idea has been saved');
 //    	$ideas = Idea::paginate();

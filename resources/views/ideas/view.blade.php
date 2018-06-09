@@ -21,7 +21,7 @@
 				<p></p>
 				{{$idea->short_description}}
 				<p>{{$idea->details}}</p><hr>
-				<p class="teal-text">Required Skill: <br> </b><i class="mdi mdi-briefcase materialize-red-text"></i>{{$idea->requiredSkill()}}</p>
+				<p class="teal-text">Looking for: <br> </b><i class="mdi mdi-briefcase materialize-red-text"></i>{{$idea->requiredSkill()}}</p>
 				<p class="teal-text">Progress: <br> </b><i class="mdi mdi-run"></i>{{$idea->progress()->name}}
 					<button class="btn btn-success pull-right">{{__('cofound this idea')}}</button>
 				</p>

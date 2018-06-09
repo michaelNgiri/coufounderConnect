@@ -2,7 +2,7 @@
 @section('content')
 
 	<div class="container">
-		<!-- show status -->
+		<!-- show status --> <p id="test" onclick="test()">test</p>
 		@if (session('error'))
 		<div class="alert alert-warning">{{ session('error') }}</div>
 		@elseif (session('success'))
@@ -25,15 +25,38 @@
 				<label for="tags">Tags:</label>
 				<input type="text" name="tags" placeholder="tags/keywords">
 
-					<select name="skills" class="form-control" id="" required>
+					{{--<div class="post-form">--}}
+						{{--<div class="dropdown-mul-1">--}}
+							{{--<select style="display:none"  name="skills[]" id="skills" multiple placeholder="Select a skill">--}}
+								{{--@foreach($skills as $skill)--}}
+
+									{{--<option value="{{$skill->id}}" --}}
+											{{--@if(!is_null(old('skills')) && in_array($skill->id, --}}
+											{{--old('skill'))) selected @endif>{{$skill->name}}--}}
+									{{--</option>--}}
+
+								{{--@endforeach--}}
+							{{--</select>--}}
+						{{--</div>--}}
+					{{--</div>--}}
+
+
+                 	<select multiple name="skills[]" class="form-control" id="" required>
 						<option value="">what Skills do you need</option>
 						@forelse($skills as $skill)
-							<option value="{{$skill->id}}">{{$skill->name}}</option>
+							<option value="{{$skill->id}}">
+                                {{--{{$skill->name}}--}}
+                                @if(!is_null(old('skills')) && in_array($skill->id,
+                                old('skill'))) selected
+                                @endif
+                                {{$skill->name}}
+                            </option>
 						@empty
-							<p>No skill to choose from</p>
+							<p>Nothing here</p>
 						@endforelse
 					</select>
 					<br>
+
 					<select name="progress" class="form-control" id="" required>
 						<option value="">At what stage is your Idea</option>
 						@forelse($progresses as $progress)
@@ -60,5 +83,8 @@
 	</div>
 	@endauth
 	</div>
+    <script>
+        $('#test').click(alert('hi'));
+    </script>
 
 @endsection

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Idea extends Model
 {
+    protected $fillable = ['idea', 'description'];
+
     public function requiredSkill(){
         if (Skill::find($this->required_skill)){
             return Skill::find($this->required_skill)->first()->name;
