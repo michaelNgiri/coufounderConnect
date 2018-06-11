@@ -26,9 +26,13 @@
 					@empty
 						<p>no skill specified</p>
 					@endforelse
-				<p class="teal-text">Progress: <br> </b><i class="mdi mdi-run"></i>{{$idea->progress()->name}}
-					<button class="btn btn-success pull-right">{{__('cofound this idea')}}</button>
+				@if(!is_null($idea->progress()))
+                 <p class="teal-text">Progress: <br> </b><i class="mdi mdi-run"></i>{{$idea->progress()->name}}
+                  <button class="btn btn-success pull-right">{{__('cofound this idea')}}</button>
 				</p>
+                @else
+                    <p>No skill specified</p>
+                @endif
 				</fieldset></span>
 				<hr>
 				@empty

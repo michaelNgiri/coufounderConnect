@@ -18,7 +18,8 @@ class Idea extends Model
 //    }
 
     public function progress(){
-        return Progress::find($this->progress);
+        is_null($this->progress)? $progress = null: $progress = Progress::find($this->progress);
+        return $progress;
     }
     public function ideaSkills(){
         $ideaSkillIds = IdeaSkill::where('idea_id', $this->id)->get();
