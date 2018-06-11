@@ -15,7 +15,8 @@
 			</div>
 			<div class="card-body">
 				@forelse($users as $user)
-					@if($user != auth()->user())
+					{{--$user != auth()->user() &&--}}
+					@if( $user->profileUpdated())
 						<div class="connections">
 							<div class="profileHeader alert alert-success">
 								<img class="user-image pull-left" height="100px" width="100px" src="{{asset($user->imagePath())}}"></div>

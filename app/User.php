@@ -129,6 +129,8 @@ class User extends Authenticatable
         return $age;
 
     }
+
+
     public  function profileUpdated(){
         if (
         !is_null($this->image_path) &&
@@ -144,6 +146,15 @@ class User extends Authenticatable
             return false;
         }
    }
+
+    public function profileUpdateInfo(){
+    if ($this->profileUpdated()){
+        return null;
+    }else{
+        return 'you are not yet available in search, please fill all the areas marked as important';
+    }
+    }
+
 
 //    social media function. needs to be modified, append https
     public function facebook(){

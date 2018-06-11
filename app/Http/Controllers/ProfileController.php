@@ -111,6 +111,7 @@ class ProfileController extends Controller
             isset($request->secondary_role)? $user->secondary_role = $request->secondary_role :$user->secondary_role;
             isset($request->country)? $user->country = $request->country : $user->country;
             isset($request->availability)? $user->availability = $request->availability :$user->availability;
+            isset($request->bio)? $user->bio = $request->bio :$user->availability;
           $user->save();
         return back()->with('success', 'your profile has been updated');
 

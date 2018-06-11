@@ -93,7 +93,7 @@
                             <b class="grey-text center-align">nothing here</b>
                         @endforelse
 
-                        <hr>
+                        <div class="card-footer"></div>
                     </div>
                 </div>
             </div>

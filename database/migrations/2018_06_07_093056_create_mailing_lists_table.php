@@ -22,6 +22,12 @@ class CreateMailingListsTable extends Migration
             $table->unsignedInteger('interest4')->nullable();
             $table->unsignedInteger('interest5')->nullable();
 
+            $table->foreign('user_id', 'mail_recipient_user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->foreign('interest1', 'interest1_skill_id')
                 ->references('id')
                 ->on('skills')
@@ -29,15 +35,11 @@ class CreateMailingListsTable extends Migration
                 ->onUpdate('cascade');
             $table->foreign('interest2', 'interest2_project_skill_id')
                 ->references('id')
-                ->on('project_skills')
+                ->on('idea_skills')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('user_id', 'mail_recipient_user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+
             $table->softDeletes();
             $table->timestamps();
         });

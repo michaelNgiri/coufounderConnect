@@ -2,7 +2,7 @@
 @section('content')
 
 	<div class="container">
-		<!-- show status --> <p id="test" onclick="test()">test</p>
+		<!-- show status <p id="test" onclick="test()">test</p> -->
 		@if (session('error'))
 		<div class="alert alert-warning">{{ session('error') }}</div>
 		@elseif (session('success'))
@@ -12,15 +12,15 @@
 		<form class="postIdeaForm" action="{{route('ideas.submit-idea')}}">
 		<div class="row teal-text">
 			<div class="col-md-10 card">
-				<div class="card-header">
+				<div class="card-header teal white-text">
 					<span>Post Your Idea, Let Cofounders look for you</span>
 				</div>
 				<div class="card-body">
-				<label for="title">Title:</label>
+				<label for="title">Title<i title="required" class="badge badge-danger">!</i>:</label>
 				<input type="text" name="title" placeholder="Enter the name of the Idea">
-				<label for="short_description">Descripton</label>
+				<label for="short_description">Descripton<i title="required" class="badge badge-danger">!</i></label>
 				<input type="text" name="short_description" placeholder="A short Description for your idea">
-				<label for="details"></label>
+				<label for="details"><i title="required" class="badge badge-danger">!</i></label>
 				<textarea class="" placeholder="A small Elavator pitch for your idea" name="details"></textarea>
 				<label for="tags">Tags:</label>
 				<input type="text" name="tags" placeholder="tags/keywords">
@@ -42,7 +42,7 @@
 
 
                  	<select multiple name="skills[]" class="form-control" id="" required>
-						<option value="">what Skills do you need</option>
+						<option value="">what Skills do you need<i title="required" class="badge badge-danger">!</i></option>
 						@forelse($skills as $skill)
 							<option value="{{$skill->id}}">
                                 {{--{{$skill->name}}--}}

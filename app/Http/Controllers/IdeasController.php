@@ -23,36 +23,39 @@ class IdeasController extends Controller
     	return view('ideas.post-idea', compact('ideas', 'skills', 'progresses'));
     }
     public function save(Request $request){
-//    	$idea = new Idea;
-//    	$idea->title = $request->title;
-//    	$idea->short_description = $request->short_description;
-//    	$idea->details = $request->details;
-//    	$idea->tags = $request->tags;
-//    	$idea->user_id = Auth::user()->id;
-//        $idea->required_skill = $request->skill;
-//        $idea->progress = $request->progress;
-//    	$idea->save();
+    	$idea = new Idea;
+    	$idea->title = $request->title;
+    	$idea->short_description = $request->short_description;
+    	$idea->details = $request->details;
+    	$idea->tags = $request->tags;
+    	$idea->user_id = Auth::user()->id;
+        //$idea->required_skill = $request->skill;
+        $idea->progress = $request->progress;
+        $idea->short_description = $request->short_description;
+    	$idea->save();
 
-    	foreach($request->skills as $skill)
-            $ideaSkill = new IdeaSkill;
-                $ideaSkill->idea_id = 1;
-                $ideaSkill->skill_id = $skill;
-            $ideaSkill->save();
+            foreach($request->skills as $skill) {
+                if (!is_null($skill)){
+                    $ideaSkill = new IdeaSkill;
+                    $ideaSkill->idea_id = $idea->id;
+                    $ideaSkill->skill_id = $skill;
+                    $ideaSkill->save();
+                }
+            }
+    //        $newIdea = Idea::create([
+    //            'title' => $request->title,
+    //            'short_description' => $request->short_description,
+    //            'details' => $request->details,
+    //            'tags' => $request->tags,
+    //            'user_id' => Auth::user()->id,
+    //            'required_skill' => $request->skill,
+    //            'progress' => $request->progress
+    //        ]);
 
-//        $newIdea = Idea::create([
-//            'title' => $request->title,
-//            'short_description' => $request->short_description,
-//            'details' => $request->details,
-//            'tags' => $request->tags,
-//            'user_id' => Auth::user()->id,
-//            'required_skill' => $request->skill,
-//            'progress' => $request->progress
-//        ]);
-
-        return back()->with('success', 'your idea has been saved');
-//    	$ideas = Idea::paginate();
-//    	return view('ideas.view', compact('ideas'));
-    }
+            return back()->with('success', 'your idea has been saved');
+    //    	$ideas = Idea::paginate();
+    //    	return view('ideas.view', compact('ideas'));
+        }
     public function viewDetails(){
 
         return view('ideas.details');

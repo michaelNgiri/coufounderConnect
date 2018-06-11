@@ -29,6 +29,12 @@
                         </p>
                         <a href="{{route('profile.resend-verification')}}" class="btn alert-danger">Resend Verification Link</a>
                         @endif
+                        @if(!Auth::user()->profileUpdated())
+                            <br>
+                            <p class="alert alert-info" style="margin-top: 8px;">
+                                {{Auth::user()->profileUpdateInfo()}}
+                            </p>
+                        @endif
                         <hr>
                         <span title="profile views" class="badge badge-success" disabled onclick="alert('this feature is available in premium mode only')">
                             <i style="color: #fff;" class="mdi mdi-eye">{{' '.'+'.'x'}}</i>

@@ -16,9 +16,10 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('email')->unique();
             $table->string('slug', 190)->nullable();
             $table->boolean('is_admin')->default(false);
             $table->string('phone')->nullable();
@@ -29,7 +30,6 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('secondary_role')->nullable();
             $table->dateTime('date_of_birth')->nullable();
             $table->unsignedInteger('availability')->nullable();
-            $table->string('email')->unique();
             $table->string('image_path')->nullable();
             $table->string('password');
             $table->string('email_verification_code')->default(str_random(33).Carbon::now()->format('Y-m-d-m-i-s'));
@@ -69,6 +69,7 @@ class CreateUsersTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

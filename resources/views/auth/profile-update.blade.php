@@ -28,7 +28,7 @@
                                 <form action="{{route('profile.save-image')}}" class="form-horizontal form-group" method="post" role="form" enctype="multipart/form-data">
                                     @csrf
                                     <p>
-                                        <label for="avatar">Choose a new picture</label>
+                                        <label for="avatar">Choose a new picture<i title="important" class="badge badge-info">!</i></label>
                                         <input class="form-control" type="file" name="avatar"><br>
                                         <button type="submit" class="btn btn-primary">{{ __('Upload') }}</button>
                                     </p>
@@ -48,15 +48,19 @@
                        <input type="text" name="last_name" placeholder="{{Auth::user()->first_name}}">
                    </span>
                    <span>
-                        <label for="date_of_birth"><b>Birthday:</b></label>
+                        <label for="date_of_birth"><b>Birthday<i title="important" class="badge badge-info">!</i>:</b></label>
                         <input type="date" name="date_of_birth" placeholder="{{Auth::user()->date_of_birth}}">
                    </span>
                    <span>
-                        <label for="address"><b>Street Address:</b></label>
+                        <label for="bio"><b>A short bio about you<i title="important" class="badge badge-info">!</i>:</b></label>
+                        <textarea name="bio" id="bio" cols="60" rows="10"></textarea>
+                   </span>
+                   <span>
+                        <label for="address"><b>Street Address<i title="important" class="badge badge-info">!</i>:</b></label>
                         <input type="text" name="" placeholder="{{Auth::user()->Address}}">
                    </span>
                    <span>
-                        <label for="city"><b>City:</b></label>
+                        <label for="city"><b>City<i title="important" class="badge badge-info">!</i>:</b></label>
                         <input type="text" name="city">
                    </span>
                    <span>
@@ -64,7 +68,7 @@
                          <input type="tel" name="phone">
                    </span>
                    <span>
-                        <label for="primary_role"><b>Primary Role</b></label>
+                        <label for="primary_role"><b>Primary Role<i title="important" class="badge badge-info">!</i></b></label>
                         <select name="primary_role" id="role" class="form-control">
                             <option value="">Choose your Primary role</option>
                             @forelse($skills as $skill)
@@ -87,7 +91,7 @@
                         </select>
                    </span>
                    <span>
-                    <label for="country"><b>Country of Residence:</b></label>
+                    <label for="country"><b>Country of Residence<i title="important" class="badge badge-info">!</i>:</b></label>
                     <select name="country" class="form-control" data-live-search="true">
                         <option value="">Select your Country</option>
                         @forelse($countries as $country)
@@ -98,7 +102,7 @@
                     </select>
                     </span>       <br>
                     <span>
-                         <label for="availability"><b>Availability:</b></label>
+                         <label for="availability"><b>Availability<i title="important" class="badge badge-info">!</i>:</b></label>
                          <select name="availability" id="availability" class="form-control"
                                         data-live-search="true">
                                     <option value="">Number of hours you are available per week</option>

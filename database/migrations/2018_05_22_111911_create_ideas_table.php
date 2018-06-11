@@ -21,7 +21,6 @@ class CreateIdeasTable extends Migration
             $table->longText('details');
             $table->unsignedInteger('progress');
             $table->boolean('need_cofounder')->default(true);
-            $table->unsignedInteger('required_skill')->nullable();
             $table->text('tags')->nullable();
 
 
@@ -37,11 +36,6 @@ class CreateIdeasTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('required_skill', 'required_skill_id')
-                ->references('id')
-                ->on('skills')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
 
             $table->softDeletes();
             $table->timestamps();

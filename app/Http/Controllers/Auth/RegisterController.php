@@ -63,7 +63,12 @@ class RegisterController extends Controller
             'username' => 'required|string|between:3,60',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-        ]);
+            'username' => 'required|string|between:4,50|unique:users,username',
+        ],
+            [
+                'username.unique' => 'that Username is already taken! please try something else',
+            ]
+        );
 
     }
 

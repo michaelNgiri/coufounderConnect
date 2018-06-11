@@ -16,6 +16,8 @@ class CreateProgressesTable extends Migration
         Schema::create('progresses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
