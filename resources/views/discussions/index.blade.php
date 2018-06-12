@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <a href="" class="btn btn-secondary">Start a Discussion Thread +</a>
+                <a href="{{route('discussions.create')}}" class="btn btn-secondary">Start a Discussion Thread +</a>
             </div>
         </div>
         <div class="row">
