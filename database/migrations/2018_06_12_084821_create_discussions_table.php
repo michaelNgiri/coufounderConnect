@@ -16,13 +16,19 @@ class CreateDiscussionsTable extends Migration
         Schema::create('discussions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('topic');
-            $table->longText('body');
-            $table->string('tags');
+            $table->longText('thread');
+            $table->string('tags')->nullable();
+            $table->unsignedInteger('thread_owner');
             $table->unsignedInteger('category_id')->nullable();
 
             $table->foreign('category_id', 'discussion_category_id')
                 ->references('id')
                 ->on('discussion_categories')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('thread_owner', 'thread_owner_user_id')
+                ->references('id')
+                ->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
