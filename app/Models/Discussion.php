@@ -14,4 +14,7 @@ class Discussion extends Model
     public function owner(){
         return User::find($this->thread_owner);
     }
+    public function comments(){
+        return Comment::where('discussion_id', $this->id)->get();
+    }
 }

@@ -40,31 +40,31 @@
                <div class="profileDetails col-form-label-lg" style="text-align: left;">
                                 <hr>
                      <span>
-                       <label for="first_name"><b>Last Name:</b></label>
+                       <label for="first_name"><b>Last Name</b></label>
                        <input type="text" name="first_name" placeholder="{{Auth::user()->last_name}}">
                      </span>
                    <span>
-                       <label for="last_name"><b>Last Name:</b></label>
+                       <label for="last_name"><b>First Name</b></label>
                        <input type="text" name="last_name" placeholder="{{Auth::user()->first_name}}">
                    </span>
                    <span>
-                        <label for="date_of_birth"><b>Birthday<i title="important" class="badge badge-info">!</i>:</b></label>
+                        <label for="date_of_birth"><b>Birthday<i title="important" class="badge badge-info">!</i></b></label>
                         <input type="date" name="date_of_birth" placeholder="{{Auth::user()->date_of_birth}}">
                    </span>
                    <span>
-                        <label for="bio"><b>A short bio about you<i title="important" class="badge badge-info">!</i>:</b></label>
+                        <label for="bio"><b>A short bio about you<i title="important" class="badge badge-info">!</i></b></label>
                         <textarea name="bio" id="bio" cols="60" rows="10"></textarea>
                    </span>
                    <span>
-                        <label for="address"><b>Street Address<i title="important" class="badge badge-info">!</i>:</b></label>
+                        <label for="address"><b>Street Address<i title="important" class="badge badge-info">!</i></b></label>
                         <input type="text" name="" placeholder="{{Auth::user()->Address}}">
                    </span>
                    <span>
-                        <label for="city"><b>City<i title="important" class="badge badge-info">!</i>:</b></label>
+                        <label for="city"><b>City<i title="important" class="badge badge-info">!</i></b></label>
                         <input type="text" name="city">
                    </span>
                    <span>
-                         <label for="phone"><b>Phone No:</b></label>
+                         <label for="phone"><b>Phone No</b></label>
                          <input type="tel" name="phone">
                    </span>
                    <span>
@@ -91,7 +91,7 @@
                         </select>
                    </span>
                    <span>
-                    <label for="country"><b>Country of Residence<i title="important" class="badge badge-info">!</i>:</b></label>
+                    <label for="country"><b>Country of Residence<i title="important" class="badge badge-info">!</i></b></label>
                     <select name="country" class="form-control" data-live-search="true">
                         <option value="">Select your Country</option>
                         @forelse($countries as $country)
@@ -102,7 +102,7 @@
                     </select>
                     </span>       <br>
                     <span>
-                         <label for="availability"><b>Availability<i title="important" class="badge badge-info">!</i>:</b></label>
+                         <label for="availability"><b>Availability<i title="important" class="badge badge-info">!</i></b></label>
                          <select name="availability" id="availability" class="form-control"
                                         data-live-search="true">
                                     <option value="">Number of hours you are available per week</option>
@@ -114,7 +114,7 @@
                          </select>
                     </span>
               </div>
-                 <button type="submit" class="btn btn-primary">{{ __('Update Your Profile') }}</button>
+                 <button type="submit" class="btn btn-primary">{{ __('Save updates') }}</button>
              </form>
         </div>
 

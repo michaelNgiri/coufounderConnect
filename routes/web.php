@@ -56,7 +56,7 @@ Route::group(['as' => 'discussions.'], function (){
     Route::get('discussion', 'DiscussionController@index')->name('index');
     Route::get('discussion/create-new', 'DiscussionController@create')->name('create');
     Route::post('discussion/save', 'DiscussionController@saveThread')->name('save');
-    Route::post('discussions/save-comment', 'DiscussionController@saveComment')->name('save-comment');
+    Route::post('discussions/{topic}/add-comment', 'DiscussionController@saveComment')->name('save-comment');
 });
 
 
@@ -95,7 +95,7 @@ Auth::routes();
 //Route::get('/temp', 'HomeController@tempHome')->name('home');
 //
 Route::get('test', function (){
-    return view('auth.verify-email');
+    return view('layouts.test');
 });
 //Route::get('verify', function (){
 //    return view('auth.verify-email');

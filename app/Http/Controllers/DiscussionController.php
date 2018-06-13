@@ -32,7 +32,10 @@ class DiscussionController extends Controller
    public function saveComment(Request $request){
 
        $comment = new Comment;
-
-       return back()->with('success', 'saved');
+           $comment->commenter_id = Auth::user()->id;
+           $comment->discussion_id = $request->thread_id;
+           $comment->comment = $request->comment;
+       $comment->save();
+       return back()->with('success', 'comment saved');
    }
 }

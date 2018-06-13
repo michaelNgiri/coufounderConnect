@@ -13,7 +13,6 @@
     <!-- Fonts -->
 
 	<!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css')}}"> -->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/mdi/css/materialdesignicons.css')}}">
     <link href="{{ asset('assets/mdi/fonts/materialdesignicons-webfont.eot') }}" rel="stylesheet">
     <link href="{{ asset('assets/mdi/fonts/materialdesignicons-webfont.svg') }}" rel="stylesheet">  
@@ -40,9 +39,9 @@ float: left;
 
 @endsection
 </head>
-<body>
+<body style="padding-top: 70px;">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background: #f3f3f3; color: teal; ">
+        <nav class="navbar navbar-expand-lg navbar-light navbar-laravel  fixed-top scrolling-navbar double-nav mobile-nofixed" style="background: #f3f3f3; color: teal; ">
             <div class="container">
                 <a class="navbar-brand" href="{{route('home')}}">
                     <b class="teal-text">KofoundME</b>
@@ -149,9 +148,7 @@ float: left;
 @endsection
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
 	<script src="{{ asset('js/jquery3.3.1.min.js') }}" defer></script>
     <script src="{{ asset('js/jquery.dropdown.min.js') }}" defer></script>
-	<script src="{{ asset('js/bootstrap.js') }}" defer></script>
 </body>
 </html>

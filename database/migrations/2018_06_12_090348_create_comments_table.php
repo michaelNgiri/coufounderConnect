@@ -17,6 +17,7 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('commenter_id');
             $table->unsignedInteger('discussion_id');
+            $table->longText('comment');
 
             $table->foreign('commenter_id', 'commenter_user_id')
                   ->references('id')
