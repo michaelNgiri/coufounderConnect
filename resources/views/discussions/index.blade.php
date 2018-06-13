@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <a href="{{route('discussions.create')}}" class="btn btn-secondary">Start a Discussion Thread +</a>
+                <a href="{{route('discussions.create')}}" class="btn btn-secondary">Start a new Thread +</a>
             </div>
         </div>
         <div class="row">
@@ -28,25 +28,27 @@
                                        </div>
                                    </div>
                                     {{--container div for comments--}}
-                                    <div class="row">
+
 
                                         @forelse($thread->comments() as $comment)
+                                        <div class="row">
                                         <div class="col-md-4"></div>
                                         <div class="col-md-8">
 
                                                 <div class="comment-div pull-right">
-                                                    <span  style="font-size: 10px;" class="blue-grey-text">{{$comment->commenter()->name().' '.'said:'}}</span>
+                                                    <span  style="font-size: 12px;" class="blue-grey-text">{{$comment->commenter()->name().' '.'said:'}}</span>
                                                     <br>
-                                                    <p style="font-size: 0.9em;" class="teal-text float-md-right gray" >{{$comment->comment.' '.'(' .$comment->timeStamps().')'}}</p>
+                                                    <span style="font-size: 1em;" class="teal-text float-md-right gray" >{{$comment->comment}}</span>
                                                     <br>
-
+                                                    <span style="font-size: 12px;" class="grey-text pull-right">{{'[' .$comment->timeStamps().']'}}</span>
                                                 </div>
+                                        </div><hr>
                                         </div>
+
                                         @empty
                                             <p> no comment yet</p>
                                         @endforelse
 
-                                    </div>
                                     {{--form for adding comments--}}
                                     <div class="row">
                                         <div class="col-md-12">
