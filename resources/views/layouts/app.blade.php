@@ -13,6 +13,7 @@
     <!-- Fonts -->
 
 	<!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css')}}"> -->
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/mdi/css/materialdesignicons.css')}}">
     <link href="{{ asset('assets/mdi/fonts/materialdesignicons-webfont.eot') }}" rel="stylesheet">
     <link href="{{ asset('assets/mdi/fonts/materialdesignicons-webfont.svg') }}" rel="stylesheet">  
@@ -150,5 +151,6 @@ float: left;
     <script src="{{ asset('js/app.js') }}" defer></script>
 	<script src="{{ asset('js/jquery3.3.1.min.js') }}" defer></script>
     <script src="{{ asset('js/jquery.dropdown.min.js') }}" defer></script>
+	<script src="{{ asset('js/bootstrap.js') }}" defer></script>
 </body>
 </html>
