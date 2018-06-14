@@ -80,6 +80,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $slug = $maybe_slug = strtolower($data['first_name'] . '-' . $data['last_name']);
+        $next = 2;
+
+        while (User::where('slug', '=', $slug)->first()) {
+            $slug = "{$maybe_slug}.'-'.{$next}";
+            $next++;
+        }
 
         return User::create([
 
@@ -87,6 +94,7 @@ class RegisterController extends Controller
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
+            'slug'=>$slug,
             'password' => Hash::make($data['password']),
         ]);
     }
