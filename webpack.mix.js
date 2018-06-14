@@ -32,6 +32,7 @@ let mix = require('laravel-mix');
         'public/js/app.js')
    .styles([
             'resources/assets/css/app.css',
+           'resources/assets/css/discussions.css',
             'resources/assets/css/connections.css',
             'resources/assets/css/messaging.css',
             'resources/assets/css/ideas.css',

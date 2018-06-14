@@ -18,9 +18,15 @@
                       </div>
                       <div class="pull-right">
                           @if($thread->owner() == auth()->user())
-                          <a style="color: grey;" href="" class="gray-text"><i class="mdi mdi-close"></i> Revoke</a><br>
-                          <a style="color: grey;"  href="" class="gray-text"><i class="mdi mdi-pencil"></i> Edit</a><br>
-                          <a style="color: grey;"  href="" class="gray-text"><i class="mdi mdi-delete"></i> Delete</a>
+                              <form action="">
+                                  <a style="color: grey;" href="" class="gray-text"><i class="mdi mdi-close"></i> Revoke</a><br>
+                              </form>
+                              <form action="">
+                                  <a style="color: grey;"  href="" class="gray-text"><i class="mdi mdi-pencil"></i> Edit</a><br>
+                              </form>
+                              <form action="">
+                                  <a style="color: grey;"  href="" class="gray-text"><i class="mdi mdi-delete"></i> Delete</a>
+                              </form>
                           @endif
                       </div>
                   </div>

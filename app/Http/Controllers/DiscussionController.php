@@ -45,4 +45,26 @@ class DiscussionController extends Controller
         $thread = Discussion::where('slug', $request->slug)->first();
        return view('discussions.view-thread', compact('thread'));
    }
+
+   public function deleteDiscussion(Request $request){
+       $discussion = Discussion::find($request->id);
+       $discussion->deleted_at = Carbon::now();
+       $discussion->save();
+
+      return back()->with('success', 'deleted');
+   }
+   public function revokeDiscussion(Request $request){
+       $discussion = Discussion::find($request->id);
+       $discussion->revoked_at = Carbon::now();
+       $discussion->save();
+
+       return back()->with('success', 'thread revoked');
+   }
+   public function  closeThread(Request $request){
+       $discussion = Discussion::find($request->id);
+       $discussion->closed_at = Carbon::now();
+       $discussion->save();
+       
+       return back()->with('info', 'thread closed');
+   }
 }

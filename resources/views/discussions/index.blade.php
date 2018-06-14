@@ -62,7 +62,6 @@
                                           @empty
                                               <p class="grey-text"> no comment yet</p>
                                           @endforelse
-
                                           {{--form for adding comments--}}
                                           <div class="row">
                                               <div class="col-md-12">
@@ -90,7 +89,7 @@
                          @endforelse
                     {{--</div>--}}
                     <div class="card-footer">
-
+                        <p style="float: right;" class="pull-right">{{$threads->appends($_GET)->links()}}</p>
                     </div>
                 {{--</div>--}}
             </div>
