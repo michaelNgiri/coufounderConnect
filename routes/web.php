@@ -57,6 +57,7 @@ Route::group(['as' => 'discussions.'], function (){
     Route::get('discussion/create-new', 'DiscussionController@create')->name('create');
     Route::post('discussion/save', 'DiscussionController@saveThread')->name('save');
     Route::post('discussions/{topic}/add-comment', 'DiscussionController@saveComment')->name('save-comment');
+    Route::get('discussions/{slug}/view-thread', 'DiscussionController@viewThread')->name('view-thread');
 });
 
 

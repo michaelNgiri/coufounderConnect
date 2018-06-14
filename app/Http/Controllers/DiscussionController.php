@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Discussion;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DiscussionController extends Controller
 {
    public function index(){
-       $threads = Discussion::paginate();
+       $threads = Discussion::orderBy('created_at', 'desc')->paginate(5);
 
        return view('discussions.index', compact('threads'));
    }
@@ -21,6 +22,7 @@ class DiscussionController extends Controller
    public function saveThread(Request $request){
    	$thread = new Discussion;
    		$thread->topic = $request->topic;
+   		$thread->slug = $title = Carbon::now()->format('Y-m-d').'-'.str_slug($request->topic);
    		$thread->thread = $request->thread;
    		$thread->tags = $request->tags;
    		$thread->thread_owner = Auth::user()->id;
@@ -37,5 +39,10 @@ class DiscussionController extends Controller
            $comment->comment = $request->comment;
        $comment->save();
        return back()->with('success', 'comment saved');
+   }
+
+   public function viewThread(Request $request){
+        $thread = Discussion::where('slug', $request->slug)->first();
+       return view('discussions.view-thread', compact('thread'));
    }
 }
