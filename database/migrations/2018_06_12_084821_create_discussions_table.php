@@ -17,9 +17,13 @@ class CreateDiscussionsTable extends Migration
             $table->increments('id');
             $table->string('topic');
             $table->longText('thread');
+            $table->longText('slug')->unique();
             $table->string('tags')->nullable();
             $table->unsignedInteger('thread_owner');
             $table->unsignedInteger('category_id')->nullable();
+            $table->timestamp('approved_at')->nullable();
+            $table->timestamp('closed_at')->nullable();
+            $table->timestamp('revoked_at')->nullable();
 
             $table->foreign('category_id', 'discussion_category_id')
                 ->references('id')

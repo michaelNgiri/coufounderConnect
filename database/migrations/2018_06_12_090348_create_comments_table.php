@@ -18,6 +18,9 @@ class CreateCommentsTable extends Migration
             $table->unsignedInteger('commenter_id');
             $table->unsignedInteger('discussion_id');
             $table->longText('comment');
+            $table->timestamp('approved_at')->nullable();
+            $table->timestamp('closed_at')->nullable();
+            $table->timestamp('revoked_at')->nullable();
 
             $table->foreign('commenter_id', 'commenter_user_id')
                   ->references('id')
