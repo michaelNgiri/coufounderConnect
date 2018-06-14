@@ -15,6 +15,9 @@ class Discussion extends Model
         return User::find($this->thread_owner);
     }
     public function comments(){
-        return Comment::where('discussion_id', $this->id)->get();
+        return Comment::where('discussion_id', $this->id)->orderBy('created_at', 'desc')->paginate(3);
+    }
+    public function allComments(){
+        return Comment::where('discussion_id', $this->id)->orderBy('created_at', 'desc')->get();
     }
 }
