@@ -52,12 +52,14 @@ Route::group(['as' => 'ideas.'], function (){
     Route::get('idea/view-details', 'IdeasController@showDetails')->name('details');
 });
 
-Route::group(['as' => 'discussions.'], function (){
+Route::group(['as' => 'discussions.'], function () {
     Route::get('discussion', 'DiscussionController@index')->name('index');
+    Route::get('discussions/{slug}/view-thread', 'DiscussionController@viewThread')->name('view-thread');
+});
+Route::group(['as' => 'discussions.', 'middleware'=>'auth'], function (){
     Route::get('discussion/create-new', 'DiscussionController@create')->name('create');
     Route::post('discussion/save', 'DiscussionController@saveThread')->name('save');
     Route::post('discussions/{topic}/add-comment', 'DiscussionController@saveComment')->name('save-comment');
-    Route::get('discussions/{slug}/view-thread', 'DiscussionController@viewThread')->name('view-thread');
 });
 
 

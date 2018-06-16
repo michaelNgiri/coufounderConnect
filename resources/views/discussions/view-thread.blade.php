@@ -6,7 +6,7 @@
               <div class="card">
                   <div class="card-header">
                       <div class="pull-left">
-                          <a href="{{route('discussions.view-thread', ['$thread'=>$thread->topic, 'id'=>$thread->id])}}" style="font-size: 1.6em;" class="teal-text"><b>{{$thread->topic}}</b></a><br>
+                          <b style="font-size: 1.6em;" class="teal-text">{{$thread->topic}}</b><br>
                           @if($thread->owner() == auth()->user())
                               <span style="font-size: 10px;" class="pull-left blue-grey-text">{{$thread->timeStamp().' '.'by'.' '.'Me'}}</span><br>
                           @else
@@ -39,7 +39,9 @@
                               <div class="col-md-10">
 
                                   <div class="comment-div pull-right">
-                                      @if($comment->commenter() == auth()->user())
+                                      @if(is_null($comment->commenter()))
+                                          <span  style="font-size: 12px;" class="teal-text">{{'A guest user said:'}}</span>
+                                      @elseif($comment->commenter() == auth()->user())
                                           <span  style="font-size: 12px;" class="teal-text">{{'I'.' '.'said:'}}</span>
                                       @else
                                           <span  style="font-size: 12px;" class="teal-text">{{$comment->commenter()->name().' '.'said:'}}</span>
@@ -55,6 +57,25 @@
                       @empty
                           <p> no comment yet</p>
                       @endforelse
+                      {{--form for adding comments--}}
+                      <div class="row">
+                          <div class="col-md-12">
+                             @auth
+                              <div class="form-group">
+                                  <form action="{{route('discussions.save-comment', ['topic'=>$thread->topic])}}" method="post">
+                                      @csrf
+                                      <input type="hidden" name="thread_id" value="{{$thread->id}}">
+                                      <label for="comment">Add a comment</label>
+                                      <textarea name="comment" id="comment" cols="30" rows="10" required></textarea>
+                                      <button style="padding: 2px; text-transform: capitalize;" class="white teal-text btn pull-right">Publish</button>
+                                  </form>
+                              </div>
+                              @else
+                                  <p class="grey-text">Login to add a comment</p>
+                              @endif
+                          </div>
+                      </div>
+                      <br>
                   </div>
                   <div class="card-footer">
 

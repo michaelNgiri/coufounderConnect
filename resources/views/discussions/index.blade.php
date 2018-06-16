@@ -65,6 +65,7 @@
                                           {{--form for adding comments--}}
                                           <div class="row">
                                               <div class="col-md-12">
+                                                  @auth
                                                   <div class="form-group">
                                                       <form action="{{route('discussions.save-comment', ['topic'=>$thread->topic])}}" method="post">
                                                           @csrf
@@ -74,6 +75,9 @@
                                                           <button style="padding: 2px; text-transform: capitalize;" class="white teal-text btn pull-right">Publish</button>
                                                       </form>
                                                   </div>
+                                                  @else
+                                                      <p class="grey-text">Login to add a comment</p>
+                                                  @endif
                                               </div>
                                           </div>
                                           <br>

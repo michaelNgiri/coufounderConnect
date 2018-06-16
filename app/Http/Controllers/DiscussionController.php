@@ -32,7 +32,6 @@ class DiscussionController extends Controller
    }
 
    public function saveComment(Request $request){
-
        $comment = new Comment;
            $comment->commenter_id = Auth::user()->id;
            $comment->discussion_id = $request->thread_id;
