@@ -33,8 +33,8 @@
                                                 <form action="{{route('messaging.read-message',['title'=>$receivedMessage->title])}}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{$receivedMessage->id}}">
-                                                    <p><b><button title="read message" class="teal white-text btn btn-success" type="submit">{{$receivedMessage->title}}</button></b>
-                                                    <span>{{Str::words($receivedMessage->message_body, 8,'....')}}</span>
+                                                    <p><b><button title="read message" class="teal white-text btn btn-success" type="submit">{{Str::words($receivedMessage->title, 18, '...')}}</button></b><br>
+                                                    <span>{{Str::words($receivedMessage->message_body, 20,'....')}}</span>
                                                         <span class="teal-text" style="float: right;">{{$receivedMessage->timeStamp()}}</span>
                                                     </p>
                                                 </form>
@@ -46,7 +46,7 @@
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{$receivedMessage->id}}">
                                                     <p><b><button title="read message" class="grey white-text btn btn-success" type="submit">{{$receivedMessage->title}}</button></b>
-                                                        <span>{{Str::words($receivedMessage->message_body, 8,'....')}}</span>
+                                                        <span>{{Str::words($receivedMessage->message_body, 20,'....')}}</span>
                                                         <span class="teal-text" style="float: right;">{{$receivedMessage->timeStamp()}}</span>
                                                     </p>
                                                 </form>

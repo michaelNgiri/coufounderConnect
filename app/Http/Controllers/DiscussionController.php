@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class DiscussionController extends Controller
 {
    public function index(){
-       $threads = Discussion::orderBy('created_at', 'desc')->paginate(5);
+       $threads = Discussion::where('deleted_at', null)->where('revoked_at', null)->orderBy('created_at', 'desc')->paginate(5);
 
        return view('discussions.index', compact('threads'));
    }
@@ -44,5 +44,30 @@ class DiscussionController extends Controller
    public function viewThread(Request $request){
         $thread = Discussion::where('slug', $request->slug)->first();
        return view('discussions.view-thread', compact('thread'));
+   }
+   public function updateThread(Request $request){
+    $thread = Discussion::where('slug', $request->slug)->first();
+       return view('discussions.update-thread', compact('thread'));
+   }
+
+   public function saveUpdate(Request $request){
+       $thread = Discussion::find($request->id);
+        $thread->topic = $request->topic;
+        $thread->thread = $request->thread;
+        $thread->tags = $request->tags;
+       $thread->save();
+   }
+
+   public function deleteThread(Request $request){
+        $thread = Discussion::find($request->id);
+        $thread->deleted_at = Carbon::now();
+        $thread->save();
+       return back()->with('success', 'deleted');
+   }
+
+   public function revokeThread(Request $request){
+       $thread = Discussion::where('slug', $request->slug);
+        $thread->revoked_at =Carbon::now();
+       $thread->save();
    }
 }
