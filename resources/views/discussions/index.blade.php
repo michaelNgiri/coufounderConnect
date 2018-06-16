@@ -44,9 +44,19 @@
                                                   <div class="col-md-10">
                                                       @if($comment->commenter() == auth()->user())
                                                           <div class="comment-div pull-right" style="background-color: beige; padding: 1em; border-radius: 1em;">
+                                                              @if($comment->commenter() == auth()->user())
+                                                                  <span  style="font-size: 12px;" class="teal-text">{{'I'.' '.'said:'}}</span>
+                                                              @else
+                                                                  <span  style="font-size: 12px;" class="teal-text">{{$comment->commenter()->name().' '.'said:'}}</span>
+                                                              @endif
+                                                              <br>
+                                                              <span style="font-size: 1em;" class="black-text float-md-right gray" >{{Str::words($comment->comment, 45,'....')}}</span>
+                                                              <br>
+                                                              <span style="font-size: 12px;" class="grey-text pull-right">{{'[' .$comment->timeStamps().']'}}</span>
+                                                          </div>
                                                       @else
                                                       <div class="comment-div pull-right" style="background-color: #f3f3f3; padding: 1em; border-radius: 1em;">
-                                                       @endif
+
                                                           @if($comment->commenter() == auth()->user())
                                                               <span  style="font-size: 12px;" class="teal-text">{{'I'.' '.'said:'}}</span>
                                                           @else
@@ -57,6 +67,7 @@
                                                           <br>
                                                           <span style="font-size: 12px;" class="grey-text pull-right">{{'[' .$comment->timeStamps().']'}}</span>
                                                       </div>
+                                                      @endif
                                                   </div><hr>
                                               </div>
         
