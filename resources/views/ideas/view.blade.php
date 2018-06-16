@@ -28,7 +28,7 @@
 					@endforelse
 				@if(!is_null($idea->progress()))
                  <p class="teal-text">Progress: <br> </b><i class="mdi mdi-run"></i>{{$idea->progress()->name}}
-                  <button class="btn btn-success pull-right">{{__('cofound this idea')}}</button>
+					 <a style="padding:2px; border-radius: 4px; text-decoration: none;" class="pull-right teal white-text" href="{{route('ideas.details.details', ['slug'=>$idea->slug])}}">View Details</a>
 				</p>
                 @else
                     <p>No skill specified</p>

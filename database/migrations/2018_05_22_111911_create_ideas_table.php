@@ -17,6 +17,7 @@ class CreateIdeasTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->text('title');
+            $table->longText('slug');
             $table->text('short_description');
             $table->longText('details');
             $table->unsignedInteger('progress');

@@ -49,7 +49,9 @@ Route::group(['as' => 'ideas.'], function (){
     Route::get('ideas/my-ideas', 'IdeasController@myIdeas')->name('my-idea');
     Route::get('post-idea', 'IdeasController@post')->name('post-idea');
     Route::get('submit','IdeasController@save')->name('submit-idea');
-    Route::get('idea/view-details', 'IdeasController@showDetails')->name('details');
+    Route::group(['as' => 'details.'], function () {
+        Route::get('idea/{slug}/view-details', 'IdeasController@viewIdeaDetails')->name('details');
+    });
 });
 
 Route::group(['as' => 'discussions.'], function () {
