@@ -34,7 +34,7 @@
 
 
                                                   <br>
-                                                  <p style="font-size: 1.4em;" class="black-text">{{Str::words($thread->thread, 60,'....')}}</p>
+                                                  <p style="font-size: 1.4em; background-color:#f3f3f3; padding: 1em;" class="black-text">{{Str::words($thread->thread, 60,'....')}}</p>
                                               </div>
                                           </div>
                                           {{--container div for comments--}}
@@ -44,8 +44,11 @@
                                               <div class="row">
                                                   <div class="col-md-2"></div>
                                                   <div class="col-md-10">
-
-                                                      <div class="comment-div pull-right">
+                                                      @if($comment->commenter() == auth()->user())
+                                                          <div class="comment-div pull-right" style="background-color: beige; padding: 1em; border-radius: 1em;">
+                                                      @else
+                                                      <div class="comment-div pull-right" style="background-color: #f3f3f3; padding: 1em; border-radius: 1em;">
+                                                       @endif
                                                           @if($comment->commenter() == auth()->user())
                                                               <span  style="font-size: 12px;" class="teal-text">{{'I'.' '.'said:'}}</span>
                                                           @else
@@ -58,7 +61,7 @@
                                                       </div>
                                                   </div><hr>
                                               </div>
-
+        
                                           @empty
                                               <p class="grey-text"> no comment yet</p>
                                           @endforelse
@@ -80,6 +83,7 @@
                                                   @endif
                                               </div>
                                           </div>
+
                                           <br>
                                       </fieldset>
                                   </div>

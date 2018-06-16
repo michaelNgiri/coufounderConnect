@@ -59,6 +59,10 @@ Route::group(['as' => 'discussions.'], function () {
 Route::group(['as' => 'discussions.', 'middleware'=>'auth'], function (){
     Route::get('discussion/create-new', 'DiscussionController@create')->name('create');
     Route::post('discussion/save', 'DiscussionController@saveThread')->name('save');
+    Route::get('discussions/{slug}/update-thread', 'DiscussionController@updateThread')->name('update-thread');
+    Route::post('discussions/save-update', 'DiscussionController@viewThread')->name('save-update');
+    Route::post('discussion/delete', 'DiscussionController@deleteThread')->name('delete');
+    Route::post('discussion/{slug}/revoke', 'DiscussionController@deleteThread')->name('revoke');
     Route::post('discussions/{topic}/add-comment', 'DiscussionController@saveComment')->name('save-comment');
 });
 
