@@ -31,4 +31,8 @@ class Idea extends Model
 //        $skills = Skill::wherein('id', $ideaSkillIds->id)->get();
         return $skills;
     }
+
+    public function cofounders(){
+        return Cofounder::where('cofounded_idea',$this->id)->get();
+    }
 }
