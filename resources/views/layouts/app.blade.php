@@ -70,7 +70,7 @@ float: left;
                             <a disabled active style="color: teal;" href="{{route('discussions.index')}}">Discuss</a>
                         </li>
                             <li class="nav-link">
-                                <a style="color: teal;" href="{{ route('ideas.idea')}}">Ideas</a>
+                    -            <a style="color: teal;" href="{{ route('ideas.idea')}}">Ideas</a>
                             </li>
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
