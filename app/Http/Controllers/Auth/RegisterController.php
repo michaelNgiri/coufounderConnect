@@ -84,7 +84,7 @@ class RegisterController extends Controller
         $next = 2;
 
         while (User::where('slug', '=', $slug)->first()) {
-            $slug = "{$maybe_slug}.'-'.{$next}";
+            $slug = "{$maybe_slug}-{$next}";
             $next++;
         }
 
