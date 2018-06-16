@@ -65,7 +65,7 @@ float: left;
                                 <a active style="color: teal;" href="{{route('connections.index')}}">
                                     {{--<i class="mdi mdi-link"></i>--}}
                                     Connect</a>
-                            </li>
+                            </li> 
                         <li class="nav-link">
                             <a disabled active style="color: teal;" href="{{route('discussions.index')}}">Discuss</a>
                         </li>
