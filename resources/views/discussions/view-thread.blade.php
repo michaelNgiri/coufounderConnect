@@ -57,22 +57,26 @@
                       @empty
                           <p> no comment yet</p>
                       @endforelse
-                      {{--form for adding comments--}}
-                      <div class="row">
-                          <div class="col-md-12">
-                              <div class="form-group">
-                                  <form action="{{route('discussions.save-comment', ['topic'=>$thread->topic])}}" method="post">
-                                      @csrf
-                                      <input type="hidden" name="thread_id" value="{{$thread->id}}">
-                                      <label for="comment">Add a comment</label>
-                                      <textarea name="comment" id="comment" cols="30" rows="10" required></textarea>
-                                      <button style="padding: 2px; text-transform: capitalize;" class="white teal-text btn pull-right">Publish</button>
-                                  </form>
+                              {{--form for adding comments--}}
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      @auth
+                                      <div class="form-group">
+                                          <form action="{{route('discussions.save-comment', ['topic'=>$thread->topic])}}" method="post">
+                                              @csrf
+                                              <input type="hidden" name="thread_id" value="{{$thread->id}}">
+                                              <label for="comment">Add a comment</label>
+                                              <textarea name="comment" id="comment" cols="30" rows="10" required></textarea>
+                                              <button style="padding: 2px; text-transform: capitalize;" class="white teal-text btn pull-right">Publish</button>
+                                          </form>
+                                      </div>
+                                      @else
+                                          <p class="grey-text">Login to make a comment</p>
+                                          @endauth
+                                  </div>
                               </div>
+                              <br>
                           </div>
-                      </div>
-                  </div>
-
                   <div class="card-footer">
 
                   </div>
