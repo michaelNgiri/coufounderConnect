@@ -38,8 +38,6 @@
                                               </div>
                                           </div>
                                           {{--container div for comments--}}
-
-
                                           @forelse($thread->comments() as $comment)
                                               <div class="row">
                                                   <div class="col-md-2"></div>
