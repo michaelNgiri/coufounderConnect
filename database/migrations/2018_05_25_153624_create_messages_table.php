@@ -22,8 +22,8 @@ class CreateMessagesTable extends Migration
             $table->boolean('has_attachment')->default(false);
             $table->boolean('received')->default(false);
             $table->timestamp('read_at')->nullable();
-//            $table->boolean('scheduled')->default(false);
-//            $table->timestamp('schedule_time')->default(\Carbon\Carbon::now());
+            $table->boolean('scheduled')->default(false);
+            $table->timestamp('schedule_time')->default(\Carbon\Carbon::now());
 
             $table->foreign('sender_id', 'message_sender_user_id')
                 ->references('id')

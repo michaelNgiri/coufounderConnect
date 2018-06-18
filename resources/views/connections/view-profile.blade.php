@@ -52,7 +52,8 @@
                         </form>
                     </div>
                     </div>
-                    <div class="profileDetails pull-left blue-grey-text"><br>
+                    <div class="row">
+                        <div class="profileDetails pull-left blue-grey-text"><br>
                             @if(!is_null($user->location()))
                                 <span><i style="font-size: 2em;" class="mdi mdi-home teal-text"></i> {{'Lives in'.' '.$user->location()}}</span><br>
                             @endif
@@ -62,9 +63,11 @@
                             @if(!is_null($user->phone))
                                 <span><i style="font-size: 2em;" class="mdi mdi-phone teal-text"></i>{{$user->phone}}</span>
                             @endif
+                        </div>
                     </div>
 
-                    <div class="bio pull-left">
+                    <div class="row">
+                        <div class="bio pull-left">
                             @if(!is_null($user->bio))
                                 <fieldset>
                                     <legend><b class="grey-text">Bio</b></legend>
@@ -73,17 +76,20 @@
                                     </p>
                                 </fieldset>
                             @endif
+                        </div>
                     </div>
                     <hr>
-                    <div class="experiences pull-left">
-                        @if(!is_null($user->bio))
-                            <fieldset>
-                                <legend><b class="grey-text">Experiences</b></legend>
-                                <p class="teal-text">
-                                    {{$user->bio}}
-                                </p>
-                            </fieldset>
-                        @endif
+                    <div class="row">
+                        <div class="experiences pull-left">
+                            @if(!is_null($user->bio))
+                                <fieldset>
+                                    <legend><b class="grey-text">Experiences</b></legend>
+                                    <p class="teal-text">
+                                        {{$user->bio}}
+                                    </p>
+                                </fieldset>
+                            @endif
+                        </div>
                     </div>
 
                     </div>

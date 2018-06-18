@@ -12,12 +12,12 @@ class SkillsTableSeeder extends Seeder
     public function run()
     {
         $skills = [
-            'Graphic Designer',
-            'Business Analyst',
-            'Web Developer',
-            'IT Specialist',
-            'Strategist',
-            'Android Developer'
+            'A Graphic Designer',
+            'A Business Analyst',
+            'A Web Developer',
+            'An IT Specialist',
+            'A Strategist',
+            'An Android Developer'
         ];
             
       
