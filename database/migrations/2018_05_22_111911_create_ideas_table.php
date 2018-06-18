@@ -17,12 +17,13 @@ class CreateIdeasTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->text('title');
-            $table->longText('slug');
+            $table->longText('slug', 255);
             $table->text('short_description');
-            $table->longText('details');
+            $table->longText('details')->nullable();
             $table->unsignedInteger('progress');
             $table->boolean('need_cofounder')->default(true);
             $table->text('tags')->nullable();
+            $table->timestamp('banned_at')->nullable();
 
 
             $table->foreign('user_id', 'idea_user_id')

@@ -18,7 +18,9 @@ class CreateCofoundersTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('cofounded_idea');
             $table->unsignedInteger('role_id');
-            $table->longText('other_info');
+            $table->longText('other_info')->nullable();
+            $table->timestamp('accepted_at')->nullable();
+            $table->timestamp('removed_at')->nullable();
 
             $table->foreign('cofounded_idea', 'cofounded_idea_id')
                 ->references('id')
