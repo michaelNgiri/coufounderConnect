@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\IdeaSkill;
 
@@ -33,6 +34,24 @@ class Idea extends Model
     }
 
     public function cofounders(){
-        return Cofounder::where('cofounded_idea',$this->id)->get();
+        return Cofounder::where('cofounded_idea',$this->id)->where('accepted_at', '!=', null)->get();
+    }
+
+    public function ideaStage(){
+        return IdeaStage::find($this->progress);
+    }
+
+    public function banned(){
+        is_null($this->banned_at)? $status = false: $status = true;
+        return $status;
+    }
+
+    public function removed(){
+        is_null($this->removed_at)? $status = true: $status = false;
+        return $status;
+    }
+
+    public function owner(){
+        return User::find($this->user_id);
     }
 }

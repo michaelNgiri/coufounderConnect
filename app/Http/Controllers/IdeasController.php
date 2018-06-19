@@ -23,8 +23,16 @@ class IdeasController extends Controller
     	return view('ideas.post-idea', compact('ideas', 'skills', 'progresses'));
     }
     public function save(Request $request){
+        $slug = $maybe_slug = str_slug($request->title);
+        $next = 2;
+
+        while (Idea::where('slug', '=', $slug)->first()) {
+            $slug = "{$maybe_slug}-{$next}";
+            $next++;
+        }
     	$idea = new Idea;
     	$idea->title = $request->title;
+        $idea->slug = $slug;
     	$idea->short_description = $request->short_description;
     	$idea->details = $request->details;
     	$idea->tags = $request->tags;
@@ -64,5 +72,10 @@ class IdeasController extends Controller
 
         $ideas = Idea::where('user_id', Auth::user()->id)->get();
         return view('ideas.my-ideas', compact('ideas'));
+    }
+
+    public function viewIdeaDetails(Request $request){
+        $idea = Idea::where('slug', $request->slug)->first();
+        return view('ideas.view-details', compact('idea'));
     }
 }
