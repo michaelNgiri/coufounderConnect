@@ -172,6 +172,13 @@ class ProfileController extends Controller
 
 
         }
+//    public function showProfile(Request $request){
+//
+//        $user = User::where('slug', $request->slug)->first();
+//        $userId = $user->id;
+//
+//        return view('auth.profile.view-profile');
+//    }
 
         public function showProfile(Request $request){
 

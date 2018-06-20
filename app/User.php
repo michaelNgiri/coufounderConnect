@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Availability;
+use App\Models\Cofounder;
 use App\Models\Country;
 use App\Models\Message;
 use App\Models\Skill;
@@ -155,6 +156,10 @@ class User extends Authenticatable
     }else{
         return 'you are not yet available in search, please fill all the areas marked as important';
     }
+    }
+
+    public function noOfPendingCofounderRequests(){
+        return count(Cofounder::where('cofounded_idea', $this->id)->where('accepted_at', null)->get());
     }
 
 
