@@ -52,7 +52,11 @@ Route::group(['as' => 'ideas.'], function (){
     Route::group(['as' => 'details.'], function () {
         Route::get('idea/{slug}/view-details', 'IdeasController@viewIdeaDetails')->name('details');
         Route::get('idea/{slug}/cofound/request', 'IdeasController@cofounderRequest')->name('cofounder-request');
+        Route::get('idea/{slug}/view-requests', 'IdeasController@viewRequests')->name('view-requests');
         Route::get('idea/{slug}/cofound', 'IdeasController@cofound')->name('cofound');
+    });
+    Route::group(['as' => 'cofounders.'], function () {
+       Route::get('idea/requests/accept', 'IdeasController@acceptRequest')->name('accept-request');
     });
 });
 

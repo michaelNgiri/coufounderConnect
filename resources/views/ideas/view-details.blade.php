@@ -8,6 +8,8 @@
                     {{$idea->title}}
                 @if(auth()->user()->id != $idea->owner()->id)
                   <a href="{{route('ideas.details.cofounder-request', ['slug'=>$idea->slug])}}" class="btn btn-success pull-right">Cofound this idea</a>
+                @else
+                  <a href="{{route('ideas.details.view-requests', ['slug'=>$idea->slug])}}" class="btn btn-success pull-right">View Requests</a>
                 @endif
                 </div>
                 <div class="card-body">

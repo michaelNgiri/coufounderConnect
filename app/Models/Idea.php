@@ -37,6 +37,10 @@ class Idea extends Model
         return Cofounder::where('cofounded_idea',$this->id)->where('accepted_at', '!=', null)->get();
     }
 
+    public function pendingCofounderRequests(){
+        return Cofounder::where('cofounded_idea', $this->id)->where('accepted_at', null)->get();
+    }
+
     public function ideaStage(){
         return IdeaStage::find($this->progress);
     }
