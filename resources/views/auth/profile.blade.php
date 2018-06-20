@@ -8,7 +8,6 @@
                     <em style="font-size: 1em; color: grey; text-transform:capitalize; float: left;">{{Auth::user()->username()}}</em>
                     <p style="float: right;  padding-right: 48px;">Dashboard</p>
                 </div>
-
                 @auth
                 <div class="card-body" style="text-align: center;">
                     @if (session('status'))
@@ -62,6 +61,19 @@
                                 <i  class="mdi mdi-message"></i>
                                  </span>
                                 @endif
+                        </a>
+                        <a href="" title="cofounder requests" disabled="disabled">
+                            @if(Auth::user()->noOfPendingCofounderRequests()>0)
+                                <span class="badge" style="background: orangered;">
+                                <i style="color: #fff;" class="mdi mdi-group">
+                                    {{' '.'+'.Auth::user()->noOfPendingCofounderRequests()}}
+                                </i>
+                             </span>
+                            @else
+                                <span class="badge" style="background: darkgray;">
+                                <i  class="mdi mdi-group"></i>
+                                 </span>
+                            @endif
                         </a>
                         <br>
 
