@@ -51,6 +51,7 @@ Route::group(['as' => 'ideas.'], function (){
     Route::get('submit','IdeasController@save')->name('submit-idea');
     Route::group(['as' => 'details.'], function () {
         Route::get('idea/{slug}/view-details', 'IdeasController@viewIdeaDetails')->name('details');
+        Route::get('idea/{slug}/cofound/request', 'IdeasController@cofounderRequest')->name('cofounder-request');
         Route::get('idea/{slug}/cofound', 'IdeasController@cofound')->name('cofound');
     });
 });

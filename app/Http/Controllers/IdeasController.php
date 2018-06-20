@@ -80,12 +80,22 @@ class IdeasController extends Controller
         return view('ideas.view-details', compact('idea'));
     }
 
+    public function cofounderRequest(Request $request){
+        $skills = Skill::all();
+        $idea = Idea::where('slug', $request->slug)->first();
+
+        return view('ideas.cofounder-request', compact('idea', 'skills'));
+    }
+
     public function cofound(Request $request){
-        return back()->with('info', 'coming soon');
-        dd($request->slug);
+
+        $idea_id = Idea::where('slug', $request->slug)->first()->id;
         $cofounder = new Cofounder;
           $cofounder->user_id = Auth::user()->id;
+          $cofounder->cofounded_idea = $idea_id;
+          $cofounder->role_id = $request->role_id;
+        $cofounder->other_info = $request->other_info;
         $cofounder->save();
-
+        return back()->with('info', 'we will notify the owner of your request to be a co-founder');
     }
 }
