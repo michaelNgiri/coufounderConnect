@@ -6,7 +6,11 @@
             <div class="card">
                 <div class="card-header teal white-text">
                     {{$idea->title}}
-                    <a href="{{route('ideas.details.cofound', ['slug'=>$idea->slug])}}" class="btn btn-success pull-right">Cofound this idea</a>
+                @if(auth()->user()->id != $idea->owner()->id)
+                  <a href="{{route('ideas.details.cofounder-request', ['slug'=>$idea->slug])}}" class="btn btn-success pull-right">Cofound this idea</a>
+                @else
+                  <a href="{{route('ideas.details.view-requests', ['slug'=>$idea->slug])}}" class="btn btn-success pull-right">View Requests</a>
+                @endif
                 </div>
                 <div class="card-body">
                     <div class="basics" style="text-align: center;">
@@ -44,16 +48,17 @@
                         @endforelse
                     </div>
                     <hr>
+                    @if((count($idea->cofounders())>0) && (count($idea->cofounders())<2)))
+                    <!--this text shows only if the idea has a cofounder-->
+                    <p style="font-style: italic" class="teal-text">Co-founder</p><br>
+                    @elseif(count($idea->cofounders())>1)
+                        <p style="font-style: italic" class="teal-text">Co-founders</p><br>
+                    @endif
 
                     <div class="row">
-                        @if((count($idea->cofounders())>0) && (count($idea->cofounders())<2)))
-                            <!--this text shows only if the idea has a cofounder-->
-                            <p style="font-style: italic" class="teal-text">Co-founder</p><br>
-                        @elseif(count($idea->cofounders())>1)
-                        <p style="font-style: italic" class="teal-text">Co-founders</p><br>
-                        @endif
+
                         @forelse($idea->cofounders() as $cofounder)
-                            <div class="col-md-4" style="text-align: center; border: 1px solid grey; border-radius: 20%; margin: 1em;">
+                            <div class="col-md-3" style="text-align: center; border: 1px solid grey; border-radius: 10%; margin: 1em;">
                                 <div class="cofounder">
                                     <div class="cofounder-image">
                                         <img height="120px" width="100px" style="border-radius: 50%; padding: 1em;" src="{{asset($cofounder->user()->imagePath())}}" alt="">
@@ -72,13 +77,13 @@
                                 </div>
                             </div>
                         @empty
-                            <a style="text-align: center; margin: auto;" class="badge badge-danger center-align" href="{{route('ideas.details.cofound', ['slug'=>$idea->slug])}}">Be the first Co-founder</a>
+                            <a style="text-align: center; margin: auto;" class="badge badge-danger center-align" href="{{route('ideas.details.cofounder-request', ['slug'=>$idea->slug])}}">Be the first Co-founder</a>
                         @endforelse
                     </div>
 
                 </div>
                 <div class="card-footer">
-                    <a style="font-size: 9px;" class="grey-text pull-left" href="{{route('ideas.details.cofound', ['slug'=>$idea->slug])}}">Become {{$idea->owner()->name()." 's "}} Co-founder</a>
+                    <a style="font-size: 9px;" class="grey-text pull-left" href="{{route('ideas.details.cofounder-request', ['slug'=>$idea->slug])}}">Become {{$idea->owner()->name()." 's "}} Co-founder</a>
                     <div class="ideaOwner pull-right teal-text">
                         @if(!is_null($idea->owner()))
                             <span>{{'Posted by '.' '.$idea->owner()->name()}}</span>

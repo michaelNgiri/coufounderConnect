@@ -18,4 +18,7 @@ class Comment extends Model
     public function commenter(){
         return User::find($this->commenter_id);
     }
+    public function role(){
+        return Skill::find($this->role_id);
+    }
 }

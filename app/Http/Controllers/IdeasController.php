@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cofounder;
 use App\Models\IdeaSkill;
 use App\Models\Progress;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Idea;
 use App\Models\Skill;
@@ -80,12 +81,42 @@ class IdeasController extends Controller
         return view('ideas.view-details', compact('idea'));
     }
 
+    public function cofounderRequest(Request $request){
+        $skills = Skill::all();
+        $idea = Idea::where('slug', $request->slug)->first();
+
+        return view('ideas.cofounder-request', compact('idea', 'skills'));
+    }
+
     public function cofound(Request $request){
-        return back()->with('info', 'coming soon');
-        dd($request->slug);
-        $cofounder = new Cofounder;
-          $cofounder->user_id = Auth::user()->id;
-        $cofounder->save();
+
+        if (count(Idea::where('slug', $request->slug))<10) {
+            $idea_id = Idea::where('slug', $request->slug)->first()->id;
+            $cofounder = new Cofounder;
+            $cofounder->user_id = Auth::user()->id;
+            $cofounder->cofounded_idea = $idea_id;
+            $cofounder->role_id = $request->role_id;
+            $cofounder->other_info = $request->other_info;
+            $cofounder->save();
+        }else{
+            return back()->with('info', 'this idea can no longer accept a co-founder');
+        }
+        return back()->with('info', 'we will notify the owner of your request to be a co-founder');
+    }
+
+    public function viewRequests(Request $request){
+        $idea = Idea::where('slug', $request->slug)->first();
+        return view('ideas.view-requests', compact('idea'));
+    }
+    public function acceptRequest(Request $request){
+        $request = Cofounder::find($request->id);
+          $request->accepted_at = Carbon::now();
+        $request->save();
+
+        return back()->with('success', 'Request accepted');
+    }
+
+    public function viewProfile(){
 
     }
 }
