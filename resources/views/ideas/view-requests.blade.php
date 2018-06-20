@@ -12,7 +12,7 @@
                      <hr>
                      <div class="row">
                      @forelse($idea->pendingCofounderRequests() as $pendingCofounderRequest)
-                      <div class="col-md-4">
+                      <div class="col-md-4" style=" border:1px solid #f3f3f3; padding-top:8px; text-align:center; justify-text:all;">
                          <img height="80px" width="80px" src="{{asset($pendingCofounderRequest->user()->imagePath())}}" alt="{{$pendingCofounderRequest."'s picture'"}}"><br>
                          {{$pendingCofounderRequest->user()->name()}}<br>
                           @if($pendingCofounderRequest->role()->id ==1)
@@ -24,7 +24,7 @@
                           @elseif($pendingCofounderRequest->role()->id ==4)
                               <b style="background: green;" class="badge">{{$pendingCofounderRequest->role()->name}}</b>
                           @elseif($pendingCofounderRequest->role()->id ==5)
-                              <b style="background: blue;" class="badge">{{$pendingCofounderRequest->role()->name}}</b>
+                              <b style="background: brown;" class="badge">{{$pendingCofounderRequest->role()->name}}</b>
                           @elseif($pendingCofounderRequest->role()->id ==6)
                               <b style="background: plum;" class="badge">{{$pendingCofounderRequest->role()->name}}</b>
                           @else
@@ -37,7 +37,6 @@
                               {{--<a href="">View Profile</a>--}}
                               {{--<a class="materialize-red-text" style="border: 1px solid red; border-radius:10%;" href="">Spam</a>--}}
                           {{--</p>--}}
-                              <hr>
                       </div>
                      @empty
                      <p class="grey-text">No Pending request</p>
