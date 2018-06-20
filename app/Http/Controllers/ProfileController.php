@@ -173,4 +173,9 @@ class ProfileController extends Controller
 
         }
 
+        public function showProfile(Request $request){
+
+            $user = User::where('slug', $request->slug)->first();
+        }
+
 }

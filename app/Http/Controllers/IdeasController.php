@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cofounder;
 use App\Models\IdeaSkill;
 use App\Models\Progress;
 use Illuminate\Http\Request;
@@ -77,5 +78,14 @@ class IdeasController extends Controller
     public function viewIdeaDetails(Request $request){
         $idea = Idea::where('slug', $request->slug)->first();
         return view('ideas.view-details', compact('idea'));
+    }
+
+    public function cofound(Request $request){
+        return back()->with('info', 'coming soon');
+        dd($request->slug);
+        $cofounder = new Cofounder;
+          $cofounder->user_id = Auth::user()->id;
+        $cofounder->save();
+
     }
 }
