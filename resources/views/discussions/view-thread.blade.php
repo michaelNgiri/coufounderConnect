@@ -41,7 +41,7 @@
                   </div>
                   <div class="card-body">
 
-                    <p style="font-size: 1.4em; background-color: #f3f3f3; padding: 1em; justify-content: space-around;"><pre>{{$thread->thread}}</pre></p>
+                    <p style="font-size: 1.4em; background-color: #f3f3f3; padding: 1em; justify-content: space-around;"><pre style="white-space: pre-wrap; font-family: 'Yu Gothic UI'; font-size: 1.5em; justify-content:center; text-justify: inter-cluster; ">{{$thread->thread}}</pre></p>
                       <br>
                       {{--container div for comments--}}
                       @forelse($thread->allComments() as $comment)
