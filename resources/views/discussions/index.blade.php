@@ -34,7 +34,7 @@
 
 
                                                   <br>
-                                                  <p style="font-size: 1.4em; background-color:#f3f3f3; padding: 1em;" class="black-text">{{Str::words($thread->thread, 60,'....')}}</p>
+                                                  <p style="font-size: 1.4em; background-color:#f3f3f3; padding: 1em;" class="black-text"><pre style="white-space: pre-wrap; font-family: 'Yu Gothic UI'; font-size: 1.5em; justify-content:center; text-justify: inter-cluster; ">{{Str::words($thread->thread, 60,'....')}}</pre></p>
                                                   <a href="{{route('discussions.view-thread', ['slug'=>$thread->slug])}}" style="font-size: 1.6em; text-align: right;" class="grey-text"><b>Read more</b></a><br>
                                               </div>
                                           </div>
