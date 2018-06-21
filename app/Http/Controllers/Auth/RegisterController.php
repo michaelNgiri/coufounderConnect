@@ -60,7 +60,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'username' => 'required|string|between:3,60',
+//            'username' => 'required|string|between:3,60',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'username' => 'required|string|between:4,50|unique:users,username',
@@ -80,6 +80,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+//        prevent a slug from occurring twice in the users table
         $slug = $maybe_slug = strtolower($data['first_name'] . '-' . $data['last_name']);
         $next = 2;
 
