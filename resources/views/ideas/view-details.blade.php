@@ -42,7 +42,7 @@
                     <div class="required-skills">
                         <b class="teal-text">Required Skills</b>
                         @forelse($idea->ideaSkills() as $ideaSkill)
-                            <p>{{$ideaSkill->name}}</p>
+                            <p class="badge badge-info">{{$ideaSkill->name}}</p>
                         @empty
                         <b>No skill Specified</b>
                         @endforelse
@@ -71,9 +71,9 @@
                                         {{$cofounder->role()->name}}
                                     </div>
                                     <hr>
-                                    <div class="cofounder-info">
-                                        {{$cofounder->other_info}}
-                                    </div>
+                                    {{--<div class="cofounder-info">--}}
+                                        {{--{{Str::words($cofounder->other_info, 10,'....')}}--}}
+                                    {{--</div>--}}
                                 </div>
                             </div>
                         @empty

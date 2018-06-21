@@ -180,9 +180,4 @@ class ProfileController extends Controller
 //        return view('auth.profile.view-profile');
 //    }
 
-        public function showProfile(Request $request){
-
-            $user = User::where('slug', $request->slug)->first();
-        }
-
 }
