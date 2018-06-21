@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
+//this controller is currently redundant
 class UserVerification extends Model
 {
     
