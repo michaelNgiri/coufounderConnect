@@ -9,7 +9,7 @@
 	<div class="row">
 		<div class="col-md-10 card">
 			<div class="card-header teal white-text">
-				View potential Co-founders
+				Ideas
 				{{--<a  href="{{route('ideas.my-idea')}}" class="btn btn-secondary pull-right">My Ideas</a>--}}
 			</div>
 			<div class="card-body">
