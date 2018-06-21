@@ -119,6 +119,7 @@ class ProfileController extends Controller
 
     public function showImage($filename)
     {
+//        prevent error from occurring if the download fails
         try {
             return response()->download(storage_path('app/public/uploads/avatars' . DS . $filename), null, [], null);
         } catch (\Exception $e) {

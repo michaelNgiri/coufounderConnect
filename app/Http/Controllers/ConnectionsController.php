@@ -39,7 +39,7 @@ class ConnectionsController extends Controller
         $outboundConnection = Connection::where('receiver_id', Auth::user()->id)->where('sender_id', $request->id)->get();
         $id = $request->id;
         $user = User::find($id)->first();
-
+//            save the connection request
         if (count($inboundConnection)== 0 && count($outboundConnection)== 0){
             $connection = new Connection;
                 $connection->sender_id = Auth::user()->id;
@@ -107,6 +107,7 @@ class ConnectionsController extends Controller
             $noOfPendingReceived = count($pendingReceived);
         }
 
+//        needs to be refactored and (these items should be in the model)
         return view('connections.my-connections',
             compact('sentRequests',
                           'pendingReceived',

@@ -18,13 +18,25 @@ class Message extends Model
      * @return mixed
      * get the sender of the email
      */
-public  function sender(){
-    return User::find($this->sender_id);
-}
+    public  function sender(){
+        return User::find($this->sender_id);
+    }
+
+
+    /**
+     * return the message timestamp in a human readable format
+     * @return mixed
+     */
     public function timeStamp(){
     return $this->created_at->diffForHumans();
     }
 
+
+
+    /**
+     * check if the message has been read
+     * @return bool
+     */
     public function read(){
         is_null($this->read_at)? $status = false: $status = true;
         return $status;

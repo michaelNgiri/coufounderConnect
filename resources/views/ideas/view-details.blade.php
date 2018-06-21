@@ -24,6 +24,7 @@
                     <br>
                     <div class="idea-stage">
                         <b class="teal-text">Idea Stage:</b>
+                        {{--different badges for different idea stages--}}
                         @if($idea->progress()->id == 1)
                             <i class="badge" style="background:red">{{$idea->progress()->name}}</i>
                         @elseif($idea->progress()->id == 2)
@@ -83,9 +84,13 @@
 
                 </div>
                 <div class="card-footer">
-                    <a style="font-size: 9px;" class="grey-text pull-left" href="{{route('ideas.details.cofounder-request', ['slug'=>$idea->slug])}}">Become {{$idea->owner()->name()." 's "}} Co-founder</a>
+                    @if($idea->owner()->id != auth()->user()->id)
+                        {{--display this link if the current user is not the owner of the idea--}}
+                        <a style="font-size: 9px;" class="grey-text pull-left" href="{{route('ideas.details.cofounder-request', ['slug'=>$idea->slug])}}">Become {{$idea->owner()->name()." 's "}} Co-founder</a>
+                    @endif
                     <div class="ideaOwner pull-right teal-text">
                         @if(!is_null($idea->owner()))
+                            {{--this is necessary because the lastname and first name are nullable--}}
                             <span>{{'Posted by '.' '.$idea->owner()->name()}}</span>
                         @endif
 

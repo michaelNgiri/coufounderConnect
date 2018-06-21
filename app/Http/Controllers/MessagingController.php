@@ -89,11 +89,15 @@ class MessagingController extends Controller
         $message = Message::find($request->id);
             $message->deleted_at = Carbon::now();
         $message->save();
-        //message is not actually deleted.
+        //message is not actually deleted, this softdelete method ensures that we can recover the message even after deleting.
         $receivedMessages = Message::where('recipient_id', Auth::user()->id)->where('deleted_at', null)->get();
         $success = 'message deleted';
 
         return view('messaging.index', compact( 'receivedMessages', 'success'));
+
+    }
+
+    public function deletePermanently(Request $request){
 
     }
 
