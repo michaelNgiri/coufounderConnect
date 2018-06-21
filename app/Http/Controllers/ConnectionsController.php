@@ -10,13 +10,23 @@ use Auth;
 
 class ConnectionsController extends Controller
 {
-    
+
+    /**
+     * the main connection base view features all the platform with the required parameters as defined in the users model
+     * various information about the user is fetched using model binding
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(){
     	$users = User::paginate();
 
     	return view('connections.connect', compact('users'));
     }
 
+    /**
+     * returns information about a specific user from the db
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function viewProfile(Request $request){
         $con = Connection::where('sender_id', Auth::user()->id)->where('receiver_id', $request->id)->first();
         is_null($con)? $requested = false: $requested = true;
@@ -28,6 +38,12 @@ class ConnectionsController extends Controller
 
     	return view('connections.view-profile', compact('user', 'connected','requested'));
     }
+
+    /**
+     * this method takes a few informationinto consideration and then sends a 
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function connect(Request $request){
 
         $con = Connection::where('sender_id', Auth::user()->id)->where('receiver_id', $request->id)->first();
