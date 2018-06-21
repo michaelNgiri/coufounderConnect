@@ -35,6 +35,7 @@
 
                                                   <br>
                                                   <p style="font-size: 1.4em; background-color:#f3f3f3; padding: 1em;" class="black-text">{{Str::words($thread->thread, 60,'....')}}</p>
+                                                  <a href="{{route('discussions.view-thread', ['slug'=>$thread->slug])}}" style="font-size: 1.6em; text-align: right;" class="grey-text"><b>Read more</b></a><br>
                                               </div>
                                           </div>
                                           {{--container div for comments--}}

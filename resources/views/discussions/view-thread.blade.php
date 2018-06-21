@@ -28,19 +28,20 @@
                               <form action="">
                                   <a style="color: grey;"  href="" class="gray-text"><i class="mdi mdi-delete"></i> Delete</a>
                               </form>
-                          <a style="color: grey;" href="{{route('discussions.revoke',['slug'=>$thread->slug])}}" class="gray-text"><i class="mdi mdi-close"></i> Revoke</a><br>
-                          <a style="color: grey;"  href="{{route('discussions.update-thread', ['slug'=>$thread->slug])}}" class="gray-text"><i class="mdi mdi-pencil"></i> Edit</a><br>
-                              <form action="{{route('discussions.delete')}}" method="post">
-                                  @csrf
-                                  <input name="id" type="hidden" value="{{$thread->id}}">
-                                  <button type="submit" onclick="confirm('are you sure you want to delete this thread ?')" class="mdi mdi-delete">Delete</button>
+                          {{--<a style="color: grey;" href="{{route('discussions.revoke',['slug'=>$thread->slug])}}" class="gray-text"><i class="mdi mdi-close"></i> Revoke</a><br>--}}
+                          {{--<a style="color: grey;"  href="{{route('discussions.update-thread', ['slug'=>$thread->slug])}}" class="gray-text"><i class="mdi mdi-pencil"></i> Edit</a><br>--}}
+                              {{--<form action="{{route('discussions.delete')}}" method="post">--}}
+                                  {{--@csrf--}}
+                                  {{--<input name="id" type="hidden" value="{{$thread->id}}">--}}
+                                  {{--<button type="submit" onclick="confirm('are you sure you want to delete this thread ?')" class="mdi mdi-delete">Delete</button>--}}
 
-                              </form>
+                              {{--</form>--}}
                           @endif
                       </div>
                   </div>
                   <div class="card-body">
-                    <p style="font-size: 1.4em; background-color: #f3f3f3; padding: 1em; justify-content: space-around;">{{$thread->thread}}</p>
+
+                    <p style="font-size: 1.4em; background-color: #f3f3f3; padding: 1em; justify-content: space-around;"><pre>{{$thread->thread}}</pre></p>
                       <br>
                       {{--container div for comments--}}
                       @forelse($thread->allComments() as $comment)
