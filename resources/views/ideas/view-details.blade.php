@@ -6,11 +6,13 @@
             <div class="card">
                 <div class="card-header teal white-text">
                     {{$idea->title}}
-                @if(auth()->user()->id != $idea->owner()->id)
-                  <a href="{{route('ideas.details.cofounder-request', ['slug'=>$idea->slug])}}" class="btn btn-success pull-right">Cofound this idea</a>
-                @else
-                  <a href="{{route('ideas.details.view-requests', ['slug'=>$idea->slug])}}" class="btn btn-success pull-right">View Requests</a>
-                @endif
+                @auth
+                    @if(auth()->user()->id != $idea->owner()->id)
+                        <a href="{{route('ideas.details.cofounder-request', ['slug'=>$idea->slug])}}" class="btn btn-success pull-right">Cofound this idea</a>
+                    @else
+                        <a href="{{route('ideas.details.view-requests', ['slug'=>$idea->slug])}}" class="btn btn-success pull-right">View Requests</a>
+                    @endif
+                @endauth
                 </div>
                 <div class="card-body">
                     <div class="basics" style="text-align: center;">

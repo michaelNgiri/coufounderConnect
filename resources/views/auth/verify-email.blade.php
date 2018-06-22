@@ -17,7 +17,7 @@
 				<h4>I wish to personally welcome you to the KofoundME  platform</h4>
 				<h5>please follow this last step to complete your registration</h5><br>
 					<i class="mdi mdi-arrow-down"></i>
-				<a style="background: teal; color: #ffffff;" href="{{ route('verification.email',['id'=>auth()->user()->id, 'username'=>auth()->user()->username, 'code'=>auth()->user()->email_verification_code ])}}" class="btn btn-success teal">Click Here to verify your email</a>
+				<a style="background: teal; color: #ffffff;" href="{{ route('verification.email',['id'=>auth()->user()->id, 'username'=>auth()->user()->username, 'code'=>'email_verification_code' ])}}" class="btn btn-success teal">Click Here to verify your email</a>
 				</div>
 			</div>
 		</div>

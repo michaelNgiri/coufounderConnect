@@ -98,7 +98,7 @@ Route::group(['as'=>'mailing.'], function () {
 
 //routes for contingency
 Route::group(['as'=>'override'], function (){
-    Route::get('user/override/email-verification', 'OverrideController@bypassEmailVerification')->name('verification-override');
+    Route::get('user/override/alveis/temporary/email-verification', 'OverrideController@bypassEmailVerification')->name('verification-override');
 });
 // Route::get('/Register', 'RegisterController@index')->name('register');
 // Route::get('/login', 'LoginController@index')->name('login');

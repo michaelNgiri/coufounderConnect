@@ -56,7 +56,7 @@ class ConnectionsController extends Controller
         $id = $request->id;
         $user = User::find($id)->first();
 //            save the connection request
-        if (count($inboundConnection)== 0 && count($outboundConnection)== 0){
+      
             $connection = new Connection;
                 $connection->sender_id = Auth::user()->id;
                 $connection->receiver_id = $request->id;
@@ -65,15 +65,7 @@ class ConnectionsController extends Controller
 
             $success = 'connection request sent';
             return view('connections.view-profile', compact('user', 'success', 'connected', 'requested'));
-        }else{
-//                if (!is_null($outboundConnection->accepted_at) || !is_null($inboundConnection->accepted_at)){
-//                    $info = 'you are already connected';
-//                }else {
-//                    $info = 'you have a pending connection request to/ this person';
-//                }
-            $info = 'you have a pending connection request to/from this person';
-            return view('connections.view-profile', compact('user', 'info', 'connected', 'requested'));
-        }
+
         
     }
 
