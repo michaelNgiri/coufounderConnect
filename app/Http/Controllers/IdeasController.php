@@ -14,14 +14,14 @@ use Auth;
 class IdeasController extends Controller
 {
     public function view(){
-    	$ideas = Idea::paginate();
+    	$ideas = Idea::where('deleted_at', null);
 
     	return view('ideas.view', compact('ideas'));
     }
     public function post(){
-    	$ideas = Idea::paginate();
-    	$skills = Skill::all();
-    	$progresses = Progress::all();
+    	$ideas = Idea::where('deleted_at', null);
+    	$skills = Skill::where('deleted_at', null);
+    	$progresses = Progress::where('deleted_at', null);
     	return view('ideas.post-idea', compact('ideas', 'skills', 'progresses'));
     }
     public function save(Request $request){

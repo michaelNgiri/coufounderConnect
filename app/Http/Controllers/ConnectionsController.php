@@ -10,13 +10,23 @@ use Auth;
 
 class ConnectionsController extends Controller
 {
-    
+
+    /**
+     * the main connection base view features all the platform with the required parameters as defined in the users model
+     * various information about the user is fetched using model binding
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(){
-    	$users = User::paginate();
+    	$users = User::where('deleted_at', null)->paginate();
 
     	return view('connections.connect', compact('users'));
     }
 
+    /**
+     * returns information about a specific user from the db
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function viewProfile(Request $request){
         $con = Connection::where('sender_id', Auth::user()->id)->where('receiver_id', $request->id)->first();
         is_null($con)? $requested = false: $requested = true;
@@ -28,6 +38,12 @@ class ConnectionsController extends Controller
 
     	return view('connections.view-profile', compact('user', 'connected','requested'));
     }
+
+    /**
+     * this method takes a few informationinto consideration and then sends a
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function connect(Request $request){
 
         $con = Connection::where('sender_id', Auth::user()->id)->where('receiver_id', $request->id)->first();
@@ -39,7 +55,7 @@ class ConnectionsController extends Controller
         $outboundConnection = Connection::where('receiver_id', Auth::user()->id)->where('sender_id', $request->id)->get();
         $id = $request->id;
         $user = User::find($id)->first();
-
+//            save the connection request
         if (count($inboundConnection)== 0 && count($outboundConnection)== 0){
             $connection = new Connection;
                 $connection->sender_id = Auth::user()->id;
@@ -58,7 +74,7 @@ class ConnectionsController extends Controller
             $info = 'you have a pending connection request to/from this person';
             return view('connections.view-profile', compact('user', 'info', 'connected', 'requested'));
         }
-        
+
     }
 
     public function showRequests(){
@@ -107,6 +123,7 @@ class ConnectionsController extends Controller
             $noOfPendingReceived = count($pendingReceived);
         }
 
+//        needs to be refactored and (these items should be in the model)
         return view('connections.my-connections',
             compact('sentRequests',
                           'pendingReceived',
