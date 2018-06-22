@@ -17,7 +17,7 @@ class ConnectionsController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(){
-    	$users = User::paginate();
+    	$users = User::where('deleted_at', null)->paginate();
 
     	return view('connections.connect', compact('users'));
     }
@@ -40,7 +40,7 @@ class ConnectionsController extends Controller
     }
 
     /**
-     * this method takes a few informationinto consideration and then sends a 
+     * this method takes a few informationinto consideration and then sends a
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -56,7 +56,7 @@ class ConnectionsController extends Controller
         $id = $request->id;
         $user = User::find($id)->first();
 //            save the connection request
-      
+        if (count($inboundConnection)== 0 && count($outboundConnection)== 0){
             $connection = new Connection;
                 $connection->sender_id = Auth::user()->id;
                 $connection->receiver_id = $request->id;
@@ -65,8 +65,16 @@ class ConnectionsController extends Controller
 
             $success = 'connection request sent';
             return view('connections.view-profile', compact('user', 'success', 'connected', 'requested'));
+        }else{
+//                if (!is_null($outboundConnection->accepted_at) || !is_null($inboundConnection->accepted_at)){
+//                    $info = 'you are already connected';
+//                }else {
+//                    $info = 'you have a pending connection request to/ this person';
+//                }
+            $info = 'you have a pending connection request to/from this person';
+            return view('connections.view-profile', compact('user', 'info', 'connected', 'requested'));
+        }
 
-        
     }
 
     public function showRequests(){
