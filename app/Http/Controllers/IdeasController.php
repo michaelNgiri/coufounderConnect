@@ -14,7 +14,7 @@ use Auth;
 class IdeasController extends Controller
 {
     public function view(){
-    	$ideas = Idea::where('deleted_at', null);
+    	$ideas = Idea::where('deleted_at', null)->paginate();
 
     	return view('ideas.view', compact('ideas'));
     }

@@ -40,7 +40,7 @@
 				@endforelse
 
 			</div>
-		</div><p>{{$ideas->appends($_GET)->links()}}</p>
+		</div><p style="float: right;" class="pull-right">{{$ideas->appends($_GET)->links()}}</p>
 	</div>
 </div>
 @endsection

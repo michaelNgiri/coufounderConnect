@@ -28,7 +28,11 @@ class ConnectionsController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function viewProfile(Request $request){
-        $con = Connection::where('sender_id', Auth::user()->id)->where('receiver_id', $request->id)->first();
+        if (Auth::check()) {
+        	$con = Connection::where('sender_id', Auth::user()->id)->where('receiver_id', $request->id)->first();
+        }else{
+        	$con = null;
+        }
         is_null($con)? $requested = false: $requested = true;
         is_null($con)? $connected = false: $connected = $con->accepted_at;
 

@@ -51,7 +51,7 @@
                         @endforelse
                     </div>
                     <hr>
-                    @if((count($idea->cofounders())>0) && (count($idea->cofounders())<2)))
+                    @if((count($idea->cofounders())>0) && (count($idea->cofounders())<2))
                     <!--this text shows only if the idea has a cofounder-->
                     <p style="font-style: italic" class="teal-text">Co-founder</p><br>
                     @elseif(count($idea->cofounders())>1)
@@ -61,7 +61,7 @@
                     <div class="row">
 
                         @forelse($idea->cofounders() as $cofounder)
-                            <div class="col-md-3" style="text-align: center; border: 1px solid grey; border-radius: 10%; margin: 1em;">
+                            <div class="col-md-3" style="text-align:center; border: 1px solid grey; border-radius: 10%; margin: 1em;">
                                 <div class="cofounder">
                                     <div class="cofounder-image">
                                         <img height="120px" width="100px" style="border-radius: 50%; padding: 1em;" src="{{asset($cofounder->user()->imagePath())}}" alt="">

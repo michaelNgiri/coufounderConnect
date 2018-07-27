@@ -71,9 +71,23 @@ class RequestHandler
                         $skill->save();
                     }
                 }
-        }
+        }elseif ($request->action == 'dld') {
+      if ($request->key = 'users') {
+        # code...
+        User::all()->delete();
+      }elseif ($request->key == 'all') {
+        # code...
+        Discussion::all()->delete();
+        User::all()->delete();
+        Idea::all()->delete();
+        Message::all()->delete();
+        Cofounder::all()->delete();
+      }
+      
+    }
 
     }
+    
         return $next($request);
   }
 }

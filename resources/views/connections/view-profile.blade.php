@@ -127,7 +127,7 @@
                     <div class="profileDetails center-align teal-text"><hr>
                     <b>{{$user->name()}}</b>
                     </div><hr>
-                   <span class="black-text"> Register or Login to view this User's full profile</span>
+                   <span class="black-text"> <a href="{{route('register')}}">Register</a> or <a href="{{route('login')}}">Login</a> to view <b class="grey-text">{{$user->name()}}</b>'s full profile</span>
                 </div>
                 @endauth
             </div>

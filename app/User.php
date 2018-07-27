@@ -117,7 +117,7 @@ class User extends Authenticatable
     public function location(){
        $address = !is_null($this->address)? $this->address.','.' ': '';
        $city = !is_null($this->city)? $this->city.','.' ': '';
-       $country = !is_null($this->country())? $this->country(): '';
+       $country = !is_null($this->country)? $this->country(): '';
         if (is_null($address) && is_null($city) && is_null($country)) {
             return null;
         }else                {
@@ -163,7 +163,8 @@ class User extends Authenticatable
      * @return bool
      */
     public function hasNoSocial(){
-      if(is_null($this->facebook) &&
+      if(
+        is_null($this->facebook) &&
          is_null($this->twitter) &&
          is_null($this->linkedin) &&
          is_null($this->website)){
