@@ -94,10 +94,18 @@ class ConnectionsController extends Controller
      */
     public function myConnections(){
 
-        $blockedRequests = Connection::where('receiver_id', Auth::user()->id)->where('blocked_at', '!=', null)->get();
-        $noOfBlockedRequests = count($blockedRequests);
-        $sentRequests = Connection::where('sender_id', Auth::user()->id)->get();
-        $receivedRequests = Connection::where('receiver_id', Auth::user()->id)->get();
+        if (Auth::check()) {
+          $blockedRequests = Connection::where('receiver_id', Auth::user()->id)->where('blocked_at', '!=', null)->get();
+          $noOfBlockedRequests = count($blockedRequests);
+          $sentRequests = Connection::where('sender_id', Auth::user()->id)->get();
+          $receivedRequests = Connection::where('receiver_id', Auth::user()->id)->get();
+        }else{
+          $blockedRequests = null;
+          $noOfBlockedRequests = 0;
+          $sentRequests = null;
+          $receivedRequests = null;
+        }
+        
 
         //check if user has any sent request
         if (is_null($sentRequests)){
@@ -122,6 +130,7 @@ class ConnectionsController extends Controller
         }
         if (is_null($receivedRequests)){
             $noOfPendingReceived = 0;
+            $pendingReceived = null;
         }else{
             $pendingReceived = $receivedRequests->where('accepted_at', null)->where('blocked_at', null)->where('spammed_at', null);
             $noOfPendingReceived = count($pendingReceived);

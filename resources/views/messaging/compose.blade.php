@@ -11,9 +11,9 @@
                     <div class="card-body">
                         <form action="{{route('messaging.send-message')}}" method="post" class="messageForm" enctype="multipart/form-data">
                             @csrf
-                            <input type="text" placeholder="Message Title" name="title" autofocus onautocomplete="next()"><br>
+                            <input type="text" placeholder="Message Title" name="title" required autofocus onautocomplete="next()"><br>
                             <label class="grey-text" for="message">Message body:</label>
-                            <textarea class="" name="message"></textarea>
+                            <textarea class="" name="message" required="required" autocomplete></textarea>
                             <br>
                             <input type="hidden" value="{{$user->id}}" name="id">
                         <button type="submit" class="btn btn-primary pull-right">

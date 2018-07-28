@@ -86,10 +86,12 @@
 
                 </div>
                 <div class="card-footer">
+                    @auth
                     @if($idea->owner()->id != auth()->user()->id)
                         {{--display this link if the current user is not the owner of the idea--}}
                         <a style="font-size: 9px;" class="grey-text pull-left" href="{{route('ideas.details.cofounder-request', ['slug'=>$idea->slug])}}">Become {{$idea->owner()->name()." 's "}} Co-founder</a>
                     @endif
+                    @endauth
                     <div class="ideaOwner pull-right teal-text">
                         @if(!is_null($idea->owner()))
                             {{--this is necessary because the lastname and first name are nullable--}}

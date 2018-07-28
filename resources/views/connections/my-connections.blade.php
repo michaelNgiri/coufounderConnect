@@ -15,6 +15,7 @@
 
                     </div>
                     <div class="card-body">
+                        @if(!is_null($pendingReceived))
                         @forelse($pendingReceived as $pending)
                             @if(!$pending->accepted())
                                 <div>
@@ -42,6 +43,7 @@
                             @empty
                         <span class="grey-text center-align">No pending request</span>
                             @endforelse
+                            @endif
                     </div>
                     <div class="card-footer">
 
