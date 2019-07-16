@@ -19,9 +19,9 @@ class IdeasController extends Controller
     	return view('ideas.view', compact('ideas'));
     }
     public function post(){
-    	$ideas = Idea::where('deleted_at', null);
-    	$skills = Skill::where('deleted_at', null);
-    	$progresses = Progress::where('deleted_at', null);
+    	$ideas = Idea::where('deleted_at', null)->get();
+    	$skills = Skill::where('deleted_at', null)->get();
+    	$progresses = Progress::where('deleted_at', null)->get();
     	return view('ideas.post-idea', compact('ideas', 'skills', 'progresses'));
     }
     public function save(Request $request){

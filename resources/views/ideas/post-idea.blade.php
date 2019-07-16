@@ -25,31 +25,31 @@
 				<label for="tags">Tags:</label>
 				<input type="text" name="tags" placeholder="tags/keywords">
 
-					<div class="post-form">
-						<div class="dropdown-mul-1">
-							<select style="display:none"  name="skills[]" id="skills" multiple placeholder="Select a skill">
-								@foreach($skills as $skill)
+					{{--<div class="post-form">--}}
+						{{--<div class="dropdown-mul-1">--}}
+							{{--<select style="display:none"  name="skills[]" id="skills" multiple placeholder="Select a skill">--}}
+								{{--@foreach($skills as $skill)--}}
 
-									<option value="{{$skill->id}}"
-											@if(!is_null(old('skills')) && in_array($skill->id, 
-											old('skill'))) selected @endif>{{$skill->name}}
-									</option>
+									{{--<option value="{{$skill->id}}" --}}
+											{{--@if(!is_null(old('skills')) && in_array($skill->id, --}}
+											{{--old('skill'))) selected @endif>{{$skill->name}}--}}
+									{{--</option>--}}
 
-								@endforeach
-							</select>
-						</div>
-					</div>
+								{{--@endforeach--}}
+							{{--</select>--}}
+						{{--</div>--}}
+					{{--</div>--}}
 
 
                  	<select multiple name="skills[]" class="form-control" id="" required>
 						<option value="">what Skills do you need<i title="required" class="badge badge-danger">!</i></option>
 						@forelse($skills as $skill)
 							<option value="{{$skill->id}}">
-                                {{$skill->name}}
+                                {{--{{$skill->name}}--}}
                                 @if(!is_null(old('skills')) && in_array($skill->id,
                                 old('skill'))) selected
                                 @endif
-                                $skill->name
+                                {{$skill->name}}
                             </option>
 						@empty
 							<p>Nothing here</p>
